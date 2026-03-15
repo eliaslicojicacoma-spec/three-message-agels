@@ -1,0 +1,25 @@
+{
+  "book": "John",
+  "chapters": [
+    {
+      "chapter": 1,
+      "verses": [
+        { "verse": 1, "text": "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus." },
+        { "verse": 2, "text": "Ele estava no princípio com Deus." },
+        { "verse": 3, "text": "Todas as coisas foram feitas por ele, e sem ele nada do que foi feito se fez." },
+        { "verse": 4, "text": "Nele estava a vida, e a vida era a luz dos homens." },
+        { "verse": 5, "text": "E a luz resplandece nas trevas, e as trevas não a compreenderam." }
+      ]
+    },
+    {
+      "chapter": 3,
+      "verses": [
+        { "verse": 1, "text": "E havia entre os fariseus um homem, chamado Nicodemos, príncipe dos judeus." },
+        { "verse": 2, "text": "Este foi ter de noite com Jesus, e disse-lhe: Rabi, bem sabemos que és Mestre, vindo de Deus; porque ninguém pode fazer estes sinais que tu fazes, se Deus não for com ele." },
+        { "verse": 3, "text": "Jesus respondeu, e disse-lhe: Na verdade, na verdade te digo que aquele que não nascer de novo, não pode ver o reino de Deus." },
+        { "verse": 4, "text": "Disse-lhe Nicodemos: Como pode um homem nascer, sendo velho? Pode, porventura, tornar a entrar no ventre de sua mãe, e nascer?" },
+        { "verse": 5, "text": "Jesus respondeu: Na verdade, na verdade te digo que aquele que não nascer da água e do Espírito, não pode entrar no reino de Deus." }
+      ]
+    }
+  ]
+}

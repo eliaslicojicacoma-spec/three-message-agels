@@ -1,0 +1,15 @@
+{
+  "book": "Matthew",
+  "chapters": [
+    {
+      "chapter": 1,
+      "verses": [
+        { "verse": 1, "text": "Livro da geração de Jesus Cristo, filho de Davi, filho de Abraão." },
+        { "verse": 2, "text": "Abraão gerou Isaque; Isaque gerou Jacó; Jacó gerou Judá e seus irmãos." },
+        { "verse": 3, "text": "Judá gerou Perez e Zerá, de Tamar; Perez gerou Esrom; Esrom gerou Arão." },
+        { "verse": 4, "text": "Arão gerou Aminadabe; Aminadabe gerou Naassom; Naassom gerou Salmom." },
+        { "verse": 5, "text": "Salmom gerou Boaz, de Raabe; Boaz gerou Obede, de Rute; Obede gerou Jessé." }
+      ]
+    }
+  ]
+}
