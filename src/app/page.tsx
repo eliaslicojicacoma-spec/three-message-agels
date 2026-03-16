@@ -115,7 +115,7 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <div className="story-block mt-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="story-block mt-12 grid gap-8 lg:grid-cols-2">
             <div className="story-sticky">
               <Reveal>
                 <div className="story-panel p-7 md:p-9">

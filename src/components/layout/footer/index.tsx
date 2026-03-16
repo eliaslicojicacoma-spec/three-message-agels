@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="mt-24 bg-[#121212] text-[#f5f3ee]">
       <div className="page-shell py-16">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
             <h3 className="editorial-serif text-4xl">Three Angels Message</h3>
             <p className="mt-5 max-w-md text-sm leading-7 text-white/72">
