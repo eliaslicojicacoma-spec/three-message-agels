@@ -70,12 +70,12 @@ export default function BibleHomePage() {
     <main className="mx-auto max-w-6xl px-4 py-16">
       <section className="section-shell">
         <div className="max-w-4xl">
-          <p className="eyebrow-clean">Centro bíblico</div>
+          <p className="eyebrow-clean">Centro bíblico</p>
           <h1 className="section-title mt-5">Bíblia Sagrada</h1>
           <p className="mt-5 text-base leading-8 text-[var(--text-soft)] md:text-lg">
             Explora a Palavra de Deus por livros, capítulos e versículos. Esta área está
-            a crescer com uma base bíblica modular, preparada para leitura, pesquisa e expansão
-            até à Bíblia completa.
+            a crescer com uma base bíblica modular, preparada para leitura, pesquisa e
+            expansão até à Bíblia completa.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -129,24 +129,20 @@ export default function BibleHomePage() {
 
       <section className="mt-14">
         <div className="max-w-2xl">
-          <div className="text-sm text-[var(--text-soft)]">Acesso rápido
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/bible/search" className="button-main">
-            🔎 Pesquisa Bíblica
-          </Link>
-        </div>
-</p>
+          <p className="text-sm text-[var(--text-soft)]">Acesso rápido</p>
           <h2 className="section-title mt-2 text-3xl">Começa por aqui</h2>
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-8">
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {quickSections.map((item) => (
             <Link key={item.href} href={item.href} className="card-clean p-6">
               <h3 className="text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 text-sm leading-7 text-[var(--text-soft)]">
                 {item.description}
               </p>
-              <p className="mt-4 text-sm font-semibold text-[var(--primary)]">Abrir seção</p>
+              <p className="mt-4 text-sm font-semibold text-[var(--primary)]">
+                Abrir seção
+              </p>
             </Link>
           ))}
         </div>
@@ -179,8 +175,8 @@ export default function BibleHomePage() {
           <p className="text-sm text-[var(--text-soft)]">Expansão da base</p>
           <h2 className="section-title mt-2 text-3xl">Livros em preparação</h2>
           <p className="mt-4 text-base leading-8 text-[var(--text-soft)]">
-            Estes livros já fazem parte da estrutura e serão ligados progressivamente à nova base
-            de dados da Bíblia completa.
+            Estes livros já fazem parte da estrutura e serão ligados progressivamente à nova
+            base de dados da Bíblia completa.
           </p>
         </div>
 
