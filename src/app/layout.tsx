@@ -1,3 +1,4 @@
+import SiteHeader from "@/components/navigation/site-header";
 import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -72,7 +73,8 @@ export default function RootLayout({
       <body className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
         <div className="flex min-h-screen flex-col">
           <Header />
-          <div className="flex-1">{children}</div>
+          <div className="flex-1"><SiteHeader />
+        {children}</div>
           <Footer />
         </div>
       </body>
