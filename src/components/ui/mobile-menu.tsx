@@ -1,10 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+
+const navItems = [
+  { label: "Início", href: "/" },
+  { label: "Bíblia", href: "/bible" },
+  { label: "Pesquisa Bíblica", href: "/bible/search" },
+  { label: "Estudos", href: "/studies" },
+  { label: "Livros", href: "/books" },
+  { label: "Downloads", href: "/downloads" },
+  { label: "Versículo do Dia", href: "/verse-of-day" },
+];
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
@@ -12,12 +38,12 @@ export default function MobileMenu() {
         type="button"
         aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-black/80 text-white shadow-2xl backdrop-blur-md md:hidden"
+        className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950 text-white shadow-[0_20px_60px_rgba(0,0,0,0.35)] transition hover:scale-[1.02] active:scale-95 md:hidden"
       >
         <span className="flex flex-col gap-1.5">
-          <span className="block h-0.5 w-6 bg-current" />
-          <span className="block h-0.5 w-6 bg-current" />
-          <span className="block h-0.5 w-6 bg-current" />
+          <span className="block h-0.5 w-6 rounded-full bg-current" />
+          <span className="block h-0.5 w-6 rounded-full bg-current" />
+          <span className="block h-0.5 w-6 rounded-full bg-current" />
         </span>
       </button>
 
@@ -27,55 +53,60 @@ export default function MobileMenu() {
             type="button"
             aria-label="Fechar menu"
             onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-black/55 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
-          <aside className="absolute right-0 top-0 h-full w-[84%] max-w-sm border-l border-black/10 bg-white p-6 shadow-2xl">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-neutral-500">
-                  Three Angels Message
-                </p>
-                <h2 className="mt-1 text-xl font-semibold text-neutral-950">Menu</h2>
-              </div>
+          <aside className="absolute right-0 top-0 h-full w-[86%] max-w-sm overflow-y-auto border-l border-black/10 bg-neutral-50 shadow-2xl">
+            <div className="border-b border-black/10 bg-white px-6 pb-5 pt-6">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+                    Three Angels Message
+                  </p>
+                  <h2 className="mt-2 text-2xl font-semibold text-neutral-950">
+                    Navegação
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-neutral-500">
+                    Bíblia, estudos e recursos missionários em acesso rápido.
+                  </p>
+                </div>
 
-              <button
-                type="button"
-                aria-label="Fechar menu"
-                onClick={() => setOpen(false)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 text-2xl text-neutral-900"
-              >
-                ×
-              </button>
+                <button
+                  type="button"
+                  aria-label="Fechar menu"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-2xl text-neutral-900 shadow-sm"
+                >
+                  ×
+                </button>
+              </div>
             </div>
 
-            <nav className="mt-8 flex flex-col gap-2">
-              <Link href="/" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-base font-medium text-neutral-950 hover:bg-neutral-100">
-                Início
-              </Link>
-              <Link href="/bible" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-base font-medium text-neutral-950 hover:bg-neutral-100">
-                Bíblia
-              </Link>
-              <Link href="/studies" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-base font-medium text-neutral-950 hover:bg-neutral-100">
-                Estudos
-              </Link>
-              <Link href="/books" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-base font-medium text-neutral-950 hover:bg-neutral-100">
-                Livros
-              </Link>
-              <Link href="/downloads" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-base font-medium text-neutral-950 hover:bg-neutral-100">
-                Downloads
-              </Link>
-              <Link href="/verse-of-day" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-base font-medium text-neutral-950 hover:bg-neutral-100">
-                Versículo do Dia
-              </Link>
-              <Link href="/bible/search" onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-base font-medium text-neutral-950 hover:bg-neutral-100">
-                Pesquisa Bíblica
-              </Link>
+            <nav className="px-4 py-4">
+              <div className="space-y-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center justify-between rounded-2xl border border-black/8 bg-white px-4 py-4 text-[15px] font-medium text-neutral-950 shadow-sm transition hover:border-black/12 hover:bg-neutral-100"
+                  >
+                    <span>{item.label}</span>
+                    <span className="text-neutral-400">↗</span>
+                  </Link>
+                ))}
+              </div>
             </nav>
 
-            <p className="mt-8 text-sm leading-7 text-neutral-500">
-              Plataforma missionária digital com Bíblia, estudos e recursos cristãos.
-            </p>
+            <div className="mt-2 border-t border-black/10 px-6 py-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-neutral-400">
+                Missão
+              </p>
+              <p className="mt-3 text-sm leading-7 text-neutral-500">
+                Uma plataforma missionária digital para proclamar a verdade bíblica
+                com acesso simples, leitura organizada e recursos úteis.
+              </p>
+            </div>
           </aside>
         </div>
       )}
