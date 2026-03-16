@@ -10,6 +10,7 @@ import { verseOfDayContent } from "@/content/verse-of-day";
 import Reveal from "@/components/ui/reveal";
 import HeroDepth from "@/components/ui/hero-depth";
 import TiltCard from "@/components/ui/tilt-card";
+import MobileMenu from "@/components/ui/mobile-menu";
 
 function getRandomVerse() {
   const index = Math.floor(Math.random() * verseOfDayContent.length);
@@ -328,6 +329,7 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
-    </main>
+          <MobileMenu />
+</main>
   );
 }
