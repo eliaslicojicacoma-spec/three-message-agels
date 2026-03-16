@@ -11,6 +11,7 @@ import Reveal from "@/components/ui/reveal";
 import HeroDepth from "@/components/ui/hero-depth";
 import TiltCard from "@/components/ui/tilt-card";
 import MobileMenu from "@/components/ui/mobile-menu";
+import MobileSearchFab from "@/components/ui/mobile-search-fab";
 
 function getRandomVerse() {
   const index = Math.floor(Math.random() * verseOfDayContent.length);
@@ -330,6 +331,7 @@ export default function HomePage() {
         </div>
       </section>
           <MobileMenu />
+      <MobileSearchFab />
 </main>
   );
 }
