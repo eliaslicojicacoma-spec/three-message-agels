@@ -1,75 +1,110 @@
 import Link from "next/link";
-import {
-  homeFoundations,
-  homeHero,
-  homeHighlights,
-  homeImpactAreas,
-  homeMissionCall,
-} from "@/content/home";
-import { verseOfDayContent } from "@/content/verse-of-day";
-import Reveal from "@/components/ui/reveal";
-import HeroDepth from "@/components/ui/hero-depth";
-import TiltCard from "@/components/ui/tilt-card";
+import type { Metadata } from "next";
+import { getDailyVerse } from "@/lib/verse-of-day";
 
-function getRandomVerse() {
-  const index = Math.floor(Math.random() * verseOfDayContent.length);
-  return verseOfDayContent[index];
-}
+export const metadata: Metadata = {
+  title: "Three Angels Message",
+  description:
+    "Plataforma missionária digital para proclamar a verdade bíblica com Bíblia, estudos, livros e recursos cristãos.",
+};
+
+const sections = [
+  {
+    title: "Bíblia",
+    href: "/bible",
+    description: "Leitura organizada por livros, capítulos e pesquisa bíblica.",
+  },
+  {
+    title: "Estudos",
+    href: "/studies",
+    description: "Conteúdo bíblico e temas para crescimento espiritual.",
+  },
+  {
+    title: "Livros",
+    href: "/books",
+    description: "Biblioteca cristã com materiais para leitura e formação.",
+  },
+  {
+    title: "Downloads",
+    href: "/downloads",
+    description: "Recursos prontos para baixar e usar offline.",
+  },
+];
 
 export default function HomePage() {
-  const verse = getRandomVerse();
+  const verse = getDailyVerse();
 
   return (
-    <main>
-      <section className="relative overflow-hidden border-b border-[var(--border-soft)]">
-        <HeroDepth>
-          <div
-            className="hero-3d-bg min-h-[78vh] bg-cover bg-center"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(22,22,22,0.28), rgba(22,22,22,0.52)), url("https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1800&q=80")',
-            }}
-          >
-            <div className="hero-grid-overlay" />
-            <div className="hero-orb hero-orb-a hero-3d-float" />
-            <div className="hero-orb hero-orb-b hero-3d-float" />
+    <main className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-14">
+      <section className="overflow-hidden rounded-[32px] border border-black/10 bg-white">
+        <div className="grid gap-8 px-6 py-10 md:px-10 md:py-14 lg:grid-cols-2">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              Evangelho Eterno
+            </p>
 
-            <div className="page-shell flex min-h-[78vh] items-end py-14 md:py-20">
-              <div className="hero-3d-content max-w-5xl mobile-balance">
-                <Reveal>
-                  <p className="eyebrow-clean text-white/80">{homeHero.badge}</p>
-                </Reveal>
+            <h1 className="mt-5 text-4xl font-bold leading-tight text-neutral-950 md:text-6xl">
+              Uma plataforma missionária digital para proclamar a verdade bíblica
+            </h1>
 
-                <Reveal delay={80}>
-                  <h1 className="hero-title kinetic-title mt-4">
-                    <span className="line">{homeHero.title}</span>
-                  </h1>
-                </Reveal>
+            <p className="mt-6 max-w-xl text-base leading-8 text-neutral-600 md:text-lg">
+              O projeto Three Angels Message foi criado para facilitar o acesso à
+              Bíblia, estudos bíblicos, livros cristãos, recursos adventistas e
+              materiais missionários, ajudando mais pessoas a conhecer Jesus Cristo
+              e a mensagem profética para este tempo.
+            </p>
 
-                <Reveal delay={160}>
-                  <p className="mt-6 max-w-3xl text-xl leading-10 text-white/84 md:text-2xl">
-                    {homeHero.description}
-                  </p>
-                </Reveal>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/bible" className="button-main">
+                Abrir a Bíblia
+              </Link>
 
-                <Reveal delay={220}>
-                  <div className="hero-mobile-stack mt-10 flex flex-wrap gap-4">
-                    <Link href={homeHero.primaryCta.href} className="button-dark button-pulse">
-                      {homeHero.primaryCta.label}
-                    </Link>
+              <Link href="/studies" className="button-ghost">
+                Explorar estudos
+              </Link>
+            </div>
+          </div>
 
-                    <Link
-                      href={homeHero.secondaryCta.href}
-                      className="button-outline button-pulse !border-white/24 !text-white hover:!bg-white/8"
-                    >
-                      {homeHero.secondaryCta.label}
-                    </Link>
-                  </div>
-                </Reveal>
+          <div className="rounded-[28px] border border-black/10 bg-neutral-50 p-6 md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-neutral-500">
+              Versículo do Dia
+            </p>
 
-                <Reveal delay={300}>
-                  <div className="mt-10 grid max-w-3xl gap-4 md:grid-cols-3">
-                    <div className="hero-glass-card hero-3d-card float-card-soft p-5 text-white">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/62">
-                        Base
-                      </p>
+            <blockquote className="editorial-serif mt-5 text-3xl leading-tight text-neutral-950 md:text-5xl">
+              “{verse.text}”
+            </blockquote>
+
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              {verse.reference}
+            </p>
+
+            <div className="mt-8">
+              <Link href="/verse-of-day" className="button-ghost">
+                Ver página devocional
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {sections.map((item) => (
+          <Link key={item.href} href={item.href} className="card-clean p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              Base
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-neutral-950">
+              {item.title}
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-neutral-600">
+              {item.description}
+            </p>
+            <p className="mt-5 text-sm font-semibold text-[var(--primary)]">
+              Abrir seção
+            </p>
+          </Link>
+        ))}
+      </section>
+    </main>
+  );
+}
