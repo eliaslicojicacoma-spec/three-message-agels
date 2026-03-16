@@ -50,20 +50,20 @@ export default async function BibleChapterPage({ params }: PageProps) {
 
   if (!currentChapter) {
     return (
-      <main className="hidden md:block hidden md:block mx-auto max-w-4xl px-4 py-16">
-        <div className="hidden md:block hidden md:block section-shell">
-          <p className="hidden md:block hidden md:block eyebrow-clean">Bíblia offline</p>
-          <h1 className="hidden md:block hidden md:block section-title mt-5">{currentBook.name}</h1>
-          <h2 className="hidden md:block hidden md:block mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
-          <p className="hidden md:block hidden md:block mt-6 text-[var(--text-soft)]">
+      <main className="mx-auto max-w-4xl px-4 py-16">
+        <div className="section-shell">
+          <p className="eyebrow-clean">Bíblia offline</p>
+          <h1 className="section-title mt-5">{currentBook.name}</h1>
+          <h2 className="mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
+          <p className="mt-6 text-[var(--text-soft)]">
             O conteúdo deste capítulo ainda está em preparação.
           </p>
 
-          <div className="hidden md:block hidden md:block mt-8 flex flex-wrap gap-3">
-            <Link href={`/bible/${book}`} className="hidden md:block hidden md:block button-ghost">
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href={`/bible/${book}`} className="button-ghost">
               Ver capítulos
             </Link>
-            <Link href="/bible/books" className="hidden md:block hidden md:block button-ghost">
+            <Link href="/bible/books" className="button-ghost">
               Todos os livros
             </Link>
           </div>
@@ -82,31 +82,31 @@ export default async function BibleChapterPage({ params }: PageProps) {
   const progress = getChapterProgress(book, chapterNumber);
 
   return (
-    <main className="hidden md:block hidden md:block mx-auto max-w-4xl px-4 py-16">
-      <div className="hidden md:block hidden md:block section-shell">
-        <p className="hidden md:block hidden md:block eyebrow-clean">Leitura bíblica</p>
-        <h1 className="hidden md:block hidden md:block section-title mt-5">{currentBook.name}</h1>
-        <h2 className="hidden md:block hidden md:block mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
+    <main className="mx-auto max-w-4xl px-4 py-16">
+      <div className="section-shell">
+        <p className="eyebrow-clean">Leitura bíblica</p>
+        <h1 className="section-title mt-5">{currentBook.name}</h1>
+        <h2 className="mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
 
-        <div className="hidden md:block hidden md:block mt-6">
-          <div className="hidden md:block hidden md:block mb-2 flex items-center justify-between gap-3 text-sm text-[var(--text-soft)]">
+        <div className="mt-6">
+          <div className="mb-2 flex items-center justify-between gap-3 text-sm text-[var(--text-soft)]">
             <span>
               Progresso do livro: {progress.current}/{progress.total}
             </span>
             <span>{progress.percent}%</span>
           </div>
 
-          <div className="hidden md:block hidden md:block h-2 w-full overflow-hidden rounded-full bg-[var(--surface-soft)]">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--surface-soft)]">
             <div
-              className="hidden md:block hidden md:block h-full rounded-full bg-[var(--primary)]"
+              className="h-full rounded-full bg-[var(--primary)]"
               style={{ width: `${progress.percent}%` }}
             />
           </div>
         </div>
 
-        <div className="hidden md:block hidden md:block mt-8 space-y-4">
+        <div className="mt-8 space-y-4">
           {currentChapter.verses.map((verse, index) => (
-            <div key={verse.verse} id={`verse-${verse.verse}`} className="hidden md:block hidden md:block space-y-3">
+            <div key={verse.verse} id={`verse-${verse.verse}`} className="space-y-3">
               <HighlightedVerse
                 verse={verse.verse}
                 text={verse.text}
@@ -130,44 +130,44 @@ export default async function BibleChapterPage({ params }: PageProps) {
           chapter={chapterNumber}
         />
 
-        <div className="hidden md:block hidden md:block mt-4 flex flex-wrap gap-3">
+        <div className="mt-4 flex flex-wrap gap-3">
           <ShareChapterButton
             title={`${currentBook.name} ${chapterNumber}`}
             urlPath={`/bible/${book}/${chapterNumber}`}
           />
         </div>
 
-        <div className="hidden md:block hidden md:block mt-10 flex flex-wrap gap-3">
-          <Link href={`/bible/${book}`} className="hidden md:block hidden md:block button-ghost">
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Link href={`/bible/${book}`} className="button-ghost">
             Ver capítulos
           </Link>
 
-          <Link href="/bible/books" className="hidden md:block hidden md:block button-ghost">
+          <Link href="/bible/books" className="button-ghost">
             Todos os livros
           </Link>
 
           {prevChapter && (
-            <Link href={`/bible/${book}/${prevChapter}`} className="hidden md:block hidden md:block button-ghost">
+            <Link href={`/bible/${book}/${prevChapter}`} className="button-ghost">
               Capítulo anterior
             </Link>
           )}
 
           {nextChapter && (
-            <Link href={`/bible/${book}/${nextChapter}`} className="hidden md:block hidden md:block button-main">
+            <Link href={`/bible/${book}/${nextChapter}`} className="button-main">
               Próximo capítulo
             </Link>
           )}
         </div>
 
-        <div className="hidden md:block hidden md:block mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-wrap gap-3">
           {previousBook && (
-            <Link href={`/bible/${previousBook.slug}`} className="hidden md:block hidden md:block button-ghost">
+            <Link href={`/bible/${previousBook.slug}`} className="button-ghost">
               ← Livro anterior: {previousBook.name}
             </Link>
           )}
 
           {nextBook && (
-            <Link href={`/bible/${nextBook.slug}`} className="hidden md:block hidden md:block button-ghost">
+            <Link href={`/bible/${nextBook.slug}`} className="button-ghost">
               Próximo livro: {nextBook.name} →
             </Link>
           )}

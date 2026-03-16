@@ -69,10 +69,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt">
-      <body className="hidden md:block hidden md:block min-h-screen bg-[var(--bg)] text-[var(--fg)]">
-        <div className="hidden md:block hidden md:block flex min-h-screen flex-col">
+      <body className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+        <div className="flex min-h-screen flex-col">
           <Header />
-          <div className="hidden md:block hidden md:block flex-1">{children}</div>
+          <div className="flex-1">{children}</div>
           <Footer />
         </div>
       </body>
