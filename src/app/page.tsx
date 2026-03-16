@@ -1,265 +1,325 @@
 import Link from "next/link";
-import { verseOfDayContent } from "@/content/verse-of-day";
 import {
   homeFoundations,
   homeHero,
   homeHighlights,
   homeImpactAreas,
-  homeMission,
   homeMissionCall,
-  homeStoryBlocks,
 } from "@/content/home";
+import { verseOfDayContent } from "@/content/verse-of-day";
+import Reveal from "@/components/ui/reveal";
+import HeroDepth from "@/components/ui/hero-depth";
+import TiltCard from "@/components/ui/tilt-card";
 
 function getRandomVerse() {
   const index = Math.floor(Math.random() * verseOfDayContent.length);
   return verseOfDayContent[index];
 }
 
-export default function Home() {
+export default function HomePage() {
   const verse = getRandomVerse();
 
   return (
     <main>
-      <section className="mx-auto max-w-6xl px-4 py-10 md:py-16">
-        <div className="glass-strong soft-grid overflow-hidden rounded-[2.75rem] px-6 py-8 md:px-10 md:py-12 motion-panel">
-          <div className="grid items-center gap-8 xl:grid-cols-[1.15fr_0.85fr]">
-            <div className="max-w-4xl">
-              <span className="eyebrow">{homeHero.badge}</span>
+      <section className="relative overflow-hidden border-b border-[var(--border-soft)]">
+        <HeroDepth>
+          <div
+            className="hero-3d-bg min-h-[78vh] bg-cover bg-center"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(22,22,22,0.28), rgba(22,22,22,0.52)), url("https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1800&q=80")',
+            }}
+          >
+            <div className="hero-grid-overlay" />
+            <div className="hero-orb hero-orb-a hero-3d-float" />
+            <div className="hero-orb hero-orb-b hero-3d-float" />
 
-              <h1 className="section-title mt-6 text-4xl font-bold leading-[0.98] md:text-6xl xl:text-7xl motion-panel delay-1">
-                {homeHero.title}
-              </h1>
+            <div className="page-shell flex min-h-[78vh] items-end py-14 md:py-20">
+              <div className="hero-3d-content max-w-5xl mobile-balance">
+                <Reveal>
+                  <p className="eyebrow-clean text-white/80">{homeHero.badge}</p>
+                </Reveal>
 
-              <p className="mt-6 max-w-3xl text-base leading-8 text-[var(--muted)] md:text-lg motion-panel delay-2">
-                {homeHero.description}
-              </p>
+                <Reveal delay={80}>
+                  <h1 className="hero-title kinetic-title mt-4">
+                    <span className="line">{homeHero.title}</span>
+                  </h1>
+                </Reveal>
 
-              <div className="mt-8 flex flex-wrap gap-4 motion-panel delay-3">
-                <Link href={homeHero.primaryCta.href} className="premium-button-primary">
-                  {homeHero.primaryCta.label}
-                </Link>
-
-                <Link href={homeHero.secondaryCta.href} className="premium-button-secondary">
-                  {homeHero.secondaryCta.label}
-                </Link>
-              </div>
-
-              <div className="mt-10 grid gap-4 md:grid-cols-3">
-                <div className="premium-card delay-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Base
+                <Reveal delay={160}>
+                  <p className="mt-6 max-w-3xl text-xl leading-10 text-white/84 md:text-2xl">
+                    {homeHero.description}
                   </p>
-                  <h3 className="mt-3 text-lg font-semibold">Bíblia viva</h3>
-                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                    Leitura por livros, capítulos e pesquisa com estrutura pronta para crescer.
-                  </p>
-                </div>
+                </Reveal>
 
-                <div className="premium-card delay-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Profecia
-                  </p>
-                  <h3 className="mt-3 text-lg font-semibold">Mensagem final</h3>
-                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                    Apocalipse 14 no centro da plataforma, com foco na verdade presente.
-                  </p>
-                </div>
+                <Reveal delay={220}>
+                  <div className="hero-mobile-stack mt-10 flex flex-wrap gap-4">
+                    <Link href={homeHero.primaryCta.href} className="button-dark button-pulse">
+                      {homeHero.primaryCta.label}
+                    </Link>
 
-                <div className="premium-card delay-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Missão
-                  </p>
-                  <h3 className="mt-3 text-lg font-semibold">Recursos úteis</h3>
-                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                    Estudos, livros e materiais missionários organizados com clareza.
-                  </p>
-                </div>
+                    <Link
+                      href={homeHero.secondaryCta.href}
+                      className="button-outline button-pulse !border-white/24 !text-white hover:!bg-white/8"
+                    >
+                      {homeHero.secondaryCta.label}
+                    </Link>
+                  </div>
+                </Reveal>
+
+                <Reveal delay={300}>
+                  <div className="mt-10 grid max-w-3xl gap-4 md:grid-cols-3">
+                    <div className="hero-glass-card hero-3d-card float-card-soft p-5 text-white">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/62">
+                        Base
+                      </p>
+                      <h3 className="mt-3 text-lg font-semibold">Bíblia</h3>
+                      <p className="mt-2 text-sm leading-6 text-white/76">
+                        Leitura organizada e acessível.
+                      </p>
+                    </div>
+
+                    <div className="hero-glass-card hero-3d-card float-card-soft p-5 text-white">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/62">
+                        Missão
+                      </p>
+                      <h3 className="mt-3 text-lg font-semibold">Mensagem</h3>
+                      <p className="mt-2 text-sm leading-6 text-white/76">
+                        Verdade presente para este tempo.
+                      </p>
+                    </div>
+
+                    <div className="hero-glass-card hero-3d-card float-card-soft p-5 text-white">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/62">
+                        Recursos
+                      </p>
+                      <h3 className="mt-3 text-lg font-semibold">Estudos</h3>
+                      <p className="mt-2 text-sm leading-6 text-white/76">
+                        Conteúdo sólido para crescer.
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
               </div>
             </div>
+          </div>
+        </HeroDepth>
+      </section>
 
-            <div className="relative motion-panel delay-2">
-              <div className="float-soft absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[var(--gold-soft)] blur-3xl" />
-              <div className="float-soft absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[rgba(36,52,95,0.10)] blur-3xl" />
+      <section className="section-space">
+        <div className="page-shell">
+          <Reveal>
+            <div className="section-intro max-w-3xl">
+              <p className="eyebrow-clean">Narrativa da Plataforma</p>
+              <h2 className="section-title mt-4">Uma jornada construída em camadas</h2>
+            </div>
+          </Reveal>
 
-              <div className="relative space-y-5">
-                <div className="glass rounded-[2.25rem] p-6 md:p-7 motion-panel delay-1">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Precisão espiritual
-                  </p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight">
-                    Conteúdo claro, forte e organizado
+          <div className="story-block mt-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+            <div className="story-sticky">
+              <Reveal>
+                <div className="story-panel p-7 md:p-9">
+                  <p className="eyebrow-clean">Direção</p>
+                  <h3 className="editorial-serif mt-4 text-4xl leading-tight">
+                    Da leitura à proclamação
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-                    Cada secção foi pensada para unir profundidade bíblica, elegância visual
-                    e uma navegação que convida à descoberta.
+                  <p className="mt-5 text-base leading-8 text-[var(--text-soft)]">
+                    O site foi pensado para conduzir a pessoa por uma experiência clara:
+                    primeiro a Palavra, depois a compreensão, depois a missão.
                   </p>
                 </div>
+              </Reveal>
+            </div>
 
-                <div className="grid gap-5 md:grid-cols-2">
-                  <div className="glass rounded-[2rem] p-5 motion-panel delay-2">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                      Essência
-                    </p>
-                    <p className="mt-3 text-3xl font-bold">01</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                      Uma entrada forte, limpa e memorável logo no primeiro olhar.
-                    </p>
+            <div className="story-track story-mobile-pad space-y-6 pl-10">
+              <Reveal>
+                <article className="story-panel float-card-soft p-7 md:p-9">
+                  <div className="flex items-start gap-4">
+                    <span className="story-dot" />
+                    <div className="story-copy">
+                      <p className="story-number">01</p>
+                      <h3 className="editorial-serif mt-3 text-4xl leading-tight">
+                        Ler
+                      </h3>
+                      <p className="mt-4 text-base leading-8 text-[var(--text-soft)]">
+                        A Bíblia permanece no centro de tudo. A navegação por livros,
+                        capítulos e pesquisa organiza o acesso à Palavra de forma clara,
+                        direta e reverente.
+                      </p>
+                    </div>
                   </div>
+                </article>
+              </Reveal>
 
-                  <div className="glass rounded-[2rem] p-5 motion-panel delay-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                      Direção
-                    </p>
-                    <p className="mt-3 text-3xl font-bold">02</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                      Ritmo visual premium preparado para crescimento e presença digital forte.
-                    </p>
+              <Reveal delay={80}>
+                <article className="story-panel float-card-soft p-7 md:p-9">
+                  <div className="flex items-start gap-4">
+                    <span className="story-dot" />
+                    <div className="story-copy">
+                      <p className="story-number">02</p>
+                      <h3 className="editorial-serif mt-3 text-4xl leading-tight">
+                        Compreender
+                      </h3>
+                      <p className="mt-4 text-base leading-8 text-[var(--text-soft)]">
+                        Estudos bíblicos, mensagem profética e recursos editoriais ajudam
+                        a transformar leitura em convicção, com profundidade e estrutura.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </article>
+              </Reveal>
 
-                <div className="glass rounded-[2rem] p-5 motion-panel delay-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Destaque espiritual
-                  </p>
-                  <blockquote className="mt-4 border-l-4 border-[var(--brand)] pl-4 text-base leading-8">
-                    “{verse.text}”
-                  </blockquote>
-                  <p className="mt-3 text-sm font-medium text-[var(--muted)]">
-                    {verse.reference}
-                  </p>
-                </div>
-              </div>
+              <Reveal delay={160}>
+                <article className="story-dark float-card-soft p-7 md:p-9">
+                  <div className="flex items-start gap-4">
+                    <span className="story-dot" />
+                    <div className="story-copy">
+                      <p className="story-number">03</p>
+                      <h3 className="editorial-serif mt-3 text-4xl leading-tight text-white">
+                        Proclamar
+                      </h3>
+                      <p className="mt-4 text-base leading-8 text-white/78">
+                        A etapa final é missão. Livros, downloads e ferramentas servem para
+                        apoiar a proclamação do evangelho eterno e preparar um povo para este tempo.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-8">
-        <div className="section-shell">
-          <p className="text-sm text-[var(--muted)]">{homeMission.eyebrow}</p>
-          <h2 className="section-title gold-line mt-2 text-3xl font-bold">{homeMission.title}</h2>
-          <p className="mt-5 max-w-3xl leading-8 text-[var(--muted)]">
-            {homeMission.description}
-          </p>
-        </div>
-      </section>
+      <section className="section-space pt-0 section-fade-top">
+        <div className="page-shell">
+          <Reveal>
+            <div className="section-intro max-w-3xl">
+              <p className="eyebrow-clean">Áreas principais</p>
+              <h2 className="section-title mt-4">Explora os pilares do site</h2>
+            </div>
+          </Reveal>
 
-      <section className="mx-auto max-w-6xl px-4 py-8 md:py-14">
-        <div className="max-w-2xl motion-panel">
-          <p className="text-sm text-[var(--muted)]">Narrativa da plataforma</p>
-          <h2 className="section-title gold-line mt-2 text-3xl font-bold">
-            Uma história contada em camadas
-          </h2>
-        </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {homeHighlights.slice(0, 3).map((item, index) => (
+              <Reveal key={item.href} delay={index * 90}>
+                <TiltCard>
+                  <Link href={item.href} className="card-clean depth-card micro-card overflow-hidden block">
+                    <div className="card-image-hover depth-image">
+                      <div className="h-[220px] bg-[var(--surface-soft)]" />
+                    </div>
 
-        <div className="mt-10 space-y-8">
-          {homeStoryBlocks.map((block, index) => (
-            <div
-              key={block.id}
-              className={`grid items-center gap-6 ${index % 2 === 0 ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-[0.9fr_1.1fr]"}`}
-            >
-              <div className={`premium-card rounded-[2.2rem] p-8 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                  {block.eyebrow}
-                </p>
-                <h3 className="mt-3 text-3xl font-semibold leading-tight">{block.title}</h3>
-                <p className="mt-4 leading-8 text-[var(--muted)]">{block.description}</p>
-                <div className="mt-6">
-                  <Link href={block.ctaHref} className="premium-button-secondary">
-                    {block.ctaLabel}
+                    <div className="p-6">
+                      <div className="depth-layer-soft">
+                        <span className="depth-badge">Destaque</span>
+                      </div>
+
+                      <h3 className="editorial-serif depth-layer mt-4 text-3xl leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="depth-layer-soft mt-4 text-sm leading-7 text-[var(--text-soft)]">
+                        {item.description}
+                      </p>
+                      <p className="card-arrow depth-layer-soft mt-5 text-sm font-semibold text-[var(--primary)]">
+                        <span>Ver mais</span>
+                        <span>→</span>
+                      </p>
+                    </div>
                   </Link>
-                </div>
-              </div>
-
-              <div className={`glass rounded-[2.2rem] p-8 min-h-[280px] flex items-end ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Bloco visual
-                  </p>
-                  <div className="mt-4 h-2 w-24 rounded-full bg-[linear-gradient(90deg,var(--gold),transparent)]" />
-                  <p className="mt-6 max-w-md text-lg font-medium leading-8">
-                    {index === 0 && "A Palavra como ponto de partida para toda a jornada espiritual."}
-                    {index === 1 && "Compreensão bíblica transformando acesso em convicção."}
-                    {index === 2 && "Recursos e missão unidos para ampliar o alcance da verdade."}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-14">
-        <div className="max-w-2xl motion-panel">
-          <p className="text-sm text-[var(--muted)]">Áreas principais</p>
-          <h2 className="section-title gold-line mt-2 text-3xl font-bold">Explora os pilares do site</h2>
-        </div>
-
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {homeHighlights.map((item, index) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`premium-card delay-${(index % 4) + 1}`}
-            >
-              <h3 className="text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-                {item.description}
-              </p>
-              <p className="mt-4 text-sm font-semibold text-[var(--brand)]">Abrir seção</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 pb-8">
-        <div className="max-w-2xl motion-panel">
-          <p className="text-sm text-[var(--muted)]">Impacto</p>
-          <h2 className="section-title gold-line mt-2 text-3xl font-bold">Como esta plataforma pode servir</h2>
-        </div>
-
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {homeImpactAreas.map((item, index) => (
-            <article key={item.title} className={`premium-card delay-${(index % 3) + 1}`}>
-              <h3 className="text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-                {item.text}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 pb-8">
-        <div className="section-shell">
-          <p className="text-sm text-[var(--muted)]">{homeMissionCall.eyebrow}</p>
-          <h2 className="section-title gold-line mt-2 text-3xl font-bold">{homeMissionCall.title}</h2>
-          <p className="mt-5 max-w-4xl leading-8 text-[var(--muted)]">
-            {homeMissionCall.description}
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-4">
-            <Link href={homeMissionCall.primaryCta.href} className="premium-button-primary">
-              {homeMissionCall.primaryCta.label}
-            </Link>
-
-            <Link href={homeMissionCall.secondaryCta.href} className="premium-button-secondary">
-              {homeMissionCall.secondaryCta.label}
-            </Link>
+                </TiltCard>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16">
-        <div className="grid gap-6 md:grid-cols-3">
-          {homeFoundations.map((item, index) => (
-            <article key={item.title} className={`premium-card delay-${(index % 3) + 1}`}>
-              <h3 className="text-xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-                {item.text}
+      <section className="dark-feature section-space">
+        <div className="page-shell">
+          <Reveal>
+            <div className="quote-glow mx-auto max-w-5xl py-8 text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
+                Versículo do Dia
               </p>
-            </article>
-          ))}
+
+              <blockquote className="editorial-serif mt-8 text-4xl leading-tight text-white md:text-6xl">
+                “{verse.text}”
+              </blockquote>
+
+              <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-white/56">
+                {verse.reference}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-space">
+        <div className="page-shell">
+          <Reveal>
+            <div className="section-intro max-w-3xl">
+              <p className="eyebrow-clean">Missão</p>
+              <h2 className="section-title mt-4">Fundamentos da Plataforma</h2>
+            </div>
+          </Reveal>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {homeFoundations.map((item, index) => (
+              <Reveal key={item.title} delay={index * 90}>
+                <article className="card-clean micro-card p-7">
+                  <h3 className="editorial-serif text-3xl leading-tight">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
+                    {item.text}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {homeImpactAreas.map((item, index) => (
+              <Reveal key={item.title} delay={index * 90}>
+                <article className="card-clean micro-card p-7">
+                  <h3 className="text-2xl font-semibold leading-tight">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
+                    {item.text}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space pt-0">
+        <div className="page-shell">
+          <Reveal>
+            <div className="rounded-[28px] bg-[var(--primary)] px-7 py-12 text-white md:px-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+                {homeMissionCall.eyebrow}
+              </p>
+
+              <h2 className="editorial-serif mt-4 text-5xl leading-tight md:text-6xl">
+                {homeMissionCall.title}
+              </h2>
+
+              <p className="mt-6 max-w-4xl text-base leading-8 text-white/78 md:text-lg">
+                {homeMissionCall.description}
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link href={homeMissionCall.primaryCta.href} className="button-dark button-pulse">
+                  {homeMissionCall.primaryCta.label}
+                </Link>
+
+                <Link
+                  href={homeMissionCall.secondaryCta.href}
+                  className="button-outline button-pulse !border-white/24 !text-white hover:!bg-white/8"
+                >
+                  {homeMissionCall.secondaryCta.label}
+                </Link>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
     </main>
