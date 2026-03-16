@@ -13,7 +13,7 @@ export default function VerseOfDayPage() {
   const verse = getDailyVerse();
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-16">
+    <main className="mx-auto max-w-5xl px-4 py-16 pb-24">
       <section className="section-shell">
         <div className="max-w-3xl">
           <p className="eyebrow-clean">Devocional diário</p>

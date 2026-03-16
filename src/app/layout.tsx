@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import MobileBottomNav from "@/components/ui/mobile-bottom-nav"
 
 const siteUrl = "https://three-angels-message.vercel.app";
 const siteTitle = "Three Angels Message";
@@ -72,7 +73,8 @@ export default function RootLayout({
       <body className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
         <div className="flex min-h-screen flex-col">
           <Header />
-          <div className="flex-1">{children}</div>
+          <div className="flex-1">{children}
+        <MobileBottomNav /></div>
           <Footer />
         </div>
       </body>

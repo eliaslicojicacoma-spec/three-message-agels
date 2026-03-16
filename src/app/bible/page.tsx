@@ -67,7 +67,7 @@ export default function BibleHomePage() {
   const loadedVersesCount = getBibleVersesCount();
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-16">
+    <main className="mx-auto max-w-6xl px-4 py-16 pb-24">
       <section className="section-shell">
         <div className="max-w-4xl">
           <p className="eyebrow-clean">Centro bíblico</p>
