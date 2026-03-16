@@ -248,6 +248,12 @@ export default function HomePage() {
               <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-white/56">
                 {verse.reference}
               </p>
+
+              <div className="mt-8">
+                <Link href="/verse-of-day" className="button-dark">
+                  Ver página devocional
+                </Link>
+              </div>
             </div>
           </Reveal>
         </div>

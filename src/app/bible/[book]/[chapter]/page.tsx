@@ -11,6 +11,7 @@ import {
 import ChapterClientTools from "@/components/bible/chapter-client-tools";
 import ShareChapterButton from "@/components/bible/share-chapter-button";
 import HighlightedVerse from "@/components/bible/highlighted-verse";
+import VerseFavoriteButton from "@/components/bible/verse-favorite-button";
 
 type PageProps = {
   params: Promise<{
@@ -105,11 +106,19 @@ export default async function BibleChapterPage({ params }: PageProps) {
 
         <div className="mt-8 space-y-4">
           {currentChapter.verses.map((verse, index) => (
-            <div key={verse.verse} id={`verse-${verse.verse}`}>
+            <div key={verse.verse} id={`verse-${verse.verse}`} className="space-y-3">
               <HighlightedVerse
                 verse={verse.verse}
                 text={verse.text}
                 highlight={index === 0}
+              />
+
+              <VerseFavoriteButton
+                slug={book}
+                bookName={currentBook.name}
+                chapter={chapterNumber}
+                verse={verse.verse}
+                text={verse.text}
               />
             </div>
           ))}

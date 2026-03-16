@@ -7,6 +7,7 @@ import {
   getBiblePendingBooksMeta,
   getBibleVersesCount,
 } from "@/lib/bible";
+import BibleSmartActions from "@/components/bible/bible-smart-actions";
 
 export const metadata: Metadata = {
   title: "Bíblia Sagrada",
@@ -45,6 +46,16 @@ const quickSections = [
     href: "/bible/library",
     description: "Acede aos teus favoritos e histórico de leitura bíblica.",
   },
+  {
+    title: "Versículo do dia",
+    href: "/verse-of-day",
+    description: "Lê a palavra devocional diária e partilha facilmente.",
+  },
+  {
+    title: "Versículos favoritos",
+    href: "/bible/verse-favorites",
+    description: "Acede aos versículos que guardaste para meditação e partilha.",
+  },
 ];
 
 export default function BibleHomePage() {
@@ -59,7 +70,7 @@ export default function BibleHomePage() {
     <main className="mx-auto max-w-6xl px-4 py-16">
       <section className="section-shell">
         <div className="max-w-4xl">
-          <p className="eyebrow-clean">Centro bíblico</p>
+          <p className="eyebrow-clean">Centro bíblico</div>
           <h1 className="section-title mt-5">Bíblia Sagrada</h1>
           <p className="mt-5 text-base leading-8 text-[var(--text-soft)] md:text-lg">
             Explora a Palavra de Deus por livros, capítulos e versículos. Esta área está
@@ -107,11 +118,28 @@ export default function BibleHomePage() {
 
       <section className="mt-14">
         <div className="max-w-2xl">
-          <p className="text-sm text-[var(--text-soft)]">Acesso rápido</p>
+          <p className="text-sm text-[var(--text-soft)]">Ações rápidas</p>
+          <h2 className="section-title mt-2 text-3xl">Leitura inteligente</h2>
+        </div>
+
+        <div className="mt-8">
+          <BibleSmartActions />
+        </div>
+      </section>
+
+      <section className="mt-14">
+        <div className="max-w-2xl">
+          <div className="text-sm text-[var(--text-soft)]">Acesso rápido
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/bible/search" className="button-main">
+            🔎 Pesquisa Bíblica
+          </Link>
+        </div>
+</p>
           <h2 className="section-title mt-2 text-3xl">Começa por aqui</h2>
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-6">
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-8">
           {quickSections.map((item) => (
             <Link key={item.href} href={item.href} className="card-clean p-6">
               <h3 className="text-xl font-semibold">{item.title}</h3>
