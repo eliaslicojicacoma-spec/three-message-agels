@@ -52,10 +52,13 @@ export function getBibleFeaturedLoadedBooks() {
   const featuredSlugs = [
     "genesis",
     "joshua",
+    "jonah",
     "psalms",
     "isaiah",
+    "lamentations",
     "daniel",
     "obadiah",
+    "malachi",
     "matthew",
     "john",
     "acts",

@@ -4,6 +4,8 @@ import { exodusData } from "./exodus";
 import { joshuaData } from "./joshua";
 import { firstSamuelData } from "./1-samuel";
 import { secondChroniclesData } from "./2-chronicles";
+import { jonahData } from "./jonah";
+import { malachiData } from "./malachi";
 
 import { obadiahData } from "./obadiah";
 import { nahumData } from "./nahum";
@@ -18,6 +20,7 @@ import { judeData } from "./jude";
 import { psalmsData } from "./psalms";
 import { proverbsData } from "./proverbs";
 import { isaiahData } from "./isaiah";
+import { lamentationsData } from "./lamentations";
 import { jeremiahData } from "./jeremiah";
 import { ezekielData } from "./ezekiel";
 import { danielData } from "./daniel";
@@ -41,13 +44,16 @@ export const bibleDataList: BibleBookData[] = [
   joshuaData,
   firstSamuelData,
   secondChroniclesData,
+  jonahData,
   obadiahData,
   psalmsData,
   nahumData,
   habakkukData,
   zephaniahData,
+  malachiData,
   proverbsData,
   isaiahData,
+  lamentationsData,
   jeremiahData,
   ezekielData,
   danielData,
