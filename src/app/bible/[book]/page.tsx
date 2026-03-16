@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { bibleBooks } from "@/content/bible";
+import {
+  getAvailableBibleChapters,
+  getBibleBookMeta,
+  getPreviousAndNextBibleBooks,
+} from "@/lib/bible";
 
 type PageProps = {
   params: Promise<{
@@ -13,7 +15,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { book } = await params;
-  const currentBook = bibleBooks.find((item) => item.slug === book);
+  const currentBook = getBibleBookMeta(book);
 
   if (!currentBook) {
     return {
@@ -30,34 +32,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BibleBookPage({ params }: PageProps) {
   const { book } = await params;
-
-  const currentBook = bibleBooks.find((item) => item.slug === book);
+  const currentBook = getBibleBookMeta(book);
 
   if (!currentBook) {
     notFound();
   }
 
-  const jsonPath = path.join(process.cwd(), "public/bible", `${book}.json`);
-  const hasJson = fs.existsSync(jsonPath);
-
-  let availableChapters: number[] = [];
-
-  if (hasJson) {
-    const file = fs.readFileSync(jsonPath, "utf8");
-    const data = JSON.parse(file);
-    availableChapters = data.chapters.map((chapter: { chapter: number }) => chapter.chapter);
-  } else {
-    availableChapters = Array.from({ length: currentBook.chapters }, (_, i) => i + 1);
-  }
+  const availableChapters = getAvailableBibleChapters(book);
+  const { previousBook, nextBook } = getPreviousAndNextBibleBooks(book);
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-16">
-      <section className="max-w-3xl">
-        <p className="text-sm text-[var(--muted)]">Livro bíblico</p>
-        <h1 className="mt-2 text-4xl font-bold">{currentBook.name}</h1>
-        <p className="mt-4 text-[var(--muted)]">
-          Escolhe um capítulo para começar a leitura.
-        </p>
+      <section className="section-shell">
+        <div className="max-w-3xl">
+          <p className="eyebrow-clean">Livro bíblico</p>
+          <h1 className="section-title mt-5">{currentBook.name}</h1>
+          <p className="mt-5 text-base leading-8 text-[var(--text-soft)]">
+            Escolhe um capítulo para começar a leitura.
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          {previousBook && (
+            <Link href={`/bible/${previousBook.slug}`} className="button-ghost">
+              ← {previousBook.name}
+            </Link>
+          )}
+
+          {nextBook && (
+            <Link href={`/bible/${nextBook.slug}`} className="button-ghost">
+              {nextBook.name} →
+            </Link>
+          )}
+        </div>
       </section>
 
       <section className="mt-10">
@@ -66,19 +73,16 @@ export default async function BibleBookPage({ params }: PageProps) {
             <Link
               key={chapterNumber}
               href={`/bible/${book}/${chapterNumber}`}
-              className="rounded-2xl border border-[var(--stroke)] bg-white/70 p-4 text-center shadow-sm transition hover:-translate-y-0.5"
+              className="card-clean p-4 text-center font-semibold"
             >
-              <span className="text-lg font-semibold">{chapterNumber}</span>
+              {chapterNumber}
             </Link>
           ))}
         </div>
       </section>
 
       <section className="mt-10">
-        <Link
-          href="/bible/books"
-          className="rounded-2xl border border-[var(--stroke)] px-4 py-3 text-sm font-medium"
-        >
+        <Link href="/bible/books" className="button-ghost">
           Voltar aos livros
         </Link>
       </section>

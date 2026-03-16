@@ -1,24 +1,16 @@
 import type { Metadata } from "next";
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { bibleBooks } from "@/content/bible";
-
-type Verse = {
-  verse: number;
-  text: string;
-};
-
-type ChapterData = {
-  chapter: number;
-  verses: Verse[];
-};
-
-type BookData = {
-  book: string;
-  chapters: ChapterData[];
-};
+import {
+  getAvailableBibleChapters,
+  getBibleBookMeta,
+  getBibleChapterData,
+  getChapterProgress,
+  getPreviousAndNextBibleBooks,
+} from "@/lib/bible";
+import ChapterClientTools from "@/components/bible/chapter-client-tools";
+import ShareChapterButton from "@/components/bible/share-chapter-button";
+import HighlightedVerse from "@/components/bible/highlighted-verse";
 
 type PageProps = {
   params: Promise<{
@@ -29,8 +21,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { book, chapter } = await params;
-
-  const currentBook = bibleBooks.find((item) => item.slug === book);
+  const currentBook = getBibleBookMeta(book);
 
   if (!currentBook) {
     return {
@@ -47,32 +38,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BibleChapterPage({ params }: PageProps) {
   const { book, chapter } = await params;
-
-  const currentBook = bibleBooks.find((item) => item.slug === book);
+  const currentBook = getBibleBookMeta(book);
 
   if (!currentBook) {
     notFound();
   }
 
   const chapterNumber = Number(chapter);
-  const jsonPath = path.join(process.cwd(), "public/bible", `${book}.json`);
-  const hasJson = fs.existsSync(jsonPath);
+  const currentChapter = getBibleChapterData(book, chapterNumber);
 
-  if (!hasJson) {
+  if (!currentChapter) {
     return (
       <main className="mx-auto max-w-4xl px-4 py-16">
-        <div className="rounded-3xl border border-[var(--stroke)] bg-white/70 p-8 shadow-sm">
-          <p className="text-sm text-[var(--muted)]">Bíblia offline</p>
-          <h1 className="mt-2 text-4xl font-bold">{currentBook.name}</h1>
+        <div className="section-shell">
+          <p className="eyebrow-clean">Bíblia offline</p>
+          <h1 className="section-title mt-5">{currentBook.name}</h1>
           <h2 className="mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
-          <p className="mt-6 text-[var(--muted)]">
+          <p className="mt-6 text-[var(--text-soft)]">
             O conteúdo deste capítulo ainda está em preparação.
           </p>
+
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={`/bible/${book}`} className="rounded-2xl border border-[var(--stroke)] px-4 py-3 text-sm font-medium">
+            <Link href={`/bible/${book}`} className="button-ghost">
               Ver capítulos
             </Link>
-            <Link href="/bible/books" className="rounded-2xl border border-[var(--stroke)] px-4 py-3 text-sm font-medium">
+            <Link href="/bible/books" className="button-ghost">
               Todos os livros
             </Link>
           </div>
@@ -81,52 +71,95 @@ export default async function BibleChapterPage({ params }: PageProps) {
     );
   }
 
-  const bookFile = fs.readFileSync(jsonPath, "utf8");
-  const data: BookData = JSON.parse(bookFile);
-  const currentChapter = data.chapters.find((item) => item.chapter === chapterNumber);
-
-  if (!currentChapter) {
-    return notFound();
-  }
-
-  const availableChapters = data.chapters.map((item) => item.chapter).sort((a, b) => a - b);
+  const availableChapters = getAvailableBibleChapters(book).sort((a, b) => a - b);
   const currentIndex = availableChapters.indexOf(chapterNumber);
   const prevChapter = currentIndex > 0 ? availableChapters[currentIndex - 1] : null;
-  const nextChapter = currentIndex < availableChapters.length - 1 ? availableChapters[currentIndex + 1] : null;
+  const nextChapter =
+    currentIndex < availableChapters.length - 1 ? availableChapters[currentIndex + 1] : null;
+
+  const { previousBook, nextBook } = getPreviousAndNextBibleBooks(book);
+  const progress = getChapterProgress(book, chapterNumber);
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-16">
-      <div className="rounded-3xl border border-[var(--stroke)] bg-white/70 p-8 shadow-sm">
-        <p className="text-sm text-[var(--muted)]">Leitura bíblica</p>
-        <h1 className="mt-2 text-4xl font-bold">{currentBook.name}</h1>
+      <div className="section-shell">
+        <p className="eyebrow-clean">Leitura bíblica</p>
+        <h1 className="section-title mt-5">{currentBook.name}</h1>
         <h2 className="mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
 
+        <div className="mt-6">
+          <div className="mb-2 flex items-center justify-between gap-3 text-sm text-[var(--text-soft)]">
+            <span>
+              Progresso do livro: {progress.current}/{progress.total}
+            </span>
+            <span>{progress.percent}%</span>
+          </div>
+
+          <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--surface-soft)]">
+            <div
+              className="h-full rounded-full bg-[var(--primary)]"
+              style={{ width: `${progress.percent}%` }}
+            />
+          </div>
+        </div>
+
         <div className="mt-8 space-y-4">
-          {currentChapter.verses.map((verse) => (
-            <p key={verse.verse} className="leading-7">
-              <strong>{verse.verse}</strong> {verse.text}
-            </p>
+          {currentChapter.verses.map((verse, index) => (
+            <div key={verse.verse} id={`verse-${verse.verse}`}>
+              <HighlightedVerse
+                verse={verse.verse}
+                text={verse.text}
+                highlight={index === 0}
+              />
+            </div>
           ))}
         </div>
 
+        <ChapterClientTools
+          slug={book}
+          bookName={currentBook.name}
+          chapter={chapterNumber}
+        />
+
+        <div className="mt-4 flex flex-wrap gap-3">
+          <ShareChapterButton
+            title={`${currentBook.name} ${chapterNumber}`}
+            urlPath={`/bible/${book}/${chapterNumber}`}
+          />
+        </div>
+
         <div className="mt-10 flex flex-wrap gap-3">
-          <Link href={`/bible/${book}`} className="rounded-2xl border border-[var(--stroke)] px-4 py-3 text-sm font-medium">
+          <Link href={`/bible/${book}`} className="button-ghost">
             Ver capítulos
           </Link>
 
-          <Link href="/bible/books" className="rounded-2xl border border-[var(--stroke)] px-4 py-3 text-sm font-medium">
+          <Link href="/bible/books" className="button-ghost">
             Todos os livros
           </Link>
 
           {prevChapter && (
-            <Link href={`/bible/${book}/${prevChapter}`} className="rounded-2xl border border-[var(--stroke)] px-4 py-3 text-sm font-medium">
+            <Link href={`/bible/${book}/${prevChapter}`} className="button-ghost">
               Capítulo anterior
             </Link>
           )}
 
           {nextChapter && (
-            <Link href={`/bible/${book}/${nextChapter}`} className="rounded-2xl bg-[var(--brand)] px-4 py-3 text-sm font-medium text-white">
+            <Link href={`/bible/${book}/${nextChapter}`} className="button-main">
               Próximo capítulo
+            </Link>
+          )}
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          {previousBook && (
+            <Link href={`/bible/${previousBook.slug}`} className="button-ghost">
+              ← Livro anterior: {previousBook.name}
+            </Link>
+          )}
+
+          {nextBook && (
+            <Link href={`/bible/${nextBook.slug}`} className="button-ghost">
+              Próximo livro: {nextBook.name} →
             </Link>
           )}
         </div>

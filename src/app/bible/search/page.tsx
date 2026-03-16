@@ -2,88 +2,92 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { bibleVerses } from "@/content/bible-search";
+import { searchBibleVerses } from "@/lib/bible";
 
 export default function BibleSearchPage() {
   const [query, setQuery] = useState("");
 
   const results = useMemo(() => {
-    const value = query.trim().toLowerCase();
-
-    if (!value) return [];
-
-    return bibleVerses.filter((verse) =>
-      verse.text.toLowerCase().includes(value) ||
-      verse.book.toLowerCase().includes(value)
-    );
+    if (!query.trim()) return [];
+    return searchBibleVerses(query).slice(0, 50);
   }, [query]);
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-16">
-      <section className="max-w-3xl">
-        <p className="text-sm text-[var(--muted)]">Ferramenta bíblica</p>
-        <h1 className="mt-2 text-4xl font-bold">Pesquisa Bíblica</h1>
-        <p className="mt-4 text-base leading-7 text-[var(--muted)]">
-          Pesquisa palavras e expressões dentro dos versículos disponíveis no sistema.
-        </p>
-      </section>
+      <section className="section-shell">
+        <div className="max-w-3xl">
+          <p className="eyebrow-clean">Ferramenta bíblica</p>
+          <h1 className="section-title mt-5">Pesquisa Bíblica</h1>
+          <p className="mt-5 text-base leading-8 text-[var(--text-soft)]">
+            Pesquisa palavras e expressões dentro dos versículos disponíveis no sistema.
+          </p>
+        </div>
 
-      <section className="mt-8 rounded-3xl border border-[var(--stroke)] bg-white/70 p-6 shadow-sm">
-        <input
-          type="text"
-          placeholder="Pesquisar palavra na Bíblia..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-2xl border border-[var(--stroke)] px-4 py-3 outline-none"
-        />
+        <div className="mt-8">
+          <input
+            type="text"
+            placeholder="Pesquisar palavra na Bíblia..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full rounded-2xl border border-[var(--border-soft)] bg-white px-4 py-3 outline-none"
+          />
 
-        <div className="mt-4 flex flex-wrap gap-3 text-sm">
-          <button onClick={() => setQuery("Deus")} className="rounded-full border border-[var(--stroke)] px-3 py-1.5">Deus</button>
-          <button onClick={() => setQuery("luz")} className="rounded-full border border-[var(--stroke)] px-3 py-1.5">luz</button>
-          <button onClick={() => setQuery("Jesus")} className="rounded-full border border-[var(--stroke)] px-3 py-1.5">Jesus</button>
-          <button onClick={() => setQuery("mundo")} className="rounded-full border border-[var(--stroke)] px-3 py-1.5">mundo</button>
-          <button onClick={() => setQuery("nascer")} className="rounded-full border border-[var(--stroke)] px-3 py-1.5">nascer</button>
+          <div className="mt-4 flex flex-wrap gap-3 text-sm">
+            <button onClick={() => setQuery("Deus")} className="button-ghost">Deus</button>
+            <button onClick={() => setQuery("luz")} className="button-ghost">luz</button>
+            <button onClick={() => setQuery("Senhor")} className="button-ghost">Senhor</button>
+            <button onClick={() => setQuery("evangelho")} className="button-ghost">evangelho</button>
+            <button onClick={() => setQuery("Cristo")} className="button-ghost">Cristo</button>
+            <button onClick={() => setQuery("fé")} className="button-ghost">fé</button>
+            <button onClick={() => setQuery("amor")} className="button-ghost">amor</button>
+            <button onClick={() => setQuery("oração")} className="button-ghost">oração</button>
+          </div>
         </div>
       </section>
 
       <section className="mt-8">
         {query.trim() === "" ? (
-          <div className="rounded-3xl border border-[var(--stroke)] bg-white/70 p-6 shadow-sm">
-            <p className="text-[var(--muted)]">
+          <div className="card-clean p-6">
+            <p className="text-[var(--text-soft)]">
               Escreve uma palavra para começar a pesquisar.
             </p>
           </div>
         ) : results.length === 0 ? (
-          <div className="rounded-3xl border border-[var(--stroke)] bg-white/70 p-6 shadow-sm">
-            <p className="text-[var(--muted)]">
+          <div className="card-clean p-6">
+            <p className="text-[var(--text-soft)]">
               Nenhum resultado encontrado para <strong>{query}</strong>.
             </p>
           </div>
         ) : (
           <div className="space-y-4">
-            <p className="text-sm text-[var(--muted)]">
+            <p className="text-sm text-[var(--text-soft)]">
               {results.length} resultado{results.length > 1 ? "s" : ""} encontrado{results.length > 1 ? "s" : ""}
             </p>
 
             {results.map((verse, index) => (
               <div
                 key={`${verse.slug}-${verse.chapter}-${verse.verse}-${index}`}
-                className="rounded-3xl border border-[var(--stroke)] bg-white/70 p-6 shadow-sm"
+                className="card-clean p-6"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-sm font-semibold">
-                    {verse.book} {verse.chapter}:{verse.verse}
-                  </p>
+                  <div>
+                    <p className="text-sm font-semibold">
+                      {verse.book} {verse.chapter}:{verse.verse}
+                    </p>
+                    <p className="mt-1 text-xs text-[var(--text-soft)]">
+                      {verse.testament === "Old" ? "Antigo Testamento" : "Novo Testamento"}
+                    </p>
+                  </div>
 
                   <Link
-                    href={`/bible/${verse.slug}/${verse.chapter}`}
-                    className="rounded-full border border-[var(--stroke)] px-3 py-1.5 text-sm"
+                    href={`/bible/${verse.slug}/${verse.chapter}#verse-${verse.verse}`}
+                    className="button-ghost"
                   >
-                    Abrir capítulo
+                    Abrir versículo
                   </Link>
                 </div>
 
-                <p className="mt-3 leading-7 text-[var(--muted)]">{verse.text}</p>
+                <p className="mt-3 leading-8 text-[var(--text-soft)]">{verse.text}</p>
               </div>
             ))}
           </div>
