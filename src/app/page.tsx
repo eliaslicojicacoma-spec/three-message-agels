@@ -8,26 +8,30 @@ export const metadata: Metadata = {
     "Plataforma missionária digital para proclamar a verdade bíblica com Bíblia, estudos, livros e recursos cristãos.",
 };
 
-const sections = [
+const cards = [
   {
+    eyebrow: "Base",
     title: "Bíblia",
     href: "/bible",
-    description: "Leitura organizada por livros, capítulos e pesquisa bíblica.",
+    description: "Leitura organizada por livros, capítulos, versículos e pesquisa bíblica.",
   },
   {
+    eyebrow: "Missão",
     title: "Estudos",
     href: "/studies",
-    description: "Conteúdo bíblico e temas para crescimento espiritual.",
+    description: "Conteúdo bíblico sólido para crescimento espiritual e compreensão profética.",
   },
   {
+    eyebrow: "Biblioteca",
     title: "Livros",
     href: "/books",
-    description: "Biblioteca cristã com materiais para leitura e formação.",
+    description: "Recursos cristãos e materiais para leitura, formação e aprofundamento.",
   },
   {
+    eyebrow: "Recursos",
     title: "Downloads",
     href: "/downloads",
-    description: "Recursos prontos para baixar e usar offline.",
+    description: "Materiais prontos para baixar e usar offline quando precisares.",
   },
 ];
 
@@ -35,73 +39,82 @@ export default function HomePage() {
   const verse = getDailyVerse();
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-14">
-      <section className="overflow-hidden rounded-[32px] border border-black/10 bg-white">
-        <div className="grid gap-8 px-6 py-10 md:px-10 md:py-14 lg:grid-cols-2">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
-              Evangelho Eterno
-            </p>
+    <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10">
+      <section className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950 text-white shadow-2xl">
+        <div className="bg-gradient-to-br from-amber-100/20 via-slate-900 to-blue-950">
+          <div className="grid gap-8 px-6 py-10 md:px-10 md:py-14 lg:grid-cols-2">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
+                Evangelho Eterno
+              </p>
 
-            <h1 className="mt-5 text-4xl font-bold leading-tight text-neutral-950 md:text-6xl">
-              Uma plataforma missionária digital para proclamar a verdade bíblica
-            </h1>
+              <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">
+                Uma plataforma missionária digital para proclamar a verdade bíblica
+              </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-8 text-neutral-600 md:text-lg">
-              O projeto Three Angels Message foi criado para facilitar o acesso à
-              Bíblia, estudos bíblicos, livros cristãos, recursos adventistas e
-              materiais missionários, ajudando mais pessoas a conhecer Jesus Cristo
-              e a mensagem profética para este tempo.
-            </p>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-white/78 md:text-lg">
+                O projeto Three Angels Message foi criado para facilitar o acesso à Bíblia,
+                estudos bíblicos, livros cristãos, recursos adventistas e materiais
+                missionários, ajudando mais pessoas a conhecer Jesus Cristo e a mensagem
+                profética para este tempo.
+              </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/bible" className="button-main">
-                Abrir a Bíblia
-              </Link>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/bible"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90"
+                >
+                  Abrir a Bíblia
+                </Link>
 
-              <Link href="/studies" className="button-ghost">
-                Explorar estudos
-              </Link>
+                <Link
+                  href="/studies"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                  Explorar estudos
+                </Link>
+              </div>
             </div>
-          </div>
 
-          <div className="rounded-[28px] border border-black/10 bg-neutral-50 p-6 md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-neutral-500">
-              Versículo do Dia
-            </p>
+            <div className="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-sm md:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/65">
+                Versículo do Dia
+              </p>
 
-            <blockquote className="editorial-serif mt-5 text-3xl leading-tight text-neutral-950 md:text-5xl">
-              “{verse.text}”
-            </blockquote>
+              <blockquote className="mt-5 text-3xl leading-tight text-white md:text-5xl" style={{ fontFamily: 'Georgia, serif' }}>
+                “{verse.text}”
+              </blockquote>
 
-            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
-              {verse.reference}
-            </p>
+              <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-white/65">
+                {verse.reference}
+              </p>
 
-            <div className="mt-8">
-              <Link href="/verse-of-day" className="button-ghost">
-                Ver página devocional
-              </Link>
+              <div className="mt-8">
+                <Link
+                  href="/verse-of-day"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                  Ver página devocional
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {sections.map((item) => (
-          <Link key={item.href} href={item.href} className="card-clean p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-              Base
+      <section className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {cards.map((card) => (
+          <Link
+            key={card.href}
+            href={card.href}
+            className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-neutral-500">
+              {card.eyebrow}
             </p>
-            <h2 className="mt-3 text-2xl font-semibold text-neutral-950">
-              {item.title}
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-neutral-600">
-              {item.description}
-            </p>
-            <p className="mt-5 text-sm font-semibold text-[var(--primary)]">
-              Abrir seção
-            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-neutral-950">{card.title}</h2>
+            <p className="mt-3 text-sm leading-7 text-neutral-600">{card.description}</p>
+            <p className="mt-5 text-sm font-semibold text-sky-700">Abrir seção</p>
           </Link>
         ))}
       </section>
