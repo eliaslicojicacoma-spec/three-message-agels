@@ -97,3 +97,33 @@ export const homeFoundations = [
     text: "A estrutura foi preparada para receber mais livros, estudos, downloads e ferramentas.",
   },
 ];
+
+export const homeStoryBlocks = [
+  {
+    id: "story-1",
+    eyebrow: "Capítulo 01",
+    title: "Primeiro, a Palavra precisa estar acessível",
+    description:
+      "Toda grande missão começa por um fundamento claro. Por isso, a Bíblia ocupa o centro da plataforma, com leitura organizada, navegação por capítulos e espaço para crescimento contínuo.",
+    ctaLabel: "Explorar a Bíblia",
+    ctaHref: "/bible",
+  },
+  {
+    id: "story-2",
+    eyebrow: "Capítulo 02",
+    title: "Depois, a verdade precisa ser compreendida",
+    description:
+      "Não basta ter acesso ao texto. É preciso entendimento. Os estudos bíblicos, a mensagem profética e os recursos doutrinários ajudam a transformar leitura em convicção.",
+    ctaLabel: "Ver estudos",
+    ctaHref: "/studies",
+  },
+  {
+    id: "story-3",
+    eyebrow: "Capítulo 03",
+    title: "Então, a mensagem precisa ser proclamada",
+    description:
+      "A missão final é levar pessoas a Cristo e preparar um povo para a Sua volta. Livros, downloads e ferramentas digitais existem para fortalecer o evangelismo e ampliar o alcance da verdade.",
+    ctaLabel: "Abrir recursos",
+    ctaHref: "/downloads",
+  },
+];
