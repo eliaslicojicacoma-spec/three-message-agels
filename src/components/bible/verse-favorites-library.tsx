@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   getBibleVerseFavorites,
   type BibleVerseFavoriteItem,
-} from "@/lib/storage/bible-verse-favorites";
+} from "@/services/favorites/verse-favorites";
 
 export default function VerseFavoritesLibrary() {
   const [favorites, setFavorites] = useState<BibleVerseFavoriteItem[]>([]);

@@ -7,7 +7,7 @@ import {
   getBibleHistory,
   type BibleFavoriteItem,
   type BibleHistoryItem,
-} from "@/lib/storage/bible-progress";
+} from "@/services/favorites/chapter-favorites";
 
 export default function BibleLibraryClient() {
   const [favorites, setFavorites] = useState<BibleFavoriteItem[]>([]);

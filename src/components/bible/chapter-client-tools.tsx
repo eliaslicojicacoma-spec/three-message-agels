@@ -8,7 +8,7 @@ import {
   isBibleFavorite,
   saveBibleHistory,
   toggleBibleFavorite,
-} from "@/lib/storage/bible-progress";
+} from "@/services/favorites/chapter-favorites";
 
 type Props = {
   slug: string;

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {
   isBibleVerseFavorite,
   toggleBibleVerseFavorite,
-} from "@/lib/storage/bible-verse-favorites";
+} from "@/services/favorites/verse-favorites";
 
 type Props = {
   slug: string;
