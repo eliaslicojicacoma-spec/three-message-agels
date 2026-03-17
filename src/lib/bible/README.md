@@ -1,4 +1,6 @@
-# Legacy folder
+# Legacy compatibility layer
 
-This folder is still active but is planned for migration.
-See: docs/architecture/lib-services-alignment.md
+This folder remains active during migration.
+Core Bible overview access is now being moved toward:
+- src/services/bible
+- src/features/bible
