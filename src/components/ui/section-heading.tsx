@@ -12,21 +12,22 @@ export default function SectionHeading({
   align = "left",
 }: SectionHeadingProps) {
   const alignment = align === "center" ? "text-center" : "text-left";
+  const width = align === "center" ? "mx-auto" : "";
 
   return (
-    <div className={alignment}>
+    <div className={`${alignment} ${width}`}>
       {eyebrow ? (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] opacity-60">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] opacity-60">
           {eyebrow}
         </p>
       ) : null}
 
-      <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+      <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
         {title}
-      </h2>
+      </h1>
 
       {description ? (
-        <p className="mt-3 max-w-2xl text-sm leading-7 opacity-75 md:text-base">
+        <p className="mt-4 max-w-2xl text-sm leading-7 opacity-75 md:text-base">
           {description}
         </p>
       ) : null}
