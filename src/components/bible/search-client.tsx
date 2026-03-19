@@ -2,21 +2,16 @@
 
 import { useMemo, useState } from "react";
 import { searchBible } from "@/services/bible/search";
-
-type Verse = {
-  book: string;
-  chapter: number;
-  verse: number;
-  text: string;
-};
+import HighlightedVerse from "@/components/bible/highlighted-verse";
+import type { BibleVerse } from "@/types/bible";
 
 export default function BibleSearchClient() {
   const [query, setQuery] = useState("");
   const [submittedQuery, setSubmittedQuery] = useState("");
 
-  const results = useMemo<Verse[]>(() => {
+  const results = useMemo<BibleVerse[]>(() => {
     if (!submittedQuery.trim()) return [];
-    return (searchBible(submittedQuery) || []) as Verse[];
+    return (searchBible(submittedQuery) || []) as BibleVerse[];
   }, [submittedQuery]);
 
   function handleSearch() {
@@ -74,7 +69,9 @@ export default function BibleSearchClient() {
               <p className="text-sm font-semibold opacity-70">
                 {item.book} {item.chapter}:{item.verse}
               </p>
-              <p className="mt-3 leading-8">{item.text}</p>
+              <p className="mt-3 leading-8">
+                <HighlightedVerse text={item.text} query={submittedQuery} />
+              </p>
             </article>
           ))
         )}

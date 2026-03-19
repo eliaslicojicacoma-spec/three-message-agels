@@ -82,7 +82,7 @@ export default async function BibleChapterPage({ params }: PageProps) {
 
               <div className="mt-3 text-base leading-8">
                 {index === 0 ? (
-                  <HighlightedVerse text={verse.text} />
+                  <HighlightedVerse text={verse.text} query="" />
                 ) : (
                   verse.text
                 )}
