@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getStudyBySlug, getStudies } from "@/content/studies";
+import SectionHeading from "@/components/ui/section-heading";
 
 type PageProps = {
   params: Promise<{
@@ -42,19 +43,57 @@ export default async function StudyDetailPage({ params }: PageProps) {
 
   return (
     <main className="container-premium py-10 md:py-14">
-      <article className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
-          {study.category}
-        </p>
+      <SectionHeading
+        eyebrow="Estudo Bíblico"
+        title={study.title}
+        description={study.description}
+      />
 
-        <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-          {study.title}
-        </h1>
+      <section className="mt-8 grid gap-4 md:grid-cols-[1.2fr_0.8fr]">
+        <article className="card-premium p-6 md:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
+            Conteúdo
+          </p>
 
-        <p className="mt-4 text-sm leading-7 opacity-75 md:text-base">
-          {study.description}
-        </p>
-      </article>
+          <div className="mt-4 space-y-4 text-sm leading-8 opacity-80 md:text-base">
+            <p>
+              Este estudo faz parte da base de conteúdos do projeto e será
+              expandido com estrutura completa, referências bíblicas,
+              desenvolvimento temático e ligação com outros recursos.
+            </p>
+
+            <p>
+              A proposta é oferecer conteúdos claros, organizados e úteis para
+              leitura pessoal, ensino, evangelismo e aprofundamento espiritual.
+            </p>
+
+            <p>
+              Esta página já está preparada para crescer dentro da arquitetura do
+              site sem perder consistência visual nem organização.
+            </p>
+          </div>
+        </article>
+
+        <aside className="card-premium p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
+            Categoria
+          </p>
+
+          <p className="mt-3 text-xl font-semibold">
+            {study.category}
+          </p>
+
+          <div className="mt-6 rounded-2xl border bg-neutral-50 p-4 text-sm leading-7 opacity-80">
+            Este módulo será ligado a:
+            <ul className="mt-3 list-disc pl-5">
+              <li>referências bíblicas</li>
+              <li>estudos relacionados</li>
+              <li>downloads</li>
+              <li>conteúdo missionário</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
     </main>
   );
 }
