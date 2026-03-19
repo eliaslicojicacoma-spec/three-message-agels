@@ -1,10 +1,18 @@
+import SectionHeading from "@/components/ui/section-heading";
+import VerseFavoritesLibrary from "@/components/bible/verse-favorites-library";
+
 export default function VerseFavoritesPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-16">
-      <h1 className="text-2xl font-bold">Versículos Favoritos</h1>
-      <p className="mt-4 opacity-70">
-        Funcionalidade em desenvolvimento.
-      </p>
+    <main className="container-premium py-10 md:py-14">
+      <SectionHeading
+        eyebrow="Biblioteca Pessoal"
+        title="Meus versículos favoritos"
+        description="Aqui ficam guardados os versículos que marcaste para leitura, revisão e inspiração."
+      />
+
+      <div className="mt-8">
+        <VerseFavoritesLibrary />
+      </div>
     </main>
   );
 }
