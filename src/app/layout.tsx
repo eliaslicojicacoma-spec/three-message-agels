@@ -6,9 +6,25 @@ import { siteConfig } from "@/config/site";
 import { seoConfig } from "@/config/seo";
 
 export const metadata: Metadata = {
-  title: seoConfig.defaultTitle,
+  title: {
+    default: seoConfig.defaultTitle,
+    template: seoConfig.titleTemplate,
+  },
   description: seoConfig.defaultDescription,
   metadataBase: new URL(siteConfig.url),
+
+  openGraph: {
+    type: "website",
+    locale: seoConfig.openGraph.locale,
+    url: seoConfig.openGraph.url,
+    siteName: seoConfig.openGraph.siteName,
+    title: seoConfig.defaultTitle,
+    description: seoConfig.defaultDescription,
+  },
+
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

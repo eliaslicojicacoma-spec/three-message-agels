@@ -1,50 +1,20 @@
-import { siteConfig } from "@/config/site";
+export const seoConfig = {
+  defaultTitle: "Three Angels Message",
+  titleTemplate: "%s | Three Angels Message",
 
-export type SEOConfig = {
-  defaultTitle: string;
-  titleTemplate: string;
-  defaultDescription: string;
-  defaultLocale: string;
-  siteUrl: string;
-  defaultImage: string;
-  keywords: string[];
-  openGraph: {
-    type: string;
-    locale: string;
-    siteName: string;
-  };
-  twitter: {
-    card: "summary_large_image" | "summary";
-    creator?: string;
-  };
-};
+  defaultDescription:
+    "Uma plataforma missionária digital com Bíblia, estudos, livros e recursos cristãos para crescimento espiritual.",
 
-export const seoConfig: SEOConfig = {
-  defaultTitle: siteConfig.title,
-  titleTemplate: `%s | ${siteConfig.title}`,
-  defaultDescription: siteConfig.description,
-  defaultLocale: siteConfig.defaultLocale,
-  siteUrl: siteConfig.url,
-  defaultImage: `${siteConfig.url}/preview.jpg`,
-  keywords: [
-    "Bíblia",
-    "Pesquisa Bíblica",
-    "Versículo do Dia",
-    "Estudos Bíblicos",
-    "Livros Cristãos",
-    "Mensagem dos Três Anjos",
-    "Three Angels Message",
-    "Evangelho",
-    "Profecia",
-    "Fé Cristã",
-  ],
+  siteUrl: "https://three-angels-message.vercel.app",
+
   openGraph: {
     type: "website",
     locale: "pt_AO",
-    siteName: siteConfig.name,
+    url: "https://three-angels-message.vercel.app",
+    siteName: "Three Angels Message",
   },
+
   twitter: {
     card: "summary_large_image",
-    creator: "@eliascacoma",
   },
 };
