@@ -13,11 +13,11 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "rounded-xl px-4 py-3 text-sm font-medium transition-all active:scale-95";
+    "button-press rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-200";
 
   const styles = {
     primary: "bg-black text-white hover:opacity-90",
-    secondary: "border hover:bg-gray-100",
+    secondary: "border bg-white hover:bg-gray-50",
     ghost: "hover:bg-gray-100"
   };
 

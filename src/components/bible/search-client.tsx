@@ -29,8 +29,8 @@ export default function BibleSearchClient() {
   const hasResults = results.length > 0;
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-3xl border bg-white p-4 shadow-sm md:p-5">
+    <div className="space-y-6 fade-in-up">
+      <div className="surface-soft p-4 md:p-5">
         <div className="flex flex-col gap-3 md:flex-row">
           <div className="relative w-full">
             <input
@@ -41,7 +41,7 @@ export default function BibleSearchClient() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") handleSearch();
               }}
-              className="w-full rounded-2xl border px-4 py-3 text-sm outline-none transition focus:border-black focus:ring-2"
+              className="w-full rounded-2xl border bg-white px-4 py-3 text-sm outline-none transition focus:border-black"
             />
           </div>
 
@@ -86,7 +86,7 @@ export default function BibleSearchClient() {
           {results.map((item, index) => (
             <article
               key={index}
-              className="rounded-3xl border bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+              className="card-premium p-5"
             >
               <div className="flex items-center justify-between gap-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] opacity-60">
