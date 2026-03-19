@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import MobileBottomNav from "@/components/ui/mobile-bottom-nav";
+import MobileMenu from "@/components/ui/mobile-menu";
 import { siteConfig } from "@/config/site";
 import { seoConfig } from "@/config/seo";
 
@@ -12,7 +14,6 @@ export const metadata: Metadata = {
   },
   description: seoConfig.defaultDescription,
   metadataBase: new URL(siteConfig.url),
-
   openGraph: {
     type: "website",
     locale: seoConfig.openGraph.locale,
@@ -21,7 +22,6 @@ export const metadata: Metadata = {
     title: seoConfig.defaultTitle,
     description: seoConfig.defaultDescription,
   },
-
   twitter: {
     card: "summary_large_image",
   },
@@ -36,8 +36,10 @@ export default function RootLayout({
     <html lang="pt-AO">
       <body className="min-h-screen bg-neutral-50 text-neutral-950 antialiased flex flex-col">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-24 md:pb-0">{children}</main>
         <Footer />
+        <MobileMenu />
+        <MobileBottomNav />
       </body>
     </html>
   );
