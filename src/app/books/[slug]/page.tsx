@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { libraryContent } from "@/content/library";
+import { getBookBySlug, getBooks } from "@/content/books";
+import SectionHeading from "@/components/ui/section-heading";
 
 type PageProps = {
   params: Promise<{
@@ -8,14 +9,21 @@ type PageProps = {
   }>;
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateStaticParams() {
+  return getBooks().map((book) => ({
+    slug: book.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const book = libraryContent.find((item) => item.slug === slug);
+  const book = getBookBySlug(slug);
 
   if (!book) {
     return {
       title: "Livro não encontrado",
-      description: "O livro solicitado não foi encontrado na biblioteca."
     };
   }
 
@@ -27,45 +35,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BookDetailPage({ params }: PageProps) {
   const { slug } = await params;
-
-  const book = libraryContent.find((item) => item.slug === slug);
+  const book = getBookBySlug(slug);
 
   if (!book) {
     notFound();
   }
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-16">
-      <section className="rounded-3xl border border-[var(--stroke)] bg-white/70 p-8 shadow-sm">
-        <div className="flex flex-wrap gap-2 text-xs">
-          <span className="rounded-full border border-[var(--stroke)] px-3 py-1">
-            {book.category}
-          </span>
-          <span className="rounded-full border border-[var(--stroke)] px-3 py-1">
-            {book.language}
-          </span>
-          <span className="rounded-full border border-[var(--stroke)] px-3 py-1">
-            {book.format}
-          </span>
-        </div>
+    <main className="container-premium py-10 md:py-14">
+      <SectionHeading
+        eyebrow="Livro"
+        title={book.title}
+        description={book.description}
+      />
 
-        <h1 className="mt-5 text-4xl font-bold">{book.title}</h1>
-        <p className="mt-3 text-sm font-medium">{book.author}</p>
+      <section className="mt-8 card-premium p-6 md:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
+          Autor
+        </p>
 
-        <div className="mt-8 space-y-6 leading-7 text-[var(--muted)]">
-          <p>{book.description}</p>
+        <h2 className="mt-3 text-2xl font-semibold">
+          {book.author}
+        </h2>
 
-          <p>
-            Esta página agora é gerada dinamicamente com base no conteúdo central da
-            biblioteca. Isso permite ampliar a coleção sem criar um ficheiro manual
-            para cada novo título.
-          </p>
-
-          <p>
-            O próximo passo natural será enriquecer cada livro com mais campos, como
-            capa, ano, editora, resumo expandido, idioma adicional e link de download.
-          </p>
-        </div>
+        <p className="mt-4 text-sm leading-8 opacity-75 md:text-base">
+          Esta página faz parte da biblioteca do projeto e será expandida com
+          detalhes adicionais, links de leitura e recursos relacionados.
+        </p>
       </section>
     </main>
   );
