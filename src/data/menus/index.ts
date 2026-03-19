@@ -1,13 +1,33 @@
-export const mainMenu = [
-  { label: "Início", href: "/" },
-  { label: "Bíblia", href: "/bible" },
-  { label: "Pesquisa", href: "/bible/search" },
-  { label: "Versículo do Dia", href: "/verse-of-day" },
-  { label: "Livros", href: "/books" },
+import { navigationConfig } from "@/config/navigation";
+import type { NavItem } from "@/types/common";
+
+export type MenuGroup = {
+  label: string;
+  items: NavItem[];
+};
+
+export const mainMenu: NavItem[] = navigationConfig.main;
+
+export const mobileMenu: NavItem[] = navigationConfig.mobile;
+
+export const footerMenu: MenuGroup[] = [
+  {
+    label: "Navegação",
+    items: navigationConfig.footer,
+  },
+  {
+    label: "Acesso rápido",
+    items: navigationConfig.quickAccess,
+  },
 ];
 
-export const footerMenu = [
-  { label: "Bíblia", href: "/bible" },
-  { label: "Pesquisa", href: "/bible/search" },
-  { label: "Versículo do Dia", href: "/verse-of-day" },
+export const headerQuickActions: NavItem[] = [
+  {
+    label: "Pesquisar",
+    href: "/bible/search",
+  },
+  {
+    label: "Favoritos",
+    href: "/bible/verse-favorites",
+  },
 ];
