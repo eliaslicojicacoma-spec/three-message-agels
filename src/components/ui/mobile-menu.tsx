@@ -2,19 +2,21 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "Início", href: "/" },
   { label: "Bíblia", href: "/bible" },
   { label: "Pesquisa Bíblica", href: "/bible/search" },
+  { label: "Versículo do Dia", href: "/verse-of-day" },
   { label: "Estudos", href: "/studies" },
   { label: "Livros", href: "/books" },
   { label: "Downloads", href: "/downloads" },
-  { label: "Versículo do Dia", href: "/verse-of-day" },
 ];
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!open) return;
@@ -38,7 +40,7 @@ export default function MobileMenu() {
         type="button"
         aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950 text-white shadow-[0_20px_60px_rgba(0,0,0,0.35)] transition hover:scale-[1.02] active:scale-95 md:hidden"
+        className="fixed bottom-24 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950 text-white shadow-[0_20px_60px_rgba(0,0,0,0.35)] transition hover:scale-[1.02] active:scale-95 md:hidden"
       >
         <span className="flex flex-col gap-1.5">
           <span className="block h-0.5 w-6 rounded-full bg-current" />
@@ -67,7 +69,7 @@ export default function MobileMenu() {
                     Navegação
                   </h2>
                   <p className="mt-2 text-sm leading-6 text-neutral-500">
-                    Bíblia, estudos e recursos missionários em acesso rápido.
+                    Acesso rápido às áreas principais do site.
                   </p>
                 </div>
 
@@ -84,17 +86,28 @@ export default function MobileMenu() {
 
             <nav className="px-4 py-4">
               <div className="space-y-2">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-center justify-between rounded-2xl border border-black/8 bg-white px-4 py-4 text-[15px] font-medium text-neutral-950 shadow-sm transition hover:border-black/12 hover:bg-neutral-100"
-                  >
-                    <span>{item.label}</span>
-                    <span className="text-neutral-400">↗</span>
-                  </Link>
-                ))}
+                {navItems.map((item) => {
+                  const active =
+                    item.href === "/"
+                      ? pathname === "/"
+                      : pathname === item.href || pathname.startsWith(item.href + "/");
+
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={`flex items-center justify-between rounded-2xl border px-4 py-4 text-[15px] font-medium shadow-sm transition ${
+                        active
+                          ? "border-black bg-black text-white"
+                          : "border-black/8 bg-white text-neutral-950 hover:bg-neutral-100"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <span className={active ? "text-white/70" : "text-neutral-400"}>↗</span>
+                    </Link>
+                  );
+                })}
               </div>
             </nav>
 
@@ -104,7 +117,7 @@ export default function MobileMenu() {
               </p>
               <p className="mt-3 text-sm leading-7 text-neutral-500">
                 Uma plataforma missionária digital para proclamar a verdade bíblica
-                com acesso simples, leitura organizada e recursos úteis.
+                com leitura organizada, pesquisa e recursos úteis.
               </p>
             </div>
           </aside>
