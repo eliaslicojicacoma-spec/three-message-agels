@@ -22,6 +22,10 @@ export type SiteConfig = {
     instagram?: string;
     youtube?: string;
   };
+  monetization: {
+    paypal: string;
+    pix: string;
+  };
 };
 
 export const siteConfig: SiteConfig = {
@@ -47,5 +51,9 @@ export const siteConfig: SiteConfig = {
     facebook: "https://www.facebook.com/share/1DeT9sjHyp/",
     instagram: "https://www.instagram.com/eliascacoma",
     youtube: "https://youtube.com/@eliaslicojicacoma",
+  },
+  monetization: {
+    paypal: "eliaslicojicacoma@gmail.com",
+    pix: "elias-licoji-cacoma-273@jim.com",
   },
 };

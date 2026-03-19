@@ -1,45 +1,64 @@
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-[#121212] text-[#f5f3ee]">
-      <div className="page-shell py-16">
-        <div className="grid gap-10 md:grid-cols-3">
-          <div>
-            <h3 className="editorial-serif text-4xl">Three Angels Message</h3>
-            <p className="mt-5 max-w-md text-sm leading-7 text-white/72">
-              Uma plataforma missionária digital dedicada à proclamação do evangelho eterno,
-              ao estudo da Bíblia e à partilha de recursos cristãos e adventistas.
-            </p>
-          </div>
+    <footer className="mt-16 border-t border-black/5 bg-white">
+      <div className="container-premium py-12 grid gap-10 md:grid-cols-4">
 
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
-              Navegação
-            </p>
-            <div className="mt-5 grid gap-3 text-sm">
-              <Link href="/bible" className="text-white/78 transition hover:text-white">Bíblia</Link>
-              <Link href="/three-angels-message" className="text-white/78 transition hover:text-white">Mensagem</Link>
-              <Link href="/studies" className="text-white/78 transition hover:text-white">Estudos</Link>
-              <Link href="/books" className="text-white/78 transition hover:text-white">Livros</Link>
+        {/* Marca */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-black text-white font-bold">
+              △
+            </span>
+            <div>
+              <p className="text-sm font-semibold">{siteConfig.shortName}</p>
+              <p className="text-xs text-neutral-500">
+                {siteConfig.brand.tagline}
+              </p>
             </div>
           </div>
 
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
-              Recursos
-            </p>
-            <div className="mt-5 grid gap-3 text-sm">
-              <Link href="/downloads" className="text-white/78 transition hover:text-white">Downloads</Link>
-              <Link href="/verse-of-day" className="text-white/78 transition hover:text-white">Versículo do Dia</Link>
-              <Link href="/bible/search" className="text-white/78 transition hover:text-white">Pesquisa Bíblica</Link>
-            </div>
+          <p className="text-sm text-neutral-600 leading-relaxed">
+            Proclamando a verdade bíblica através de tecnologia, estudos e conteúdos organizados para crescimento espiritual.
+          </p>
+        </div>
+
+        {/* Navegação */}
+        <div>
+          <h3 className="text-sm font-semibold mb-4">Navegação</h3>
+          <div className="flex flex-col gap-2 text-sm text-neutral-600">
+            <Link href="/">Início</Link>
+            <Link href="/bible">Bíblia</Link>
+            <Link href="/bible/search">Pesquisar</Link>
+            <Link href="/studies">Estudos</Link>
+            <Link href="/books">Livros</Link>
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-6 text-sm text-white/45">
-          © 2026 Three Angels Message. All rights reserved.
+        {/* Contato */}
+        <div>
+          <h3 className="text-sm font-semibold mb-4">Contato</h3>
+          <div className="flex flex-col gap-2 text-sm text-neutral-600">
+            <p>{siteConfig.contact.email}</p>
+            <p>{siteConfig.contact.whatsapp}</p>
+          </div>
         </div>
+
+        {/* Apoio */}
+        <div>
+          <h3 className="text-sm font-semibold mb-4">Apoiar</h3>
+          <div className="flex flex-col gap-2 text-sm text-neutral-600">
+            <p>PayPal: {siteConfig.monetization.paypal}</p>
+            <p>Pix: {siteConfig.monetization.pix}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div className="border-t border-black/5 py-6 text-center text-xs text-neutral-500">
+        © {new Date().getFullYear()} {siteConfig.shortName}. Todos os direitos reservados.
       </div>
     </footer>
   );
