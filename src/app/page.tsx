@@ -12,66 +12,59 @@ export default function HomePage() {
   const quotes = getQuotes().slice(0, 2);
 
   return (
-    <main className="container-premium py-10 md:py-14">
-      <section className="rounded-[32px] border bg-white px-5 py-10 shadow-sm md:px-10 md:py-14">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
-            <SectionHeading
-              eyebrow="Three Angels Message"
-              title="Uma plataforma missionária digital para proclamar a verdade bíblica"
-              description="Bíblia, pesquisa, estudos, livros e recursos cristãos organizados numa experiência moderna, leve e centrada na Palavra de Deus."
-            />
+    <main className="container-premium py-8 md:py-12">
+      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.78),rgba(239,231,218,0.95))] shadow-[0_20px_60px_rgba(17,17,17,0.06)]">
+        <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16">
+            <p className="eyebrow-premium">Three Angels Message</p>
+
+            <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-[var(--tam-ink)] md:text-5xl lg:text-6xl">
+              Uma plataforma missionária digital para proclamar a verdade bíblica
+            </h1>
+
+            <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--tam-muted)] md:text-lg">
+              Bíblia, pesquisa, estudos, livros e recursos cristãos organizados
+              numa experiência moderna, reverente e centrada na Palavra de Deus.
+            </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/bible"
-                className="rounded-2xl bg-black px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
-              >
+              <Link href="/bible" className="button-premium-dark">
                 Abrir Bíblia
               </Link>
 
-              <Link
-                href="/bible/search"
-                className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium transition hover:bg-neutral-50"
-              >
+              <Link href="/bible/search" className="button-premium-light">
                 Pesquisar
               </Link>
 
-              <Link
-                href="/bible/verse-favorites"
-                className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium transition hover:bg-neutral-50"
-              >
+              <Link href="/bible/verse-favorites" className="button-premium-light">
                 Favoritos
               </Link>
             </div>
           </div>
 
-          <div className="surface-soft p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] opacity-60">
-              Versículo do Dia
-            </p>
+          <div className="border-t border-[var(--tam-line)] bg-[rgba(255,255,255,0.42)] p-6 md:p-8 lg:border-l lg:border-t-0 lg:p-10">
+            <div className="surface-soft h-full p-6 md:p-8">
+              <p className="eyebrow-premium">{verse.reference}</p>
 
-            <p className="mt-4 text-lg font-medium leading-8 md:text-xl">
-              {verse.text}
-            </p>
+              <h2 className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.03em] text-[var(--tam-ink)] md:text-3xl">
+                Versículo do dia
+              </h2>
 
-            <p className="mt-4 text-sm font-semibold opacity-70">
-              {verse.reference}
-            </p>
+              <p className="mt-5 text-lg leading-9 text-[var(--tam-ink)] md:text-[1.35rem]">
+                {verse.text}
+              </p>
 
-            <div className="mt-6">
-              <Link
-                href="/verse-of-day"
-                className="rounded-2xl border bg-white px-4 py-3 text-sm font-medium transition hover:bg-neutral-50"
-              >
-                Ver devocional
-              </Link>
+              <div className="mt-8">
+                <Link href="/verse-of-day" className="button-premium-light">
+                  Ver devocional
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mt-12">
+      <section className="mt-14">
         <SectionHeading
           eyebrow="Estudos"
           title="Estudos em destaque"
@@ -81,22 +74,20 @@ export default function HomePage() {
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {studies.map((study) => (
             <article key={study.slug} className="card-premium p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
-                {study.category}
-              </p>
+              <p className="eyebrow-premium">{study.category}</p>
 
-              <h2 className="mt-3 text-xl font-semibold">
+              <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
                 {study.title}
               </h2>
 
-              <p className="mt-3 text-sm leading-7 opacity-75">
+              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
                 {study.description}
               </p>
 
               <div className="mt-5">
                 <Link
                   href={`/studies/${study.slug}`}
-                  className="rounded-2xl border bg-white px-4 py-3 text-sm font-medium transition hover:bg-neutral-50"
+                  className="button-premium-light inline-flex"
                 >
                   Ler estudo
                 </Link>
@@ -106,7 +97,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-12">
+      <section className="mt-14">
         <SectionHeading
           eyebrow="Livros"
           title="Leituras recomendadas"
@@ -116,22 +107,20 @@ export default function HomePage() {
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {books.map((book) => (
             <article key={book.slug} className="card-premium p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
-                {book.author}
-              </p>
+              <p className="eyebrow-premium">{book.author}</p>
 
-              <h2 className="mt-3 text-xl font-semibold">
+              <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
                 {book.title}
               </h2>
 
-              <p className="mt-3 text-sm leading-7 opacity-75">
+              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
                 {book.description}
               </p>
 
               <div className="mt-5">
                 <Link
                   href={`/books/${book.slug}`}
-                  className="rounded-2xl border bg-white px-4 py-3 text-sm font-medium transition hover:bg-neutral-50"
+                  className="button-premium-light inline-flex"
                 >
                   Ver livro
                 </Link>
@@ -141,7 +130,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-12">
+      <section className="mt-14">
         <SectionHeading
           eyebrow="Citações"
           title="Palavras para reflexão"
@@ -150,9 +139,15 @@ export default function HomePage() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {quotes.map((quote, index) => (
-            <article key={`${quote.author}-${index}`} className="card-premium p-6">
-              <p className="text-lg leading-8">“{quote.text}”</p>
-              <p className="mt-4 text-sm font-semibold opacity-70">
+            <article
+              key={`${quote.author}-${index}`}
+              className="card-premium p-6 md:p-8"
+            >
+              <p className="text-xl leading-9 text-[var(--tam-ink)] md:text-2xl md:leading-[1.7]">
+                “{quote.text}”
+              </p>
+
+              <p className="mt-5 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--tam-accent-strong)]">
                 {quote.author}
               </p>
             </article>
