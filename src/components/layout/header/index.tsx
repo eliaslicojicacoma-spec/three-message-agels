@@ -5,18 +5,18 @@ import MobileNav from "@/components/navigation/mobile-nav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b bg-[rgba(246,241,232,0.92)] backdrop-blur-md border-[var(--tam-line)]">
       <div className="container-premium flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex min-w-0 items-center gap-3">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-black text-sm font-bold text-white shadow-sm">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--tam-ink)] text-sm font-bold text-white shadow-sm">
             △
           </span>
 
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold tracking-tight text-neutral-950">
+            <p className="truncate text-sm font-semibold tracking-tight text-[var(--tam-ink)]">
               {siteConfig.shortName}
             </p>
-            <p className="truncate text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+            <p className="truncate text-[11px] uppercase tracking-[0.22em] text-[var(--tam-accent-strong)]">
               {siteConfig.brand.tagline}
             </p>
           </div>
@@ -27,7 +27,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-xl px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-950"
+              className="rounded-xl px-3 py-2 text-sm font-medium text-[var(--tam-muted)] transition hover:bg-white/60 hover:text-[var(--tam-ink)]"
             >
               {item.label}
             </Link>
@@ -37,7 +37,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/bible/search"
-            className="hidden rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-medium text-neutral-900 transition hover:bg-neutral-50 md:inline-flex"
+            className="hidden rounded-xl border px-4 py-2 text-sm font-medium transition md:inline-flex border-[var(--tam-line)] bg-white/70 text-[var(--tam-ink)] hover:bg-white"
           >
             Pesquisar
           </Link>

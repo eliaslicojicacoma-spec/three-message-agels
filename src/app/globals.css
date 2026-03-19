@@ -2,52 +2,143 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  height: 100%;
+:root {
+  --tam-bg: #f6f1e8;
+  --tam-surface: #ffffff;
+  --tam-surface-soft: #efe7da;
+  --tam-ink: #171717;
+  --tam-muted: #6f675d;
+  --tam-line: #ded3c2;
+  --tam-accent: #b89a6a;
+  --tam-accent-strong: #9f7f4f;
+  --tam-footer: #111111;
 }
 
-body {
-  @apply bg-neutral-50 text-neutral-900 antialiased;
-}
-
-* {
+html {
   scroll-behavior: smooth;
 }
 
-:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.08), 0 0 0 4px rgba(0,0,0,0.16);
-  border-radius: 12px;
+body {
+  background: var(--tam-bg);
+  color: var(--tam-ink);
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-.container-premium {
-  @apply mx-auto max-w-6xl px-4 md:px-6;
+@layer base {
+  * {
+    border-color: var(--tam-line);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--tam-ink);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    color: var(--tam-muted);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
-.card-premium {
-  @apply rounded-3xl border bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
+@layer components {
+  .container-premium {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-premium {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid var(--tam-line);
+    border-radius: 1.75rem;
+    box-shadow:
+      0 1px 1px rgba(17, 17, 17, 0.02),
+      0 12px 40px rgba(17, 17, 17, 0.04);
+    backdrop-filter: blur(10px);
+  }
+
+  .surface-soft {
+    background: linear-gradient(
+      180deg,
+      rgba(239, 231, 218, 0.9) 0%,
+      rgba(250, 246, 239, 0.92) 100%
+    );
+    border: 1px solid var(--tam-line);
+    border-radius: 1.75rem;
+    box-shadow:
+      0 1px 1px rgba(17, 17, 17, 0.02),
+      0 10px 30px rgba(17, 17, 17, 0.035);
+  }
+
+  .text-reading {
+    @apply text-base leading-8 md:text-[1.05rem];
+    color: var(--tam-ink);
+  }
+
+  .eyebrow-premium {
+    color: var(--tam-accent-strong);
+    @apply text-[11px] font-semibold uppercase tracking-[0.26em];
+  }
+
+  .button-premium-dark {
+    background: var(--tam-ink);
+    color: white;
+    border: 1px solid var(--tam-ink);
+    @apply rounded-2xl px-5 py-3 text-sm font-medium transition;
+  }
+
+  .button-premium-dark:hover {
+    opacity: 0.92;
+  }
+
+  .button-premium-light {
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--tam-ink);
+    border: 1px solid var(--tam-line);
+    @apply rounded-2xl px-5 py-3 text-sm font-medium transition;
+  }
+
+  .button-premium-light:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .footer-premium {
+    background:
+      radial-gradient(circle at top, rgba(184, 154, 106, 0.08), transparent 28%),
+      var(--tam-footer);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .footer-premium p,
+  .footer-premium a,
+  .footer-premium li,
+  .footer-premium span {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .footer-premium h3,
+  .footer-premium h4 {
+    color: white;
+  }
 }
 
-.text-reading {
-  @apply leading-8 text-[15px] md:text-base;
-}
-
-.surface-soft {
-  @apply rounded-3xl border bg-white/90 shadow-sm backdrop-blur;
-}
-
-.button-press {
-  @apply transition-transform duration-150 active:scale-95;
-}
-
-.fade-in-up {
-  animation: fadeInUp 0.45s ease-out;
+@layer utilities {
+  .fade-in-up {
+    animation: fadeInUp 0.45s ease-out both;
+  }
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
