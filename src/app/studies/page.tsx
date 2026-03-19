@@ -1,38 +1,50 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { studiesContent } from "@/content/studies";
+import { getStudies } from "@/content/studies";
+import SectionHeading from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
   title: "Estudos Bíblicos",
-  description:
-    "Acesse estudos bíblicos organizados para ensino, evangelismo e fortalecimento espiritual.",
+  description: "Explora estudos bíblicos organizados por temas.",
 };
 
 export default function StudiesPage() {
-  return (
-    <main className="mx-auto max-w-6xl px-4 py-16">
-      <section className="section-shell">
-        <div className="max-w-3xl">
-          <p className="eyebrow">Centro de ensino</p>
-          <h1 className="section-title mt-5 text-4xl font-bold md:text-5xl">Estudos Bíblicos</h1>
-          <p className="mt-5 text-base leading-8 text-[var(--muted)] md:text-lg">
-            Aqui estão os primeiros estudos organizados para fortalecer a fé, ensinar
-            a verdade bíblica e apoiar o evangelismo.
-          </p>
-        </div>
-      </section>
+  const studies = getStudies();
 
-      <section className="mt-12 grid gap-6 md:grid-cols-3">
-        {studiesContent.map((item) => (
-          <Link key={item.slug} href={`/studies/${item.slug}`} className="premium-card">
-            <h2 className="text-xl font-semibold">{item.title}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-              {item.description}
+  return (
+    <main className="container-premium py-10 md:py-14">
+      <SectionHeading
+        eyebrow="Estudos"
+        title="Estudos bíblicos"
+        description="Conteúdos organizados para aprofundar a fé, a doutrina e a compreensão profética."
+      />
+
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {studies.map((study) => (
+          <article key={study.slug} className="card-premium p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
+              {study.category}
             </p>
-            <p className="mt-4 text-sm font-semibold text-[var(--brand)]">Abrir estudo</p>
-          </Link>
+
+            <h2 className="mt-3 text-xl font-semibold">
+              {study.title}
+            </h2>
+
+            <p className="mt-3 text-sm leading-7 opacity-75">
+              {study.description}
+            </p>
+
+            <div className="mt-5">
+              <Link
+                href={`/studies/${study.slug}`}
+                className="rounded-2xl border bg-white px-4 py-3 text-sm font-medium transition hover:bg-neutral-50"
+              >
+                Ler estudo
+              </Link>
+            </div>
+          </article>
         ))}
-      </section>
+      </div>
     </main>
   );
 }

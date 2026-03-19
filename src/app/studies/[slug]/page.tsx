@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { studiesContent } from "@/content/studies";
+import { getStudyBySlug, getStudies } from "@/content/studies";
 
 type PageProps = {
   params: Promise<{
@@ -8,14 +8,21 @@ type PageProps = {
   }>;
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateStaticParams() {
+  return getStudies().map((study) => ({
+    slug: study.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const study = studiesContent.find((item) => item.slug === slug);
+  const study = getStudyBySlug(slug);
 
   if (!study) {
     return {
       title: "Estudo não encontrado",
-      description: "O estudo solicitado não foi encontrado."
     };
   }
 
@@ -27,33 +34,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function StudyDetailPage({ params }: PageProps) {
   const { slug } = await params;
-
-  const study = studiesContent.find((item) => item.slug === slug);
+  const study = getStudyBySlug(slug);
 
   if (!study) {
     notFound();
   }
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-16">
-      <section className="rounded-3xl border border-[var(--stroke)] bg-white/70 p-8 shadow-sm">
-        <p className="text-sm text-[var(--muted)]">Estudo bíblico</p>
-        <h1 className="mt-2 text-4xl font-bold">{study.title}</h1>
+    <main className="container-premium py-10 md:py-14">
+      <article className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
+          {study.category}
+        </p>
 
-        <div className="mt-8 space-y-6 leading-7 text-[var(--muted)]">
-          <p>{study.description}</p>
+        <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+          {study.title}
+        </h1>
 
-          <p>
-            Esta página agora é gerada dinamicamente a partir do conteúdo central
-            dos estudos bíblicos. Isso facilita muito a expansão da plataforma.
-          </p>
-
-          <p>
-            O próximo passo natural será enriquecer cada estudo com tópicos,
-            referências bíblicas, perguntas e materiais de apoio para ensino e evangelismo.
-          </p>
-        </div>
-      </section>
+        <p className="mt-4 text-sm leading-7 opacity-75 md:text-base">
+          {study.description}
+        </p>
+      </article>
     </main>
   );
 }

@@ -1,26 +1,35 @@
 export type StudyItem = {
-  title: string;
   slug: string;
+  title: string;
   description: string;
+  category: string;
 };
 
-export const studiesContent: StudyItem[] = [
+export const studies: StudyItem[] = [
   {
-    title: "Princípios Fundamentais da Fé",
-    slug: "first-principles",
-    description:
-      "Uma introdução clara às bases da fé cristã, arrependimento, salvação e vida com Deus.",
+    slug: "plano-da-salvacao",
+    title: "O Plano da Salvação",
+    description: "Uma visão clara e bíblica sobre redenção, graça e esperança em Cristo.",
+    category: "Doutrina",
   },
   {
-    title: "O Sábado Bíblico",
-    slug: "sabbath",
-    description:
-      "Um estudo sobre a origem, significado e permanência do sábado na Palavra de Deus.",
+    slug: "as-tres-mensagens-angelicas",
+    title: "As Três Mensagens Angélicas",
+    description: "Entende o significado profético e missionário de Apocalipse 14.",
+    category: "Profecia",
   },
   {
-    title: "A Segunda Vinda de Cristo",
-    slug: "second-coming",
-    description:
-      "Um estudo bíblico sobre a esperança cristã e a promessa do retorno de Jesus.",
+    slug: "o-sabado-na-biblia",
+    title: "O Sábado na Bíblia",
+    description: "Estudo sobre criação, mandamento, adoração e fidelidade.",
+    category: "Mandamentos",
   },
 ];
+
+export function getStudies() {
+  return studies;
+}
+
+export function getStudyBySlug(slug: string) {
+  return studies.find((study) => study.slug === slug) || null;
+}

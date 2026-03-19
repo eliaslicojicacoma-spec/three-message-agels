@@ -1,26 +1,35 @@
 export type BookItem = {
-  title: string;
   slug: string;
+  title: string;
+  author: string;
   description: string;
 };
 
-export const booksContent: BookItem[] = [
+export const books: BookItem[] = [
   {
-    title: "Steps to Christ",
-    slug: "steps-to-christ",
-    description:
-      "Clássico devocional sobre arrependimento, fé, oração e vida com Jesus Cristo.",
+    slug: "caminho-a-cristo",
+    title: "Caminho a Cristo",
+    author: "Ellen G. White",
+    description: "Uma obra clássica sobre arrependimento, fé, oração e vida cristã.",
   },
   {
-    title: "The Great Controversy",
-    slug: "the-great-controversy",
-    description:
-      "Panorama profético do conflito entre o bem e o mal ao longo da história.",
+    slug: "o-grande-conflito",
+    title: "O Grande Conflito",
+    author: "Ellen G. White",
+    description: "Um panorama da batalha entre Cristo e Satanás ao longo da história.",
   },
   {
-    title: "The Desire of Ages",
-    slug: "desire-of-ages",
-    description:
-      "Uma apresentação profunda da vida, ministério e amor de Jesus Cristo.",
+    slug: "patriarcas-e-profetas",
+    title: "Patriarcas e Profetas",
+    author: "Ellen G. White",
+    description: "Das origens do mundo até o reinado de David, sob luz bíblica e espiritual.",
   },
 ];
+
+export function getBooks() {
+  return books;
+}
+
+export function getBookBySlug(slug: string) {
+  return books.find((book) => book.slug === slug) || null;
+}
