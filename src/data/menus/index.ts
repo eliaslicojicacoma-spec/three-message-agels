@@ -1,8 +1,13 @@
 export const mainMenu = [
   { label: "Início", href: "/" },
-  { label: "Três Anjos", href: "/three-angels-message" },
   { label: "Bíblia", href: "/bible" },
-  { label: "Estudos", href: "/studies" },
+  { label: "Pesquisa", href: "/bible/search" },
+  { label: "Versículo do Dia", href: "/verse-of-day" },
   { label: "Livros", href: "/books" },
-  { label: "Downloads", href: "/downloads" }
+];
+
+export const footerMenu = [
+  { label: "Bíblia", href: "/bible" },
+  { label: "Pesquisa", href: "/bible/search" },
+  { label: "Versículo do Dia", href: "/verse-of-day" },
 ];

@@ -1,9 +1,3 @@
-# devotionals
+# features/devotionals
 
-This feature now owns the Verse of the Day page composition.
-
-Current entrypoints:
-- src/features/devotionals/verse-of-day-page.tsx
-
-Service dependencies:
-- src/services/related-content/verse-of-day.ts
+Esta pasta faz parte da arquitetura do projeto e será preenchida com conteúdo funcional progressivamente.

@@ -1,9 +1,3 @@
-# favorites
+# features/favorites
 
-This feature owns favorite verses and saved passages views.
-
-Current entrypoints:
-- src/features/favorites/verse-favorites-page.tsx
-
-Related services:
-- src/services/favorites/verse-favorites.ts
+Esta pasta faz parte da arquitetura do projeto e será preenchida com conteúdo funcional progressivamente.

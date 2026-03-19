@@ -5,15 +5,4 @@ export type BibleVerse = {
   text: string;
 };
 
-export type FavoriteVerse = BibleVerse & {
-  id?: string;
-};
-
-export type BibleBook = {
-  slug?: string;
-  name: string;
-};
-
-export type BibleChapter = {
-  verses: BibleVerse[];
-};
+export type BibleFavorite = BibleVerse;

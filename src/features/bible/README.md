@@ -1,9 +1,3 @@
-# bible
+# features/bible
 
-This feature owns the Bible experience composition layer.
-
-Current entrypoints:
-- src/features/bible/bible-page.tsx
-
-Current services:
-- src/services/bible/overview.ts
+Esta pasta faz parte da arquitetura do projeto e será preenchida com conteúdo funcional progressivamente.
