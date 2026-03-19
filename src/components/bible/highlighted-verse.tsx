@@ -1,19 +1,11 @@
-type Props = {
-  verse: number;
+type HighlightedVerseProps = {
   text: string;
-  highlight?: boolean;
 };
 
-export default function HighlightedVerse({ verse, text, highlight = false }: Props) {
+export default function HighlightedVerse({ text }: HighlightedVerseProps) {
   return (
-    <p
-      className={`leading-8 rounded-xl px-3 py-2 transition ${
-        highlight
-          ? "bg-[var(--surface-soft)] border border-[var(--border-soft)]"
-          : ""
-      }`}
-    >
-      <strong>{verse}</strong> {text}
-    </p>
+    <span className="bg-yellow-200 px-1 rounded">
+      {text}
+    </span>
   );
 }

@@ -1,45 +1,43 @@
 "use client";
 
-import { useState } from "react";
-
-type Props = {
-  title: string;
-  urlPath: string;
+type ShareChapterButtonProps = {
+  book?: string;
+  chapter?: number;
 };
 
-export default function ShareChapterButton({ title, urlPath }: Props) {
-  const [copied, setCopied] = useState(false);
-
+export default function ShareChapterButton({
+  book,
+  chapter,
+}: ShareChapterButtonProps) {
   async function handleShare() {
-    const fullUrl =
-      typeof window !== "undefined"
-        ? `${window.location.origin}${urlPath}`
-        : urlPath;
-
-    if (typeof navigator !== "undefined" && navigator.share) {
-      try {
-        await navigator.share({
-          title,
-          url: fullUrl,
-        });
-        return;
-      } catch {
-        // fallback to copy
-      }
-    }
+    const text = book && chapter
+      ? `${book} ${chapter}`
+      : "Capítulo bíblico";
 
     try {
-      await navigator.clipboard.writeText(fullUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      // ignore
-    }
+      if (typeof navigator !== "undefined" && navigator.share) {
+        await navigator.share({
+          title: "Partilhar capítulo",
+          text,
+        });
+        return;
+      }
+
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        await navigator.clipboard.writeText(text);
+      }
+    } catch {}
   }
 
   return (
-    <button type="button" onClick={handleShare} className="button-ghost">
-      {copied ? "Link copiado" : "Partilhar capítulo"}
+    <button
+      type="button"
+      onClick={handleShare}
+      className="rounded-lg border px-3 py-2 text-sm opacity-70"
+      aria-label="Partilhar capítulo"
+      title="Partilhar capítulo"
+    >
+      Partilhar
     </button>
   );
 }

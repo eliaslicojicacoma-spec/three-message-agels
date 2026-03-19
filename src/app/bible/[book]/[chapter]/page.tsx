@@ -1,17 +1,12 @@
-import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import {
-  getAvailableBibleChapters,
-  getBibleBookMeta,
+  getBibleBookData,
   getBibleChapterData,
-  getChapterProgress,
-  getPreviousAndNextBibleBooks,
 } from "@/lib/bible";
 import ChapterClientTools from "@/components/bible/chapter-client-tools";
-import ShareChapterButton from "@/components/bible/share-chapter-button";
-import HighlightedVerse from "@/components/bible/highlighted-verse";
 import VerseFavoriteButton from "@/components/bible/verse-favorite-button";
+import HighlightedVerse from "@/components/bible/highlighted-verse";
 
 type PageProps = {
   params: Promise<{
@@ -20,159 +15,82 @@ type PageProps = {
   }>;
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { book, chapter } = await params;
-  const currentBook = getBibleBookMeta(book);
-
-  if (!currentBook) {
-    return {
-      title: "Capítulo não encontrado",
-      description: "O capítulo bíblico solicitado não foi encontrado.",
-    };
-  }
-
-  return {
-    title: `${currentBook.name} ${chapter}`,
-    description: `Leia ${currentBook.name} capítulo ${chapter} na Bíblia digital do projeto Three Angels Message.`,
-  };
-}
-
 export default async function BibleChapterPage({ params }: PageProps) {
   const { book, chapter } = await params;
-  const currentBook = getBibleBookMeta(book);
+  const chapterNumber = Number(chapter);
 
-  if (!currentBook) {
+  if (!book || !chapter || Number.isNaN(chapterNumber)) {
     notFound();
   }
 
-  const chapterNumber = Number(chapter);
-  const currentChapter = getBibleChapterData(book, chapterNumber);
+  const currentBook = getBibleBookData(book);
+  const chapterData = getBibleChapterData(book, chapterNumber);
 
-  if (!currentChapter) {
-    return (
-      <main className="mx-auto max-w-4xl px-4 py-16">
-        <div className="section-shell">
-          <p className="eyebrow-clean">Bíblia offline</p>
-          <h1 className="section-title mt-5">{currentBook.name}</h1>
-          <h2 className="mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
-          <p className="mt-6 text-[var(--text-soft)]">
-            O conteúdo deste capítulo ainda está em preparação.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={`/bible/${book}`} className="button-ghost">
-              Ver capítulos
-            </Link>
-            <Link href="/bible/books" className="button-ghost">
-              Todos os livros
-            </Link>
-          </div>
-        </div>
-      </main>
-    );
+  if (!currentBook || !chapterData) {
+    notFound();
   }
 
-  const availableChapters = getAvailableBibleChapters(book).sort((a, b) => a - b);
-  const currentIndex = availableChapters.indexOf(chapterNumber);
-  const prevChapter = currentIndex > 0 ? availableChapters[currentIndex - 1] : null;
-  const nextChapter =
-    currentIndex < availableChapters.length - 1 ? availableChapters[currentIndex + 1] : null;
-
-  const { previousBook, nextBook } = getPreviousAndNextBibleBooks(book);
-  const progress = getChapterProgress(book, chapterNumber);
+  const verses = Array.isArray((chapterData as any).verses)
+    ? (chapterData as any).verses
+    : [];
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-16">
-      <div className="section-shell">
-        <p className="eyebrow-clean">Leitura bíblica</p>
-        <h1 className="section-title mt-5">{currentBook.name}</h1>
-        <h2 className="mt-4 text-2xl font-semibold">Capítulo {chapterNumber}</h2>
-
-        <div className="mt-6">
-          <div className="mb-2 flex items-center justify-between gap-3 text-sm text-[var(--text-soft)]">
-            <span>
-              Progresso do livro: {progress.current}/{progress.total}
-            </span>
-            <span>{progress.percent}%</span>
-          </div>
-
-          <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--surface-soft)]">
-            <div
-              className="h-full rounded-full bg-[var(--primary)]"
-              style={{ width: `${progress.percent}%` }}
-            />
-          </div>
-        </div>
-
-        <div className="mt-8 space-y-4">
-          {currentChapter.verses.map((verse, index) => (
-            <div key={verse.verse} id={`verse-${verse.verse}`} className="space-y-3">
-              <HighlightedVerse
-                verse={verse.verse}
-                text={verse.text}
-                highlight={index === 0}
-              />
-
-              <VerseFavoriteButton
-                slug={book}
-                bookName={currentBook.name}
-                chapter={chapterNumber}
-                verse={verse.verse}
-                text={verse.text}
-              />
-            </div>
-          ))}
-        </div>
-
-        <ChapterClientTools
-          slug={book}
-          bookName={currentBook.name}
-          chapter={chapterNumber}
-        />
-
-        <div className="mt-4 flex flex-wrap gap-3">
-          <ShareChapterButton
-            title={`${currentBook.name} ${chapterNumber}`}
-            urlPath={`/bible/${book}/${chapterNumber}`}
-          />
-        </div>
-
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link href={`/bible/${book}`} className="button-ghost">
-            Ver capítulos
-          </Link>
-
-          <Link href="/bible/books" className="button-ghost">
-            Todos os livros
-          </Link>
-
-          {prevChapter && (
-            <Link href={`/bible/${book}/${prevChapter}`} className="button-ghost">
-              Capítulo anterior
-            </Link>
-          )}
-
-          {nextChapter && (
-            <Link href={`/bible/${book}/${nextChapter}`} className="button-main">
-              Próximo capítulo
-            </Link>
-          )}
-        </div>
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          {previousBook && (
-            <Link href={`/bible/${previousBook.slug}`} className="button-ghost">
-              ← Livro anterior: {previousBook.name}
-            </Link>
-          )}
-
-          {nextBook && (
-            <Link href={`/bible/${nextBook.slug}`} className="button-ghost">
-              Próximo livro: {nextBook.name} →
-            </Link>
-          )}
-        </div>
+    <main className="mx-auto max-w-5xl px-4 py-10">
+      <div className="mb-6">
+        <Link href="/bible/books" className="text-sm opacity-70 hover:opacity-100">
+          ← Voltar aos livros
+        </Link>
       </div>
+
+      <header className="mb-8">
+        <p className="text-sm uppercase tracking-[0.18em] opacity-60">
+          Bíblia Sagrada
+        </p>
+        <h1 className="mt-3 text-3xl font-bold">
+          {currentBook.name} {chapterNumber}
+        </h1>
+        <p className="mt-3 text-sm opacity-70">
+          Leitura do capítulo com ferramentas básicas.
+        </p>
+
+        <div className="mt-5">
+          <ChapterClientTools book={currentBook.name} chapter={chapterNumber} />
+        </div>
+      </header>
+
+      <section className="space-y-5">
+        {verses.length === 0 ? (
+          <p className="text-sm opacity-70">Nenhum versículo disponível neste capítulo.</p>
+        ) : (
+          verses.map((verse: any, index: number) => (
+            <article
+              key={verse.verse ?? index}
+              className="rounded-2xl border p-4"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-sm font-semibold opacity-70">
+                  {currentBook.name} {chapterNumber}:{verse.verse}
+                </p>
+
+                <VerseFavoriteButton
+                  book={currentBook.name}
+                  chapter={chapterNumber}
+                  verse={verse.verse}
+                  text={verse.text}
+                />
+              </div>
+
+              <div className="mt-3 text-base leading-8">
+                {index === 0 ? (
+                  <HighlightedVerse text={verse.text} />
+                ) : (
+                  verse.text
+                )}
+              </div>
+            </article>
+          ))
+        )}
+      </section>
     </main>
   );
 }
