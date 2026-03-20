@@ -93,24 +93,35 @@ export default function HomePage() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {studies.map((study) => (
-            <article key={study.slug} className="card-premium p-6">
-              <p className="eyebrow-premium">{study.category}</p>
+            <article key={study.slug} className="card-premium overflow-hidden">
+              <div className="relative h-48 w-full overflow-hidden">
+                <img
+                  src={study.image}
+                  alt={study.title}
+                  className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+              </div>
 
-              <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
-                {study.title}
-              </h2>
+              <div className="p-6">
+                <p className="eyebrow-premium">{study.category}</p>
 
-              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
-                {study.description}
-              </p>
+                <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
+                  {study.title}
+                </h2>
 
-              <div className="mt-5">
-                <Link
-                  href={`/studies/${study.slug}`}
-                  className="button-premium-light inline-flex"
-                >
-                  Ler estudo
-                </Link>
+                <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
+                  {study.description}
+                </p>
+
+                <div className="mt-5">
+                  <Link
+                    href={`/studies/${study.slug}`}
+                    className="button-premium-light inline-flex"
+                  >
+                    Ler estudo
+                  </Link>
+                </div>
               </div>
             </article>
           ))}

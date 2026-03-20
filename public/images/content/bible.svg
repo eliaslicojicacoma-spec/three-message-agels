@@ -1,0 +1,10 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F2ECE1"/>
+  <rect x="180" y="140" width="840" height="520" rx="30" fill="#E7DDCD" stroke="#D4C4AA" stroke-width="4"/>
+  <rect x="245" y="200" width="330" height="390" rx="20" fill="#FFFDF8" stroke="#D9CBB4"/>
+  <rect x="625" y="200" width="330" height="390" rx="20" fill="#FFFDF8" stroke="#D9CBB4"/>
+  <rect x="590" y="185" width="20" height="420" rx="10" fill="#CFB287"/>
+  <text x="320" y="340" fill="#1A1A1A" font-size="72" font-family="Arial" font-weight="700">BÍBLIA</text>
+  <text x="305" y="420" fill="#8F744B" font-size="28" font-family="Arial" letter-spacing="5">PALAVRA DE DEUS</text>
+  <text x="270" y="705" fill="#6E665D" font-size="30" font-family="Arial">Leitura • Pesquisa • Meditação</text>
+</svg>

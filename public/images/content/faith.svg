@@ -1,0 +1,21 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#16181D"/>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="850" cy="220" r="140" fill="url(#sun)"/>
+  <path d="M0 620C180 560 310 640 470 610C640 578 760 470 930 500C1040 520 1120 580 1200 560V800H0V620Z" fill="#111111" opacity="0.45"/>
+  <path d="M0 690C170 650 300 720 460 690C650 650 770 590 930 610C1050 625 1130 680 1200 670V800H0V690Z" fill="#0C0D10" opacity="0.72"/>
+  <text x="80" y="660" fill="#F5EFE6" font-size="64" font-family="Arial" font-weight="700">Three Angels Message</text>
+  <text x="80" y="720" fill="#D9C2A0" font-size="28" font-family="Arial" letter-spacing="6">FÉ · ESPERANÇA · MISSÃO</text>
+  <defs>
+    <linearGradient id="bg" x1="600" y1="0" x2="600" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D2430"/>
+      <stop offset="0.4" stop-color="#38465E"/>
+      <stop offset="0.72" stop-color="#8C6849"/>
+      <stop offset="1" stop-color="#E9D1AB"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(850 220) rotate(90) scale(140)">
+      <stop stop-color="#FFF7E8"/>
+      <stop offset="1" stop-color="#FFD79B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

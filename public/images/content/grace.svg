@@ -1,0 +1,10 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F7F2E9"/>
+  <circle cx="920" cy="170" r="120" fill="#F0D9AF"/>
+  <rect x="110" y="110" width="980" height="580" rx="40" fill="#FFFDF9" stroke="#DDCFBB" stroke-width="3"/>
+  <text x="170" y="250" fill="#1A1A1A" font-size="72" font-family="Arial" font-weight="700">Graça</text>
+  <text x="170" y="330" fill="#8B7350" font-size="30" font-family="Arial">Beleza em tempos de incerteza</text>
+  <rect x="170" y="420" width="780" height="18" rx="9" fill="#CBB28B"/>
+  <rect x="170" y="468" width="670" height="18" rx="9" fill="#D8C5A7"/>
+  <rect x="170" y="516" width="740" height="18" rx="9" fill="#E3D6C2"/>
+</svg>

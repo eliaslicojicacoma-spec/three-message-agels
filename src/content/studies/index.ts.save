@@ -1,32 +1,32 @@
-export type StudyItem = {
-  slug: string;
-  title: string;
-  description: string;
-  category: string;
-  image: string;
-};
-
-export const studies: StudyItem[] = [
-  {
-    slug: "plano-da-salvacao",
-    title: "O Plano da Salvação",
-    description: "Uma visão clara e bíblica sobre redenção, graça e esperança em Cristo.",
+export type StudyItem = 
+  {export type StudyItem 
+  = { slug: string; 
+  title: string; 
+  description: string; 
+  category: string; slug: 
+  string;}; title: 
+  string; description: 
+  string;export const 
+  studies: StudyItem[] = 
+  [ { category: string; 
+  slug: 
+  "plano-da-salvacao", 
+  image: string; title: 
+  "O Plano da Salvação",
+};    description: "Uma visão clara e bíblica sobre redenção, graça e esperança em Cristo.",
     category: "Doutrina",
-    image: "/images/content/bible.svg",
   },
   {
     slug: "as-tres-mensagens-angelicas",
     title: "As Três Mensagens Angélicas",
     description: "Entende o significado profético e missionário de Apocalipse 14.",
     category: "Profecia",
-    image: "/images/content/faith.svg",
   },
   {
     slug: "o-sabado-na-biblia",
     title: "O Sábado na Bíblia",
     description: "Estudo sobre criação, mandamento, adoração e fidelidade.",
     category: "Mandamentos",
-    image: "/images/content/study.svg",
   },
 ];
 
