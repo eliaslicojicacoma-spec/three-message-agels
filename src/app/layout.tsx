@@ -6,7 +6,13 @@ export const metadata = {
   description: seoConfig.description,
   keywords: seoConfig.keywords,
   authors: [{ name: seoConfig.author }],
+
+  verification: {
+    google: "9BM7FO4cZ_5ItJpFRC88QgLd8aVQQ4JuKzLRVpJwBE4",
+  },
+
   metadataBase: new URL(seoConfig.url),
+
   openGraph: {
     title: seoConfig.title,
     description: seoConfig.description,
