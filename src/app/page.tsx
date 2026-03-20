@@ -15,36 +15,54 @@ export default function HomePage() {
 
   return (
     <main className="container-premium py-8 md:py-12">
-      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.78),rgba(239,231,218,0.95))] shadow-[0_20px_60px_rgba(17,17,17,0.06)] reveal-soft">
+      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] shadow-[0_20px_60px_rgba(17,17,17,0.10)] reveal-soft">
         <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16">
-            <p className="eyebrow-premium">Three Angels Message</p>
+          <div
+            className="relative px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, rgba(15,17,21,0.62), rgba(15,17,21,0.38)), url('/images/banners/hero-sunrise.svg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="relative z-10">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#e2c18f]">
+                Three Angels Message
+              </p>
 
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-[var(--tam-ink)] md:text-5xl lg:text-6xl">
-              Uma plataforma missionária digital para proclamar a verdade bíblica
-            </h1>
+              <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-white md:text-5xl lg:text-6xl">
+                Uma plataforma missionária digital para proclamar a verdade bíblica
+              </h1>
 
-            <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--tam-muted)] md:text-lg">
-              Bíblia, pesquisa, estudos, livros e recursos cristãos organizados
-              numa experiência moderna, reverente e centrada na Palavra de Deus.
-            </p>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-white/82 md:text-lg">
+                Bíblia, pesquisa, estudos, livros e recursos cristãos organizados
+                numa experiência moderna, reverente e centrada na Palavra de Deus.
+              </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/bible" className="button-premium-dark">
-                Abrir Bíblia
-              </Link>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/bible" className="button-premium-dark">
+                  Abrir Bíblia
+                </Link>
 
-              <Link href="/bible/search" className="button-premium-light">
-                Pesquisar
-              </Link>
+                <Link
+                  href="/bible/search"
+                  className="rounded-2xl border border-white/20 bg-white/12 px-5 py-3 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
+                >
+                  Pesquisar
+                </Link>
 
-              <Link href="/bible/verse-favorites" className="button-premium-light">
-                Favoritos
-              </Link>
+                <Link
+                  href="/bible/verse-favorites"
+                  className="rounded-2xl border border-white/20 bg-white/12 px-5 py-3 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
+                >
+                  Favoritos
+                </Link>
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-[var(--tam-line)] bg-[rgba(255,255,255,0.42)] p-6 md:p-8 lg:border-l lg:border-t-0 lg:p-10">
+          <div className="border-t border-[var(--tam-line)] bg-[rgba(255,255,255,0.48)] p-6 md:p-8 lg:border-l lg:border-t-0 lg:p-10">
             <div className="surface-soft h-full p-6 md:p-8">
               <p className="eyebrow-premium">{verse.reference}</p>
 

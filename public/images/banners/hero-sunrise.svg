@@ -1,0 +1,62 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0F1115"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <ellipse cx="820" cy="760" rx="700" ry="260" fill="url(#ground)" opacity="0.85"/>
+  <ellipse cx="820" cy="720" rx="460" ry="170" fill="url(#mist)" opacity="0.45"/>
+
+  <circle cx="820" cy="430" r="170" fill="url(#sunGlow)" opacity="0.95"/>
+  <circle cx="820" cy="430" r="92" fill="url(#sunCore)"/>
+
+  <g opacity="0.22">
+    <path d="M0 650C180 610 260 700 430 660C610 618 700 520 885 540C1030 556 1130 650 1260 650C1390 650 1495 604 1600 585V900H0V650Z" fill="#1A1D22"/>
+    <path d="M0 705C150 660 260 735 390 705C550 668 635 600 785 610C935 620 1010 700 1158 710C1315 720 1455 655 1600 640V900H0V705Z" fill="#15181D"/>
+  </g>
+
+  <g opacity="0.18">
+    <circle cx="1230" cy="170" r="2" fill="white"/>
+    <circle cx="1290" cy="130" r="1.5" fill="white"/>
+    <circle cx="1170" cy="210" r="1.5" fill="white"/>
+    <circle cx="340" cy="180" r="2" fill="white"/>
+    <circle cx="270" cy="120" r="1.5" fill="white"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#overlay)"/>
+
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#16181D"/>
+      <stop offset="0.34" stop-color="#243245"/>
+      <stop offset="0.62" stop-color="#755843"/>
+      <stop offset="0.82" stop-color="#D2A36C"/>
+      <stop offset="1" stop-color="#F4E3C9"/>
+    </linearGradient>
+
+    <radialGradient id="sunGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 430) rotate(90) scale(190)">
+      <stop stop-color="#FFF5D6"/>
+      <stop offset="0.42" stop-color="#FFD59A"/>
+      <stop offset="1" stop-color="#FFD59A" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="sunCore" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 430) rotate(90) scale(92)">
+      <stop stop-color="#FFF8E5"/>
+      <stop offset="1" stop-color="#FFD08B"/>
+    </radialGradient>
+
+    <radialGradient id="ground" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 760) rotate(90) scale(260 700)">
+      <stop stop-color="#B98958" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#0F1115" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="mist" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 720) rotate(90) scale(170 460)">
+      <stop stop-color="#FFF4E2"/>
+      <stop offset="1" stop-color="#FFF4E2" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="overlay" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#000000" stop-opacity="0.18"/>
+      <stop offset="0.55" stop-color="#000000" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+</svg>
