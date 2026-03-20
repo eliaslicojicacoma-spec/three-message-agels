@@ -16,7 +16,7 @@ export default function MobileBottomNav() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
-      <div className="mx-3 mb-3 rounded-[26px] border bg-white/95 px-2 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.12)] backdrop-blur">
+      <div className="mx-3 mb-3 rounded-[28px] border border-[var(--tam-line)] bg-[rgba(246,241,232,0.82)] px-2 py-2 shadow-[0_12px_34px_rgba(17,17,17,0.12)] backdrop-blur-xl">
         <div className="grid grid-cols-5 gap-1">
           {items.map((item) => {
             const active =
@@ -30,8 +30,8 @@ export default function MobileBottomNav() {
                 href={item.href}
                 className={`flex min-h-[60px] flex-col items-center justify-center rounded-2xl px-1 text-center transition-all ${
                   active
-                    ? "bg-black text-white shadow-sm"
-                    : "text-neutral-500 hover:bg-neutral-100"
+                    ? "bg-[var(--tam-ink)] text-white shadow-[0_8px_20px_rgba(17,17,17,0.22)]"
+                    : "text-[var(--tam-muted)] hover:bg-white/60"
                 }`}
               >
                 <span className="text-lg leading-none">{item.icon}</span>

@@ -22,7 +22,7 @@ export default function MobileNav() {
         type="button"
         aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-black shadow-sm transition hover:bg-neutral-50 md:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--tam-line)] bg-white/75 text-[var(--tam-ink)] shadow-sm backdrop-blur transition hover:bg-white md:hidden"
       >
         <span className="flex flex-col gap-1.5">
           <span className="block h-0.5 w-5 rounded-full bg-current" />
@@ -37,16 +37,16 @@ export default function MobileNav() {
             type="button"
             aria-label="Fechar menu"
             onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/45 backdrop-blur-sm"
           />
 
-          <aside className="absolute right-0 top-0 h-full w-[86%] max-w-sm overflow-y-auto border-l border-black/10 bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-black/10 px-5 py-5">
+          <aside className="absolute right-0 top-0 h-full w-[88%] max-w-sm overflow-y-auto border-l border-[var(--tam-line)] bg-[rgba(246,241,232,0.96)] shadow-2xl backdrop-blur-xl">
+            <div className="flex items-center justify-between border-b border-[var(--tam-line)] px-5 py-5">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[var(--tam-accent-strong)]">
                   Menu
                 </p>
-                <h2 className="mt-1 text-xl font-semibold text-neutral-950">
+                <h2 className="mt-1 text-xl font-semibold text-[var(--tam-ink)]">
                   Navegação
                 </h2>
               </div>
@@ -55,7 +55,7 @@ export default function MobileNav() {
                 type="button"
                 aria-label="Fechar menu"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 text-xl"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--tam-line)] bg-white/70 text-xl text-[var(--tam-ink)]"
               >
                 ×
               </button>
@@ -76,12 +76,12 @@ export default function MobileNav() {
                       onClick={() => setOpen(false)}
                       className={`flex items-center justify-between rounded-2xl border px-4 py-4 text-sm font-medium transition ${
                         active
-                          ? "border-black bg-black text-white"
-                          : "border-black/10 bg-white text-neutral-900 hover:bg-neutral-50"
+                          ? "border-[var(--tam-ink)] bg-[var(--tam-ink)] text-white shadow-[0_8px_20px_rgba(17,17,17,0.18)]"
+                          : "border-[var(--tam-line)] bg-white/70 text-[var(--tam-ink)] hover:bg-white"
                       }`}
                     >
                       <span>{item.label}</span>
-                      <span className={active ? "text-white/70" : "text-neutral-400"}>
+                      <span className={active ? "text-white/70" : "text-[var(--tam-muted)]"}>
                         ↗
                       </span>
                     </Link>
@@ -90,11 +90,11 @@ export default function MobileNav() {
               </div>
             </nav>
 
-            <div className="border-t border-black/10 px-5 py-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-neutral-400">
+            <div className="border-t border-[var(--tam-line)] px-5 py-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--tam-accent-strong)]">
                 Missão
               </p>
-              <p className="mt-3 text-sm leading-7 text-neutral-600">
+              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
                 Proclamar a verdade bíblica com leitura, pesquisa, estudos,
                 livros e recursos cristãos organizados.
               </p>
