@@ -4,16 +4,20 @@ import { getDailyVerse } from "@/services/related-content/verse-of-day";
 import { getStudies } from "@/content/studies";
 import { getBooks } from "@/content/books";
 import { getQuotes } from "@/content/quotes";
+import { getStats } from "@/data/stats";
+import { getFeaturedTestimonies } from "@/data/testimonies-highlight";
 
 export default function HomePage() {
   const verse = getDailyVerse();
   const studies = getStudies().slice(0, 3);
   const books = getBooks().slice(0, 3);
   const quotes = getQuotes().slice(0, 2);
+  const stats = getStats().slice(0, 4);
+  const testimonies = getFeaturedTestimonies().slice(0, 2);
 
   return (
     <main className="container-premium py-8 md:py-12">
-      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.78),rgba(239,231,218,0.95))] shadow-[0_20px_60px_rgba(17,17,17,0.06)]">
+      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.78),rgba(239,231,218,0.95))] shadow-[0_20px_60px_rgba(17,17,17,0.06)] reveal-soft">
         <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16">
             <p className="eyebrow-premium">Three Angels Message</p>
@@ -64,7 +68,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-14">
+      <section className="mt-12 reveal-soft">
+        <div className="grid gap-4 md:grid-cols-4">
+          {stats.map((stat) => (
+            <article key={stat.label} className="card-premium p-5">
+              <p className="eyebrow-premium">{stat.label}</p>
+              <h3 className="mt-3 text-2xl font-semibold text-[var(--tam-ink)]">
+                {stat.value}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
+                {stat.description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14 reveal-soft">
         <SectionHeading
           eyebrow="Estudos"
           title="Estudos em destaque"
@@ -97,7 +117,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-14">
+      <section className="mt-14 reveal-soft">
         <SectionHeading
           eyebrow="Livros"
           title="Leituras recomendadas"
@@ -130,7 +150,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-14">
+      <section className="mt-14 reveal-soft">
+        <SectionHeading
+          eyebrow="Testemunhos"
+          title="Impacto da experiência"
+          description="Como uma experiência bíblica organizada pode ajudar no estudo, leitura e vida devocional."
+        />
+
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {testimonies.map((item, index) => (
+            <article
+              key={`${item.name}-${index}`}
+              className="card-premium p-6 md:p-8"
+            >
+              <p className="text-lg leading-8 text-[var(--tam-ink)]">
+                “{item.excerpt}”
+              </p>
+
+              <p className="mt-5 text-sm font-semibold text-[var(--tam-ink)]">
+                {item.name}
+              </p>
+
+              <p className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--tam-accent-strong)]">
+                {item.role}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14 reveal-soft">
         <SectionHeading
           eyebrow="Citações"
           title="Palavras para reflexão"
