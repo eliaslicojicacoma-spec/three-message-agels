@@ -12,32 +12,32 @@ export default function StudiesPage() {
   const studies = getStudies();
 
   return (
-    <main className="container-premium py-10 md:py-14">
-      <SectionHeading
-        eyebrow="Estudos"
-        title="Estudos bíblicos"
-        description="Conteúdos organizados para aprofundar a fé, a doutrina e a compreensão profética."
-      />
+    <main className="container-premium py-8 md:py-12">
+      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.82),rgba(239,231,218,0.96))] p-6 shadow-[0_20px_60px_rgba(17,17,17,0.06)] md:p-10">
+        <SectionHeading
+          eyebrow="Estudos"
+          title="Conteúdos organizados para aprofundar a fé"
+          description="Estudos bíblicos pensados para doutrina, profecia, crescimento espiritual e missão."
+        />
+      </section>
 
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {studies.map((study) => (
           <article key={study.slug} className="card-premium p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-60">
-              {study.category}
-            </p>
+            <p className="eyebrow-premium">{study.category}</p>
 
-            <h2 className="mt-3 text-xl font-semibold">
+            <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
               {study.title}
             </h2>
 
-            <p className="mt-3 text-sm leading-7 opacity-75">
+            <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
               {study.description}
             </p>
 
             <div className="mt-5">
               <Link
                 href={`/studies/${study.slug}`}
-                className="rounded-2xl border bg-white px-4 py-3 text-sm font-medium transition hover:bg-neutral-50"
+                className="button-premium-light inline-flex"
               >
                 Ler estudo
               </Link>

@@ -1,51 +1,50 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { libraryContent } from "@/content/library";
+import { getBooks } from "@/content/books";
+import SectionHeading from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
   title: "Livros",
-  description:
-    "Explore uma biblioteca cristã e adventista com livros para leitura, estudo e crescimento espiritual.",
+  description: "Explora leituras cristãs e livros recomendados.",
 };
 
 export default function BooksPage() {
+  const books = getBooks();
+
   return (
-    <main className="mx-auto max-w-6xl px-4 py-16">
-      <section className="section-shell">
-        <div className="max-w-3xl">
-          <p className="eyebrow">Biblioteca adventista</p>
-          <h1 className="section-title mt-5 text-4xl font-bold md:text-5xl">Livros</h1>
-          <p className="mt-5 text-base leading-8 text-[var(--muted)] md:text-lg">
-            Biblioteca inicial com obras cristãs e adventistas organizadas por tema,
-            autor, idioma e formato, pronta para crescer com novos títulos.
-          </p>
-        </div>
+    <main className="container-premium py-8 md:py-12">
+      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.82),rgba(239,231,218,0.96))] p-6 shadow-[0_20px_60px_rgba(17,17,17,0.06)] md:p-10">
+        <SectionHeading
+          eyebrow="Livros"
+          title="Leituras recomendadas para crescimento espiritual"
+          description="Uma biblioteca em expansão com obras cristãs, reflexões e materiais úteis para estudo e formação."
+        />
       </section>
 
-      <section className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {libraryContent.map((item) => (
-          <Link key={item.slug} href={`/books/${item.slug}`} className="premium-card">
-            <div className="flex flex-wrap gap-2 text-xs">
-              <span className="rounded-full border border-[var(--stroke)] px-3 py-1">
-                {item.category}
-              </span>
-              <span className="rounded-full border border-[var(--stroke)] px-3 py-1">
-                {item.language}
-              </span>
-              <span className="rounded-full border border-[var(--stroke)] px-3 py-1">
-                {item.format}
-              </span>
-            </div>
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {books.map((book) => (
+          <article key={book.slug} className="card-premium p-6">
+            <p className="eyebrow-premium">{book.author}</p>
 
-            <h2 className="mt-4 text-xl font-semibold">{item.title}</h2>
-            <p className="mt-2 text-sm font-medium">{item.author}</p>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-              {item.description}
+            <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
+              {book.title}
+            </h2>
+
+            <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
+              {book.description}
             </p>
-            <p className="mt-4 text-sm font-semibold text-[var(--brand)]">Abrir livro</p>
-          </Link>
+
+            <div className="mt-5">
+              <Link
+                href={`/books/${book.slug}`}
+                className="button-premium-light inline-flex"
+              >
+                Ver livro
+              </Link>
+            </div>
+          </article>
         ))}
-      </section>
+      </div>
     </main>
   );
 }
