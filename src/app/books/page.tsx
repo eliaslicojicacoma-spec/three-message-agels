@@ -23,24 +23,35 @@ export default function BooksPage() {
 
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {books.map((book) => (
-          <article key={book.slug} className="card-premium p-6">
-            <p className="eyebrow-premium">{book.author}</p>
+          <article key={book.slug} className="card-premium overflow-hidden">
+            <div className="relative h-52 w-full overflow-hidden">
+              <img
+                src={book.image}
+                alt={book.title}
+                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+            </div>
 
-            <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
-              {book.title}
-            </h2>
+            <div className="p-6">
+              <p className="eyebrow-premium">{book.author}</p>
 
-            <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
-              {book.description}
-            </p>
+              <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
+                {book.title}
+              </h2>
 
-            <div className="mt-5">
-              <Link
-                href={`/books/${book.slug}`}
-                className="button-premium-light inline-flex"
-              >
-                Ver livro
-              </Link>
+              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
+                {book.description}
+              </p>
+
+              <div className="mt-5">
+                <Link
+                  href={`/books/${book.slug}`}
+                  className="button-premium-light inline-flex"
+                >
+                  Ver livro
+                </Link>
+              </div>
             </div>
           </article>
         ))}
