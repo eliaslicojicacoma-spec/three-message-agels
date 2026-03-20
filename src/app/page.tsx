@@ -4,7 +4,6 @@ import { getDailyVerse } from "@/services/related-content/verse-of-day";
 import { getStudies } from "@/content/studies";
 import { getBooks } from "@/content/books";
 import { getQuotes } from "@/content/quotes";
-import { getStats } from "@/data/stats";
 import { getFeaturedTestimonies } from "@/data/testimonies-highlight";
 
 export default function HomePage() {
@@ -12,7 +11,6 @@ export default function HomePage() {
   const studies = getStudies().slice(0, 3);
   const books = getBooks().slice(0, 3);
   const quotes = getQuotes().slice(0, 2);
-  const stats = getStats().slice(0, 4);
   const testimonies = getFeaturedTestimonies().slice(0, 2);
 
   return (
@@ -65,22 +63,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="mt-12 reveal-soft">
-        <div className="grid gap-4 md:grid-cols-4">
-          {stats.map((stat) => (
-            <article key={stat.label} className="card-premium p-5">
-              <p className="eyebrow-premium">{stat.label}</p>
-              <h3 className="mt-3 text-2xl font-semibold text-[var(--tam-ink)]">
-                {stat.value}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
-                {stat.description}
-              </p>
-            </article>
-          ))}
         </div>
       </section>
 
