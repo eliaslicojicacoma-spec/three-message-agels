@@ -203,6 +203,40 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <section className="mt-16 reveal-soft">
+        <div className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(17,17,17,0.96),rgba(40,35,28,0.96))] px-6 py-10 text-white shadow-[0_20px_60px_rgba(17,17,17,0.18)] md:px-10 md:py-14">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--tam-accent)]">
+            Missão & Ação
+          </p>
+
+          <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.03em] md:text-4xl">
+            Continua a leitura, aprofunda a fé e apoia esta missão digital
+          </h2>
+
+          <p className="mt-5 max-w-2xl text-sm leading-8 text-white/75 md:text-base">
+            Este projeto foi construído para organizar Bíblia, estudos, livros
+            e recursos cristãos com clareza, reverência e acesso moderno.
+            Cada visita, partilha e apoio ajuda esta missão a crescer.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/support"
+              className="rounded-2xl border border-white/10 bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90"
+            >
+              Apoiar a missão
+            </Link>
+
+            <Link
+              href="/studies"
+              className="rounded-2xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/15"
+            >
+              Explorar estudos
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
