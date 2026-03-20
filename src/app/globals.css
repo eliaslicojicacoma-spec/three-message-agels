@@ -145,3 +145,156 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ===== PREMIUM DEPTH UPGRADE ===== */
+
+.premium-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(222, 211, 194, 0.6);
+  box-shadow:
+    0 10px 30px rgba(17, 17, 17, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.premium-glow {
+  position: relative;
+}
+
+.premium-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at top,
+    rgba(184, 154, 106, 0.15),
+    transparent 60%
+  );
+  z-index: -1;
+}
+
+/* hover elegante */
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 20px rgba(17, 17, 17, 0.06),
+    0 20px 60px rgba(17, 17, 17, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* botão com mais presença */
+.button-premium-dark {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.button-premium-dark:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* header mais premium */
+header {
+  box-shadow: 0 4px 20px rgba(17, 17, 17, 0.05);
+}
+
+/* bottom nav upgrade */
+.bottom-nav-premium {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(222, 211, 194, 0.7);
+  box-shadow:
+    0 10px 30px rgba(17, 17, 17, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+}
+
+/* active item */
+.bottom-nav-item-active {
+  background: var(--tam-ink);
+  color: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+
+/* ===== MICROINTERAÇÕES PREMIUM ===== */
+
+a,
+button {
+  transition:
+    color 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease,
+    opacity 0.22s ease;
+}
+
+a:active,
+button:active {
+  transform: scale(0.985);
+}
+
+.card-premium {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.card-premium:hover {
+  border-color: rgba(184, 154, 106, 0.55);
+}
+
+.surface-soft {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.surface-soft:hover {
+  border-color: rgba(184, 154, 106, 0.45);
+}
+
+nav a:hover {
+  transform: translateY(-1px);
+}
+
+footer a:hover {
+  color: white;
+}
+
+input,
+textarea,
+select {
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: rgba(184, 154, 106, 0.85);
+  box-shadow: 0 0 0 4px rgba(184, 154, 106, 0.12);
+}
+
+/* entrada suave de seções */
+.reveal-soft {
+  animation: revealSoft 0.5s ease both;
+}
+
+@keyframes revealSoft {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
