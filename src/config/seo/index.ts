@@ -1,20 +1,15 @@
 export const seoConfig = {
-  defaultTitle: "Three Angels Message",
-  titleTemplate: "%s | Three Angels Message",
-
-  defaultDescription:
-    "Uma plataforma missionária digital com Bíblia, estudos, livros e recursos cristãos para crescimento espiritual.",
-
-  siteUrl: "https://three-angels-message.vercel.app",
-
-  openGraph: {
-    type: "website",
-    locale: "pt_AO",
-    url: "https://three-angels-message.vercel.app",
-    siteName: "Three Angels Message",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-  },
+  title: "Three Angels Message",
+  description:
+    "Plataforma cristã com Bíblia, estudos bíblicos, livros e recursos espirituais para fortalecer a fé.",
+  keywords: [
+    "bíblia",
+    "estudos bíblicos",
+    "igreja adventista",
+    "três mensagens angélicas",
+    "palavra de Deus",
+    "livros cristãos",
+  ],
+  author: "Elias Licoji Cacoma",
+  url: "https://three-angels-message.vercel.app",
 };
