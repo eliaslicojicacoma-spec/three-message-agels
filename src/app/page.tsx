@@ -5,6 +5,7 @@ import { getStudies } from "@/content/studies";
 import { getBooks } from "@/content/books";
 import { getQuotes } from "@/content/quotes";
 import { getFeaturedTestimonies } from "@/data/testimonies-highlight";
+import { getArticles } from "@/content/blog/articles";
 
 export default function HomePage() {
   const verse = getDailyVerse();
@@ -12,6 +13,7 @@ export default function HomePage() {
   const books = getBooks().slice(0, 3);
   const quotes = getQuotes().slice(0, 2);
   const testimonies = getFeaturedTestimonies().slice(0, 2);
+  const articles = getArticles().slice(0, 3);
 
   return (
     <main className="container-premium py-8 md:py-12">
@@ -125,6 +127,56 @@ export default function HomePage() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="mt-14 reveal-soft">
+        <SectionHeading
+          eyebrow="Blog"
+          title="Artigos em destaque"
+          description="Reflexões, temas atuais e conteúdos cristãos para um portal vivo e relevante."
+        />
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {articles.map((article) => (
+            <article key={article.slug} className="card-premium overflow-hidden">
+              <div className="relative h-48 w-full overflow-hidden">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+              </div>
+
+              <div className="p-6">
+                <p className="eyebrow-premium">{article.category}</p>
+
+                <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
+                  {article.title}
+                </h2>
+
+                <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
+                  {article.excerpt}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href={`/blog/${article.slug}`}
+                    className="button-premium-light inline-flex"
+                  >
+                    Ler artigo
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-6">
+          <Link href="/blog" className="button-premium-light inline-flex">
+            Ver todos os artigos
+          </Link>
         </div>
       </section>
 
@@ -251,10 +303,10 @@ export default function HomePage() {
             </Link>
 
             <Link
-              href="/studies"
+              href="/blog"
               className="rounded-2xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/15"
             >
-              Explorar estudos
+              Explorar blog
             </Link>
           </div>
         </div>
