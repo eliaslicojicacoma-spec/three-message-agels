@@ -5,44 +5,45 @@ import MobileNav from "@/components/navigation/mobile-nav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--tam-line)] bg-[rgba(246,241,232,0.92)] backdrop-blur-md shadow-[0_4px_20px_rgba(17,17,17,0.05)]">
-      <div className="container-premium flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--tam-ink)] text-sm font-bold text-white shadow-sm">
-            △
+    <header className="sticky top-0 z-50 border-b border-[var(--tam-line)] bg-[rgba(250,247,241,0.92)] backdrop-blur-xl">
+      <div className="container-premium flex h-20 items-center justify-between gap-4">
+        <Link href="/" className="flex min-w-0 flex-col">
+          <span className="text-[2rem] font-semibold leading-none tracking-[-0.04em] text-[var(--tam-ink)]">
+            {siteConfig.shortName}
           </span>
-
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold tracking-tight text-[var(--tam-ink)]">
-              {siteConfig.shortName}
-            </p>
-            <p className="truncate text-[11px] uppercase tracking-[0.22em] text-[var(--tam-accent-strong)]">
-              {siteConfig.brand.tagline}
-            </p>
-          </div>
+          <span className="mt-1 text-[11px] uppercase tracking-[0.28em] text-[var(--tam-accent-strong)]">
+            {siteConfig.brand.tagline}
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {mainMenu.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-xl px-3 py-2 text-sm font-medium text-[var(--tam-muted)] transition hover:bg-white/60 hover:text-[var(--tam-ink)]"
+              className="text-[15px] font-medium text-[var(--tam-muted)] transition hover:text-[var(--tam-ink)]"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <Link
-            href="/bible/search"
-            className="hidden rounded-xl border border-[var(--tam-line)] bg-white/70 px-4 py-2 text-sm font-medium text-[var(--tam-ink)] transition hover:bg-white md:inline-flex"
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="hidden h-11 items-center rounded-full border border-[var(--tam-line)] bg-white/80 px-4 text-sm font-medium text-[var(--tam-muted)] shadow-sm lg:inline-flex"
           >
-            Pesquisar
-          </Link>
+            🌐 EN
+          </button>
 
-          <div className="block md:hidden">
+          <button
+            type="button"
+            className="hidden h-11 w-11 items-center justify-center rounded-full border border-[var(--tam-line)] bg-white/80 text-lg text-[var(--tam-muted)] shadow-sm lg:inline-flex"
+          >
+            ☾
+          </button>
+
+          <div className="block lg:hidden">
             <MobileNav />
           </div>
         </div>

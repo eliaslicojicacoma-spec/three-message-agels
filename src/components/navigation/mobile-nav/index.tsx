@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { mobileMenu } from "@/data/menus";
+import { mainMenu } from "@/data/menus";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -22,17 +22,17 @@ export default function MobileNav() {
         type="button"
         aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--tam-line)] bg-white/75 text-[var(--tam-ink)] shadow-sm backdrop-blur transition hover:bg-white md:hidden"
+        className="relative z-[70] inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--tam-ink)] text-white shadow-[0_10px_30px_rgba(17,17,17,0.22)]"
       >
         <span className="flex flex-col gap-1.5">
-          <span className="block h-0.5 w-5 rounded-full bg-current" />
-          <span className="block h-0.5 w-5 rounded-full bg-current" />
-          <span className="block h-0.5 w-5 rounded-full bg-current" />
+          <span className="block h-0.5 w-5 rounded-full bg-white" />
+          <span className="block h-0.5 w-5 rounded-full bg-white" />
+          <span className="block h-0.5 w-5 rounded-full bg-white" />
         </span>
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-[80] md:hidden">
+        <div className="fixed inset-0 z-[80] lg:hidden">
           <button
             type="button"
             aria-label="Fechar menu"
@@ -40,14 +40,14 @@ export default function MobileNav() {
             className="absolute inset-0 bg-black/45 backdrop-blur-sm"
           />
 
-          <aside className="absolute right-0 top-0 h-full w-[88%] max-w-sm overflow-y-auto border-l border-[var(--tam-line)] bg-[rgba(246,241,232,0.96)] shadow-2xl backdrop-blur-xl">
+          <aside className="absolute right-0 top-0 h-full w-[88%] max-w-sm border-l border-[var(--tam-line)] bg-[rgba(250,247,241,0.98)] shadow-2xl">
             <div className="flex items-center justify-between border-b border-[var(--tam-line)] px-5 py-5">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[var(--tam-accent-strong)]">
-                  Menu
-                </p>
-                <h2 className="mt-1 text-xl font-semibold text-[var(--tam-ink)]">
+                <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--tam-accent-strong)]">
                   Navegação
+                </p>
+                <h2 className="mt-1 text-2xl font-semibold tracking-[-0.03em] text-[var(--tam-ink)]">
+                  Menu
                 </h2>
               </div>
 
@@ -55,7 +55,7 @@ export default function MobileNav() {
                 type="button"
                 aria-label="Fechar menu"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--tam-line)] bg-white/70 text-xl text-[var(--tam-ink)]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--tam-line)] bg-white text-xl text-[var(--tam-ink)]"
               >
                 ×
               </button>
@@ -63,7 +63,7 @@ export default function MobileNav() {
 
             <nav className="px-4 py-4">
               <div className="space-y-2">
-                {mobileMenu.map((item) => {
+                {mainMenu.map((item) => {
                   const active =
                     item.href === "/"
                       ? pathname === "/"
@@ -74,10 +74,10 @@ export default function MobileNav() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className={`flex items-center justify-between rounded-2xl border px-4 py-4 text-sm font-medium transition ${
+                      className={`flex items-center justify-between rounded-2xl px-4 py-4 text-sm font-medium transition ${
                         active
-                          ? "border-[var(--tam-ink)] bg-[var(--tam-ink)] text-white shadow-[0_8px_20px_rgba(17,17,17,0.18)]"
-                          : "border-[var(--tam-line)] bg-white/70 text-[var(--tam-ink)] hover:bg-white"
+                          ? "bg-[var(--tam-ink)] text-white shadow-[0_10px_25px_rgba(17,17,17,0.18)]"
+                          : "border border-[var(--tam-line)] bg-white text-[var(--tam-ink)]"
                       }`}
                     >
                       <span>{item.label}</span>
@@ -91,12 +91,12 @@ export default function MobileNav() {
             </nav>
 
             <div className="border-t border-[var(--tam-line)] px-5 py-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--tam-accent-strong)]">
-                Missão
+              <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--tam-accent-strong)]">
+                Portal Cristão
               </p>
               <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
-                Proclamar a verdade bíblica com leitura, pesquisa, estudos,
-                livros e recursos cristãos organizados.
+                Bíblia, blog, estudos, livros e recursos organizados numa experiência
+                premium e missionária.
               </p>
             </div>
           </aside>
