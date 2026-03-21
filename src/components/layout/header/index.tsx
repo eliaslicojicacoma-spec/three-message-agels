@@ -5,7 +5,7 @@ import MobileNav from "@/components/navigation/mobile-nav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-[rgba(246,241,232,0.92)] backdrop-blur-md border-[var(--tam-line)]">
+    <header className="sticky top-0 z-50 border-b border-[var(--tam-line)] bg-[rgba(246,241,232,0.92)] backdrop-blur-md shadow-[0_4px_20px_rgba(17,17,17,0.05)]">
       <div className="container-premium flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex min-w-0 items-center gap-3">
           <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--tam-ink)] text-sm font-bold text-white shadow-sm">
@@ -37,12 +37,14 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/bible/search"
-            className="hidden rounded-xl border px-4 py-2 text-sm font-medium transition md:inline-flex border-[var(--tam-line)] bg-white/70 text-[var(--tam-ink)] hover:bg-white"
+            className="hidden rounded-xl border border-[var(--tam-line)] bg-white/70 px-4 py-2 text-sm font-medium text-[var(--tam-ink)] transition hover:bg-white md:inline-flex"
           >
             Pesquisar
           </Link>
 
-          <MobileNav />
+          <div className="block md:hidden">
+            <MobileNav />
+          </div>
         </div>
       </div>
     </header>

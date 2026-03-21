@@ -21,7 +21,7 @@ export default function HomePage() {
             className="relative px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16"
             style={{
               backgroundImage:
-                "linear-gradient(135deg, rgba(15,17,21,0.62), rgba(15,17,21,0.38)), url('/images/banners/hero-sunrise.svg')",
+                "linear-gradient(135deg, rgba(15,17,21,0.68), rgba(15,17,21,0.42)), url('/images/content/bible.svg')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -105,11 +105,11 @@ export default function HomePage() {
             <div className="p-6 md:p-8">
               <p className="eyebrow-premium">{mainArticle.category}</p>
 
-              <h2 className="mt-4 text-2xl md:text-3xl font-semibold text-[var(--tam-ink)]">
+              <h2 className="mt-4 text-2xl font-semibold text-[var(--tam-ink)] md:text-3xl">
                 {mainArticle.title}
               </h2>
 
-              <p className="mt-4 text-[var(--tam-muted)] leading-7">
+              <p className="mt-4 leading-7 text-[var(--tam-muted)]">
                 {mainArticle.excerpt}
               </p>
 
