@@ -1,17 +1,17 @@
 import Link from "next/link";
 import SectionHeading from "@/components/ui/section-heading";
-import { getArticles } from "@/content/blog/articles";
+import { getDailyVerse } from "@/services/related-content/verse-of-day";
 import { getStudies } from "@/content/studies";
 import { getBooks } from "@/content/books";
-import { getDailyVerse } from "@/services/related-content/verse-of-day";
+import { getArticles } from "@/content/blog/articles";
 
 export default function HomePage() {
+  const verse = getDailyVerse();
+  const studies = getStudies().slice(0, 3);
+  const books = getBooks().slice(0, 3);
   const articles = getArticles();
   const mainArticle = articles[0];
   const sideArticles = articles.slice(1, 3);
-  const studies = getStudies().slice(0, 3);
-  const books = getBooks().slice(0, 3);
-  const verse = getDailyVerse();
 
   return (
     <main className="container-premium py-8 md:py-12">
@@ -32,23 +32,16 @@ export default function HomePage() {
               </p>
 
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-white md:text-5xl lg:text-6xl">
-                Uma plataforma missionária digital para proclamar a verdade bíblica
+                Um portal cristão para verdade bíblica, reflexão e esperança
               </h1>
 
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/82 md:text-lg">
-                Bíblia, pesquisa, estudos, livros e recursos cristãos organizados
-                numa experiência moderna, reverente e centrada na Palavra de Deus.
+                Bíblia, blog, estudos, livros e recursos cristãos organizados
+                numa experiência moderna, reverente e viva.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/bible" className="button-premium-dark">
-                  Abrir Bíblia
-                </Link>
-
-                <Link
-                  href="/blog"
-                  className="rounded-2xl border border-white/20 bg-white/12 px-5 py-3 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
-                >
+                <Link href="/blog" className="button-premium-dark">
                   Explorar blog
                 </Link>
 
@@ -57,6 +50,13 @@ export default function HomePage() {
                   className="rounded-2xl border border-white/20 bg-white/12 px-5 py-3 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
                 >
                   Ver estudos
+                </Link>
+
+                <Link
+                  href="/bible"
+                  className="rounded-2xl border border-white/20 bg-white/12 px-5 py-3 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/18"
+                >
+                  Abrir Bíblia
                 </Link>
               </div>
             </div>
@@ -88,7 +88,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Blog"
           title="Destaques do Portal"
-          description="Conteúdos selecionados para reflexão, crescimento espiritual e compreensão do tempo presente."
+          description="Conteúdos selecionados para reflexão, compreensão do tempo presente e crescimento espiritual."
         />
 
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -105,13 +105,17 @@ export default function HomePage() {
             <div className="p-6 md:p-8">
               <p className="eyebrow-premium">{mainArticle.category}</p>
 
-              <h2 className="mt-4 text-2xl font-semibold text-[var(--tam-ink)] md:text-3xl">
+              <h2 className="mt-4 text-2xl md:text-3xl font-semibold text-[var(--tam-ink)]">
                 {mainArticle.title}
               </h2>
 
-              <p className="mt-4 leading-7 text-[var(--tam-muted)]">
+              <p className="mt-4 text-[var(--tam-muted)] leading-7">
                 {mainArticle.excerpt}
               </p>
+
+              <div className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--tam-accent-strong)]">
+                {mainArticle.date}
+              </div>
 
               <Link
                 href={`/blog/${mainArticle.slug}`}
@@ -260,8 +264,8 @@ export default function HomePage() {
           </h2>
 
           <p className="mt-5 max-w-2xl text-sm leading-8 text-white/75 md:text-base">
-            Este projeto foi construído para organizar Bíblia, estudos, livros e
-            artigos cristãos com clareza, reverência e acesso moderno.
+            Este portal foi construído para unir reflexão, Bíblia, estudos,
+            livros e conteúdo cristão relevante numa experiência rica e útil.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
