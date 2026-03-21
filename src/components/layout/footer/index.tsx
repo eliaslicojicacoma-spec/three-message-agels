@@ -1,75 +1,79 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { socialLinks } from "@/config/social";
-import { donationsConfig } from "@/config/donations";
 import { footerMenu } from "@/data/menus";
 
 export default function Footer() {
   return (
-    <footer className="footer-premium mt-16 border-t border-white/10">
-      <div className="container-premium grid gap-10 py-12 md:grid-cols-4">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-sm font-bold text-black">
-              △
-            </span>
+    <footer className="mt-24 border-t border-black/5 bg-[#111111] text-white">
+      <div className="container-premium py-16">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-[#d6b17a]">
+              Three Angels Message
+            </p>
 
-            <div>
-              <p className="text-sm font-semibold text-white">{siteConfig.shortName}</p>
-              <p className="text-xs tracking-[0.2em] text-[var(--tam-accent)] uppercase">
-                {siteConfig.brand.tagline}
-              </p>
-            </div>
-          </div>
+            <h2 className="mt-4 max-w-sm text-3xl font-semibold leading-tight tracking-[-0.04em]">
+              Um portal cristão com verdade bíblica, reflexão e esperança.
+            </h2>
 
-          <p className="text-sm leading-8">{siteConfig.brand.mission}</p>
-        </div>
+            <p className="mt-5 max-w-md text-sm leading-8 text-white/68">
+              {siteConfig.brand.mission}
+            </p>
 
-        {footerMenu.map((group) => (
-          <div key={group.label}>
-            <h3 className="mb-4 text-sm font-semibold">{group.label}</h3>
-            <div className="flex flex-col gap-3 text-sm">
-              {group.items.map((item) => (
-                <Link key={item.href} href={item.href} className="transition hover:text-white">
+            <div className="mt-6 flex flex-wrap gap-3">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/75 transition hover:border-white/20 hover:text-white"
+                >
                   {item.label}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
-        ))}
 
-        <div>
-          <h3 className="mb-4 text-sm font-semibold">Contato & Apoio</h3>
+          {footerMenu.map((group) => (
+            <div key={group.label}>
+              <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
+                {group.label}
+              </h3>
 
-          <div className="space-y-3 text-sm">
-            <p>{siteConfig.contact.email}</p>
-            <p>{siteConfig.contact.whatsapp}</p>
-            <p>
-              {donationsConfig.pix.label}: {donationsConfig.pix.value}
-            </p>
-            <p>
-              {donationsConfig.paypal.label}: {donationsConfig.paypal.value}
-            </p>
-          </div>
+              <div className="mt-5 flex flex-col gap-3">
+                {group.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-white/65 transition hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
 
-          <div className="mt-5 flex flex-wrap gap-3 text-sm">
-            {socialLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-xl border border-white/10 px-3 py-2 transition hover:border-[var(--tam-accent)] hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/90">
+              Contacto
+            </h3>
+
+            <div className="mt-5 space-y-3 text-sm text-white/65">
+              <p>{siteConfig.contact.email}</p>
+              <p>{siteConfig.contact.whatsapp}</p>
+              <p>{siteConfig.monetization.paypal}</p>
+              <p>{siteConfig.monetization.pix}</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="border-t border-white/10 py-6 text-center text-xs text-white/45">
-        © {new Date().getFullYear()} {siteConfig.shortName}. Todos os direitos reservados.
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.16em] text-white/40 md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} {siteConfig.shortName}</p>
+          <p>Portal cristão digital</p>
+        </div>
       </div>
     </footer>
   );
