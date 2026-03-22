@@ -47,6 +47,10 @@ body {
     color: inherit;
     text-decoration: none;
   }
+
+  img {
+    display: block;
+  }
 }
 
 @layer components {
@@ -55,31 +59,50 @@ body {
   }
 
   .card-premium {
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.92);
     border: 1px solid var(--tam-line);
-    border-radius: 1.75rem;
+    border-radius: 1.5rem;
     box-shadow:
-      0 1px 1px rgba(17, 17, 17, 0.02),
-      0 12px 40px rgba(17, 17, 17, 0.04);
-    backdrop-filter: blur(10px);
+      0 2px 8px rgba(17, 17, 17, 0.03),
+      0 18px 45px rgba(17, 17, 17, 0.05);
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      border-color 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .card-premium:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184, 154, 106, 0.45);
+    box-shadow:
+      0 8px 20px rgba(17, 17, 17, 0.06),
+      0 26px 60px rgba(17, 17, 17, 0.08);
   }
 
   .surface-soft {
     background: linear-gradient(
       180deg,
-      rgba(239, 231, 218, 0.9) 0%,
-      rgba(250, 246, 239, 0.92) 100%
+      rgba(239, 231, 218, 0.92) 0%,
+      rgba(250, 246, 239, 0.95) 100%
     );
     border: 1px solid var(--tam-line);
-    border-radius: 1.75rem;
+    border-radius: 1.5rem;
     box-shadow:
       0 1px 1px rgba(17, 17, 17, 0.02),
-      0 10px 30px rgba(17, 17, 17, 0.035);
+      0 12px 30px rgba(17, 17, 17, 0.04);
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
   }
 
-  .text-reading {
-    @apply text-base leading-8 md:text-[1.05rem];
-    color: var(--tam-ink);
+  .surface-soft:hover {
+    transform: translateY(-2px);
+    border-color: rgba(184, 154, 106, 0.4);
+    box-shadow:
+      0 6px 18px rgba(17, 17, 17, 0.05),
+      0 18px 38px rgba(17, 17, 17, 0.06);
   }
 
   .eyebrow-premium {
@@ -91,143 +114,61 @@ body {
     background: var(--tam-ink);
     color: white;
     border: 1px solid var(--tam-ink);
-    @apply rounded-2xl px-5 py-3 text-sm font-medium transition;
+    @apply rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em];
+    box-shadow: 0 10px 24px rgba(17, 17, 17, 0.22);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      opacity 0.25s ease;
   }
 
   .button-premium-dark:hover {
-    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(17, 17, 17, 0.28);
+    opacity: 0.96;
   }
 
   .button-premium-light {
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.84);
     color: var(--tam-ink);
     border: 1px solid var(--tam-line);
-    @apply rounded-2xl px-5 py-3 text-sm font-medium transition;
+    @apply rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em];
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
   }
 
   .button-premium-light:hover {
+    transform: translateY(-1px);
     background: rgba(255, 255, 255, 1);
-  }
-
-  .footer-premium {
-    background:
-      radial-gradient(circle at top, rgba(184, 154, 106, 0.08), transparent 28%),
-      var(--tam-footer);
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .footer-premium p,
-  .footer-premium a,
-  .footer-premium li,
-  .footer-premium span {
-    color: rgba(255, 255, 255, 0.72);
-  }
-
-  .footer-premium h3,
-  .footer-premium h4 {
-    color: white;
+    border-color: rgba(184, 154, 106, 0.42);
+    box-shadow: 0 10px 22px rgba(17, 17, 17, 0.08);
   }
 }
 
 @layer utilities {
-  .fade-in-up {
-    animation: fadeInUp 0.45s ease-out both;
+  .reveal-soft {
+    animation: revealSoft 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .fade-up-fast {
+    animation: fadeUpFast 0.5s ease both;
   }
 }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== PREMIUM DEPTH UPGRADE ===== */
-
-.premium-glass {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(222, 211, 194, 0.6);
-  box-shadow:
-    0 10px 30px rgba(17, 17, 17, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-.premium-glow {
-  position: relative;
-}
-
-.premium-glow::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle at top,
-    rgba(184, 154, 106, 0.15),
-    transparent 60%
-  );
-  z-index: -1;
-}
-
-/* hover elegante */
-.card-premium:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 8px 20px rgba(17, 17, 17, 0.06),
-    0 20px 60px rgba(17, 17, 17, 0.08);
-  transition: all 0.3s ease;
-}
-
-/* botão com mais presença */
-.button-premium-dark {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-.button-premium-dark:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-}
-
-/* header mais premium */
-header {
-  box-shadow: 0 4px 20px rgba(17, 17, 17, 0.05);
-}
-
-/* bottom nav upgrade */
-.bottom-nav-premium {
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(222, 211, 194, 0.7);
-  box-shadow:
-    0 10px 30px rgba(17, 17, 17, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  border-radius: 999px;
-}
-
-/* active item */
-.bottom-nav-item-active {
-  background: var(--tam-ink);
-  color: white;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-}
-
-
-/* ===== MICROINTERAÇÕES PREMIUM ===== */
 
 a,
-button {
+button,
+img {
   transition:
     color 0.22s ease,
     background-color 0.22s ease,
     border-color 0.22s ease,
     box-shadow 0.22s ease,
     transform 0.22s ease,
-    opacity 0.22s ease;
+    opacity 0.22s ease,
+    filter 0.22s ease;
 }
 
 a:active,
@@ -235,63 +176,10 @@ button:active {
   transform: scale(0.985);
 }
 
-.card-premium {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease,
-    background-color 0.3s ease;
-}
-
-.card-premium:hover {
-  border-color: rgba(184, 154, 106, 0.55);
-}
-
-.surface-soft {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.surface-soft:hover {
-  border-color: rgba(184, 154, 106, 0.45);
-}
-
-nav a:hover {
-  transform: translateY(-1px);
-}
-
-footer a:hover {
-  color: white;
-}
-
-input,
-textarea,
-select {
-  transition:
-    border-color 0.22s ease,
-    box-shadow 0.22s ease,
-    background-color 0.22s ease;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: rgba(184, 154, 106, 0.85);
-  box-shadow: 0 0 0 4px rgba(184, 154, 106, 0.12);
-}
-
-/* entrada suave de seções */
-.reveal-soft {
-  animation: revealSoft 0.5s ease both;
-}
-
 @keyframes revealSoft {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
@@ -299,80 +187,10 @@ select:focus {
   }
 }
 
-/* ===== FASE 6.63 — FLUIDEZ PREMIUM ===== */
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
-
-main section {
-  animation: fadeUpSoft 0.7s ease both;
-}
-
-main section:nth-of-type(2) {
-  animation-delay: 0.06s;
-}
-
-main section:nth-of-type(3) {
-  animation-delay: 0.12s;
-}
-
-main section:nth-of-type(4) {
-  animation-delay: 0.18s;
-}
-
-main section:nth-of-type(5) {
-  animation-delay: 0.24s;
-}
-
-img {
-  transition: transform 0.5s ease, filter 0.35s ease, opacity 0.35s ease;
-}
-
-a,
-button {
-  transition:
-    transform 0.22s ease,
-    background-color 0.22s ease,
-    color 0.22s ease,
-    border-color 0.22s ease,
-    box-shadow 0.22s ease,
-    opacity 0.22s ease;
-}
-
-a:hover,
-button:hover {
-  transform: translateY(-1px);
-}
-
-a:active,
-button:active {
-  transform: translateY(0) scale(0.985);
-}
-
-.card-premium,
-.surface-soft {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease,
-    background-color 0.3s ease;
-}
-
-.card-premium:hover,
-.surface-soft:hover {
-  transform: translateY(-3px);
-}
-
-@keyframes fadeUpSoft {
+@keyframes fadeUpFast {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
