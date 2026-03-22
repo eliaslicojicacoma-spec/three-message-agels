@@ -3,7 +3,16 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { mainMenu } from "@/data/menus";
+
+const items = [
+  { label: "Início", href: "/" },
+  { label: "Blog", href: "/blog" },
+  { label: "Estudos", href: "/studies" },
+  { label: "Livros", href: "/books" },
+  { label: "Versículo", href: "/verse-of-day" },
+  { label: "Sobre", href: "/about" },
+  { label: "Contacto", href: "/contact" },
+];
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -22,12 +31,12 @@ export default function MobileNav() {
         type="button"
         aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--tam-ink)] text-white shadow-[0_12px_30px_rgba(17,17,17,0.22)] transition hover:scale-[1.02]"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[#151515] shadow-sm transition hover:bg-white"
       >
         <span className="flex flex-col gap-1.5">
-          <span className="block h-0.5 w-5 rounded-full bg-white" />
-          <span className="block h-0.5 w-5 rounded-full bg-white" />
-          <span className="block h-0.5 w-5 rounded-full bg-white" />
+          <span className="block h-0.5 w-5 rounded-full bg-[#151515]" />
+          <span className="block h-0.5 w-5 rounded-full bg-[#151515]" />
+          <span className="block h-0.5 w-5 rounded-full bg-[#151515]" />
         </span>
       </button>
 
@@ -37,16 +46,16 @@ export default function MobileNav() {
             type="button"
             aria-label="Fechar menu"
             onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-black/55 backdrop-blur-md"
+            className="absolute inset-0 bg-black/35 backdrop-blur-sm"
           />
 
-          <aside className="absolute right-0 top-0 h-full w-[88%] max-w-sm border-l border-[var(--tam-line)] bg-[rgba(248,244,236,0.98)] shadow-2xl">
-            <div className="flex items-center justify-between border-b border-[var(--tam-line)] px-5 py-5">
+          <aside className="absolute right-0 top-0 h-full w-[86%] max-w-sm bg-[#f7f3ec] shadow-2xl">
+            <div className="flex items-center justify-between border-b border-black/5 px-5 py-5">
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--tam-accent-strong)]">
-                  Portal
+                <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
+                  Menu
                 </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[var(--tam-ink)]">
+                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#151515]">
                   Navegação
                 </h2>
               </div>
@@ -55,64 +64,38 @@ export default function MobileNav() {
                 type="button"
                 aria-label="Fechar menu"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--tam-line)] bg-white text-xl text-[var(--tam-ink)] transition hover:bg-neutral-50"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-xl text-[#151515]"
               >
                 ×
               </button>
             </div>
 
-            <nav className="px-4 py-4">
-              <div className="space-y-3">
-                {mainMenu.map((item, index) => {
+            <nav className="px-5 py-5">
+              <div className="space-y-2">
+                {items.map((item) => {
                   const active =
                     item.href === "/"
-                      ? pathname === "/" || pathname === "/pt" || pathname === "/en"
-                      : pathname === item.href ||
-                        pathname.startsWith(item.href + "/") ||
-                        pathname.endsWith(item.href);
+                      ? pathname === "/"
+                      : pathname === item.href || pathname.startsWith(item.href + "/");
 
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className={`flex items-center justify-between rounded-2xl px-4 py-4 text-sm font-medium transition fade-up-fast ${
+                      className={`flex items-center justify-between rounded-2xl px-4 py-4 text-sm font-medium transition ${
                         active
-                          ? "bg-[var(--tam-ink)] text-white shadow-[0_10px_25px_rgba(17,17,17,0.18)]"
-                          : "border border-[var(--tam-line)] bg-white text-[var(--tam-ink)] hover:bg-[#f4eee4]"
+                          ? "bg-[#151515] text-white"
+                          : "bg-white text-[#151515] border border-black/5"
                       }`}
-                      style={{ animationDelay: `${index * 0.04}s` }}
                     >
                       <span>{item.label}</span>
-                      <span className={active ? "text-white/70" : "text-[var(--tam-muted)]"}>
-                        ↗
-                      </span>
+                      <span className={active ? "text-white/70" : "text-[#7a7368]"}>↗</span>
                     </Link>
                   );
                 })}
               </div>
-
-              <div className="mt-5">
-                <Link
-                  href="/support"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-2xl border border-[var(--tam-line)] bg-[#111111] px-4 py-4 text-sm font-semibold text-white shadow-[0_10px_20px_rgba(17,17,17,0.16)]"
-                >
-                  <span>Apoiar a missão</span>
-                  <span className="text-white/70">→</span>
-                </Link>
-              </div>
             </nav>
-
-            <div className="border-t border-[var(--tam-line)] px-5 py-6">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--tam-accent-strong)]">
-                Three Angels Message
-              </p>
-              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
-                Bíblia, blog, estudos, livros e recursos cristãos num portal vivo,
-                visual e missionário.
-              </p>
-            </div>
           </aside>
         </div>
       )}

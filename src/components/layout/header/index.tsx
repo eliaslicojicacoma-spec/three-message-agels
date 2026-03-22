@@ -1,42 +1,40 @@
 import Link from "next/link";
-import { mainMenu } from "@/data/menus";
 import { siteConfig } from "@/config/site";
 import MobileNav from "@/components/navigation/mobile-nav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-[rgba(248,244,236,0.92)] backdrop-blur-xl">
-      <div className="container-premium flex h-20 items-center justify-between gap-6">
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-[rgba(247,243,236,0.88)] backdrop-blur-xl">
+      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="min-w-0">
           <div className="flex flex-col">
-            <span className="text-[1.9rem] font-semibold leading-none tracking-[-0.05em] text-[var(--tam-ink)] md:text-[2.2rem]">
+            <span className="text-[1.9rem] font-semibold leading-none tracking-[-0.05em] text-[#151515] md:text-[2.1rem]">
               {siteConfig.shortName}
             </span>
-            <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--tam-accent-strong)]">
+            <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
               {siteConfig.brand.tagline}
             </span>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 xl:flex">
-          {mainMenu.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-[15px] font-medium text-[var(--tam-muted)] transition hover:text-[var(--tam-ink)]"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
         <div className="flex items-center gap-3">
-          <Link
-            href="/support"
-            className="hidden rounded-full border border-[var(--tam-line)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--tam-ink)] shadow-sm transition hover:translate-y-[-1px] lg:inline-flex"
-          >
-            Apoiar
-          </Link>
+          <div className="hidden xl:flex items-center gap-8">
+            <Link href="/blog" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
+              Blog
+            </Link>
+            <Link href="/studies" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
+              Estudos
+            </Link>
+            <Link href="/books" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
+              Livros
+            </Link>
+            <Link href="/about" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
+              Sobre
+            </Link>
+            <Link href="/contact" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
+              Contacto
+            </Link>
+          </div>
 
           <div className="block xl:hidden">
             <MobileNav />
