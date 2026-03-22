@@ -22,7 +22,7 @@ export default function MobileNav() {
         type="button"
         aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--tam-ink)] text-white shadow-[0_12px_30px_rgba(17,17,17,0.22)]"
+        className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--tam-ink)] text-white shadow-[0_12px_30px_rgba(17,17,17,0.22)] transition hover:scale-[1.02]"
       >
         <span className="flex flex-col gap-1.5">
           <span className="block h-0.5 w-5 rounded-full bg-white" />
@@ -37,7 +37,7 @@ export default function MobileNav() {
             type="button"
             aria-label="Fechar menu"
             onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/55 backdrop-blur-md"
           />
 
           <aside className="absolute right-0 top-0 h-full w-[88%] max-w-sm border-l border-[var(--tam-line)] bg-[rgba(248,244,236,0.98)] shadow-2xl">
@@ -55,15 +55,15 @@ export default function MobileNav() {
                 type="button"
                 aria-label="Fechar menu"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--tam-line)] bg-white text-xl text-[var(--tam-ink)]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--tam-line)] bg-white text-xl text-[var(--tam-ink)] transition hover:bg-neutral-50"
               >
                 ×
               </button>
             </div>
 
             <nav className="px-4 py-4">
-              <div className="space-y-2">
-                {mainMenu.map((item) => {
+              <div className="space-y-3">
+                {mainMenu.map((item, index) => {
                   const active =
                     item.href === "/"
                       ? pathname === "/" || pathname === "/pt" || pathname === "/en"
@@ -76,11 +76,12 @@ export default function MobileNav() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className={`flex items-center justify-between rounded-2xl px-4 py-4 text-sm font-medium transition ${
+                      className={`flex items-center justify-between rounded-2xl px-4 py-4 text-sm font-medium transition fade-up-fast ${
                         active
                           ? "bg-[var(--tam-ink)] text-white shadow-[0_10px_25px_rgba(17,17,17,0.18)]"
-                          : "border border-[var(--tam-line)] bg-white text-[var(--tam-ink)]"
+                          : "border border-[var(--tam-line)] bg-white text-[var(--tam-ink)] hover:bg-[#f4eee4]"
                       }`}
+                      style={{ animationDelay: `${index * 0.04}s` }}
                     >
                       <span>{item.label}</span>
                       <span className={active ? "text-white/70" : "text-[var(--tam-muted)]"}>
@@ -91,11 +92,11 @@ export default function MobileNav() {
                 })}
               </div>
 
-              <div className="mt-4">
+              <div className="mt-5">
                 <Link
                   href="/support"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-2xl border border-[var(--tam-line)] bg-[#111111] px-4 py-4 text-sm font-semibold text-white"
+                  className="flex items-center justify-between rounded-2xl border border-[var(--tam-line)] bg-[#111111] px-4 py-4 text-sm font-semibold text-white shadow-[0_10px_20px_rgba(17,17,17,0.16)]"
                 >
                   <span>Apoiar a missão</span>
                   <span className="text-white/70">→</span>
