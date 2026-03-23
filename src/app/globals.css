@@ -159,3 +159,66 @@ div {
   background: rgba(201, 170, 114, 0.35);
   color: #111111;
 }
+
+/* ===== TYPOGRAPHY UPGRADE ===== */
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--tam-muted);
+}
+
+/* ===== SPACING SYSTEM ===== */
+
+.section {
+  padding: 80px 0;
+}
+
+.section-sm {
+  padding: 60px 0;
+}
+
+.section-lg {
+  padding: 110px 0;
+}
+
+/* ===== MAX WIDTH READING ===== */
+
+.text-wrap {
+  max-width: 680px;
+}
+
+/* ===== HERO TEXT BOOST ===== */
+
+.hero-title {
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
