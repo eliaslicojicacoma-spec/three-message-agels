@@ -1,111 +1,75 @@
-import { blogCovers } from "./covers";
-export type BlogArticle = {
+export interface Article {
   slug: string;
   title: string;
   excerpt: string;
   content: string;
   category: string;
-  cover: string;
+  image?: string;
   date: string;
-};
+}
 
-export const articles: BlogArticle[] = [
+// 🔥 lista de covers disponíveis
+const covers = Array.from({ length: 20 }, (_, i) => 
+  `/images/blog/cover-${i + 1}.jpg`
+);
+
+// 🔥 função automática
+function getCover(index: number) {
+  return covers[index % covers.length];
+}
+
+const articles: Article[] = [
   {
     slug: "por-que-deus-permite-o-sofrimento",
     title: "Por que Deus permite o sofrimento?",
     excerpt: "Uma reflexão bíblica sobre dor, propósito e esperança.",
-    content: "O sofrimento é uma das maiores questões da humanidade. A Bíblia não ignora a dor, mas mostra que Deus permanece presente mesmo em meio às lágrimas, trabalhando com propósito e oferecendo esperança real para além das circunstâncias.",
+    content: "Conteúdo...",
     category: "Reflexão",
-    cover: blogCovers[0],
     date: "2026-03-21",
   },
   {
     slug: "como-orar-corretamente",
     title: "Como orar corretamente?",
     excerpt: "Princípios simples para uma oração sincera e eficaz.",
-    content: "A oração é mais do que palavras repetidas. É comunhão, dependência e entrega. Jesus ensinou simplicidade, sinceridade e confiança como base de uma vida de oração verdadeira.",
+    content: "Conteúdo...",
     category: "Devocional",
-    cover: blogCovers[1],
     date: "2026-03-21",
   },
   {
     slug: "sinais-do-fim-dos-tempos",
     title: "Sinais do fim dos tempos",
     excerpt: "O que a Bíblia diz sobre os últimos dias.",
-    content: "A Bíblia apresenta sinais claros sobre o tempo do fim. Mais do que produzir medo, essas profecias foram dadas para despertar vigilância, esperança e preparação espiritual.",
+    content: "Conteúdo...",
     category: "Profecia",
-    cover: blogCovers[2],
     date: "2026-03-21",
   },
   {
-    slug: "o-que-a-biblia-diz-sobre-ansiedade",
+    slug: "como-estudar-a-biblia",
+    title: "Como estudar a Bíblia sozinho",
+    excerpt: "Um caminho simples para leitura bíblica com profundidade.",
+    content: "Conteúdo...",
+    category: "Bíblia",
+    date: "2026-03-21",
+  },
+  {
+    slug: "ansiedade-na-biblia",
     title: "O que a Bíblia diz sobre ansiedade?",
     excerpt: "Consolo bíblico para dias de pressão, medo e incerteza.",
-    content: "A ansiedade é uma realidade humana, mas a Palavra de Deus aponta para descanso, oração, confiança e dependência do cuidado divino como resposta para o coração aflito.",
+    content: "Conteúdo...",
     category: "Vida Cristã",
-    cover: blogCovers[3],
-    date: "2026-03-21",
-  },
-  {
-    slug: "como-estudar-a-biblia-sozinho",
-    title: "Como estudar a Bíblia sozinho",
-    excerpt: "Um caminho simples para leitura bíblica pessoal com profundidade.",
-    content: "Estudar a Bíblia sozinho exige oração, método, humildade e constância. Com perguntas certas e leitura reverente, qualquer pessoa pode crescer no entendimento das Escrituras.",
-    category: "Bíblia",
-    cover: blogCovers[4],
-    date: "2026-03-21",
-  },
-  {
-    slug: "por-que-a-fe-ainda-faz-sentido",
-    title: "Por que a fé ainda faz sentido?",
-    excerpt: "Uma resposta cristã para tempos de dúvida e instabilidade.",
-    content: "Mesmo num mundo marcado por crise, a fé continua a oferecer coerência, esperança e direção. A fé bíblica não é fuga da realidade, mas uma forma mais profunda de a enfrentar.",
-    category: "Reflexão",
-    cover: blogCovers[5],
-    date: "2026-03-21",
-  },
-  {
-    slug: "a-importancia-do-culto-familiar",
-    title: "A importância do culto familiar",
-    excerpt: "Como fortalecer a vida espiritual dentro de casa.",
-    content: "O culto familiar ajuda a criar ambiente de oração, leitura bíblica e unidade espiritual no lar. Pequenos momentos diários podem produzir grandes frutos ao longo do tempo.",
-    category: "Família",
-    cover: blogCovers[6],
-    date: "2026-03-21",
-  },
-  {
-    slug: "jesus-e-a-esperanca-para-o-cansado",
-    title: "Jesus e a esperança para o cansado",
-    excerpt: "Descanso espiritual para quem já não aguenta mais.",
-    content: "Cristo convida os cansados e sobrecarregados a encontrarem descanso nele. Essa promessa continua atual para todos os que carregam peso emocional, espiritual ou mental.",
-    category: "Esperança",
-    cover: blogCovers[7],
-    date: "2026-03-21",
-  },
-  {
-    slug: "o-valor-da-obediencia",
-    title: "O valor da obediência",
-    excerpt: "Por que obedecer a Deus continua a ser essencial.",
-    content: "A obediência bíblica não é legalismo, mas resposta de amor à graça recebida. Ela protege, orienta e molda uma vida alinhada com o caráter de Deus.",
-    category: "Doutrina",
-    cover: blogCovers[8],
-    date: "2026-03-21",
-  },
-  {
-    slug: "como-recomecar-com-deus",
-    title: "Como recomeçar com Deus",
-    excerpt: "Esperança para quem caiu, se afastou ou quer voltar.",
-    content: "A Bíblia mostra que recomeços são possíveis. Em Cristo há perdão, restauração e uma nova oportunidade para andar de novo com propósito e esperança.",
-    category: "Graça",
-    cover: blogCovers[9],
     date: "2026-03-21",
   },
 ];
 
+// 🔥 aplicar covers automaticamente
 export function getArticles() {
-  return articles;
+  return articles.map((article, index) => ({
+    ...article,
+    cover: getCover(index),
+  }));
 }
 
 export function getArticle(slug: string) {
-  return articles.find((a) => a.slug === slug) || null;
+  const list = getArticles();
+  return list.find((a) => a.slug === slug) || null;
 }
