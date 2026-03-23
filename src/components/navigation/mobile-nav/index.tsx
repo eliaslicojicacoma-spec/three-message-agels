@@ -7,33 +7,36 @@ export default function MobileNav() {
 
   return (
     <>
+      {/* Botão hambúrguer */}
       <button
         type="button"
-        aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/90 text-2xl text-[#151515] shadow-sm"
+        className="z-50 text-2xl"
       >
         ☰
       </button>
 
+      {/* Overlay */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black/60">
-          <div className="absolute right-0 top-0 h-full w-64 bg-white p-6 shadow-2xl">
+        <div className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm">
+          
+          {/* Menu lateral */}
+          <div className="absolute top-0 right-0 h-full w-72 bg-white shadow-2xl p-6 flex flex-col">
+            
             <button
-              type="button"
-              aria-label="Fechar menu"
               onClick={() => setOpen(false)}
-              className="rounded-full border border-black/10 px-3 py-1 text-sm"
+              className="self-end mb-6 px-3 py-1 border rounded-full"
             >
               Fechar
             </button>
 
-            <div className="mt-6 flex flex-col gap-4 text-[#151515]">
+            <nav className="flex flex-col gap-6 text-lg font-medium text-[#151515]">
               <a href="/" onClick={() => setOpen(false)}>Início</a>
               <a href="/blog" onClick={() => setOpen(false)}>Blog</a>
               <a href="/studies" onClick={() => setOpen(false)}>Estudos</a>
               <a href="/books" onClick={() => setOpen(false)}>Livros</a>
-            </div>
+            </nav>
+
           </div>
         </div>
       )}
