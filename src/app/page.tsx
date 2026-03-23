@@ -4,46 +4,76 @@ import Reveal from "@/components/ui/Reveal";
 export default function HomePage() {
   return (
     <main className="bg-[var(--tam-bg)] text-[var(--tam-text)]">
+      {/* HERO DE ALTO IMPACTO */}
       <section className="relative overflow-hidden">
         <div
-          className="relative min-h-[92vh] bg-cover bg-center"
+          className="relative min-h-[100vh] bg-cover bg-center"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, rgba(8,8,8,0.18) 0%, rgba(8,8,8,0.52) 45%, rgba(8,8,8,0.84) 100%), url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2000&auto=format&fit=crop')",
+              "linear-gradient(180deg, rgba(6,6,6,0.18) 0%, rgba(6,6,6,0.46) 42%, rgba(6,6,6,0.88) 100%), url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2200&auto=format&fit=crop')",
           }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,170,114,0.20),transparent_42%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04),transparent_30%,transparent_70%,rgba(255,255,255,0.03))]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,170,114,0.24),transparent_38%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05),transparent_28%,transparent_72%,rgba(255,255,255,0.04))]" />
 
-          <div className="mx-auto flex min-h-[92vh] w-full max-w-7xl items-end px-4 pb-10 pt-20 sm:px-6 md:pb-14 lg:px-8">
-            <div className="max-w-4xl rounded-[2rem] border border-white/12 bg-white/8 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.18)] backdrop-blur-md md:p-10">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#d7b67d]">
-                Portal cristão
+          <div className="mx-auto flex min-h-[100vh] w-full max-w-7xl items-end px-4 pb-10 pt-24 sm:px-6 md:pb-16 lg:px-8">
+            <div className="max-w-5xl rounded-[2.2rem] border border-white/10 bg-black/18 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur-md md:p-10 lg:p-12">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.38em] text-[#d7b67d]">
+                Portal cristão premium
               </p>
 
-              <h1 className="hero-title mt-6 text-white">
+              <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.88] tracking-[-0.07em] text-white md:text-7xl lg:text-[5.8rem]">
                 Three Angels Message
               </h1>
 
-              <p className="hero-sub mt-6 max-w-2xl text-white">
-                Um portal dedicado ao estudo bíblico, à proclamação do evangelho eterno
-                e à preparação espiritual para o tempo do fim.
+              <p className="mt-6 max-w-3xl text-base leading-8 text-white/82 md:text-xl md:leading-9">
+                Bíblia, estudos, artigos e biblioteca organizados numa experiência
+                visual forte, reverente e feita para formar uma fé sólida no tempo presente.
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/studies"
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#c9aa72] px-8 text-sm font-semibold text-black shadow-[0_10px_28px_rgba(0,0,0,0.18)] transition hover:translate-y-[-2px] hover:opacity-95"
+                  className="inline-flex min-h-[56px] items-center justify-center rounded-full bg-[#c9aa72] px-8 text-sm font-semibold uppercase tracking-[0.14em] text-black shadow-[0_14px_34px_rgba(0,0,0,0.18)] transition hover:translate-y-[-2px] hover:opacity-95"
                 >
                   Estudos Bíblicos
                 </Link>
 
                 <Link
                   href="/blog"
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/30 bg-white/8 px-8 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/14"
+                  className="inline-flex min-h-[56px] items-center justify-center rounded-full border border-white/30 bg-white/8 px-8 text-sm font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm transition hover:bg-white/14"
                 >
                   Explorar Artigos
                 </Link>
+              </div>
+
+              <div className="mt-10 grid max-w-4xl gap-4 md:grid-cols-3">
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/6 p-5 backdrop-blur-sm transition hover:translate-y-[-3px] hover:bg-white/9">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d7b67d]">
+                    Bíblia
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-white/70">
+                    Conteúdo ancorado na Palavra com reverência e clareza.
+                  </p>
+                </div>
+
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/6 p-5 backdrop-blur-sm transition hover:translate-y-[-3px] hover:bg-white/9">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d7b67d]">
+                    Portal
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-white/70">
+                    Artigos vivos para fé, cultura, missão e discernimento.
+                  </p>
+                </div>
+
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/6 p-5 backdrop-blur-sm transition hover:translate-y-[-3px] hover:bg-white/9">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d7b67d]">
+                    Biblioteca
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-white/70">
+                    Livros e recursos para crescimento espiritual consistente.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
