@@ -1,45 +1,27 @@
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
 import MobileNav from "@/components/navigation/mobile-nav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-[rgba(247,243,236,0.88)] backdrop-blur-xl">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="min-w-0">
-          <div className="flex flex-col">
-            <span className="text-[1.45rem] font-semibold leading-none tracking-[-0.05em] text-[#151515] sm:text-[1.8rem]">
-              {siteConfig.shortName}
-            </span>
-            <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#b08d57]">
-              {siteConfig.brand.tagline}
-            </span>
-          </div>
+    <header className="sticky top-0 z-50 bg-[#f7f3ec]/90 backdrop-blur-lg border-b border-black/5">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+
+        <Link href="/" className="text-lg font-semibold">
+          As Três Mensagens
         </Link>
 
-        <div className="flex items-center gap-3">
-          <nav className="hidden xl:flex items-center gap-8">
-            <Link href="/blog" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
-              Blog
-            </Link>
-            <Link href="/studies" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
-              Estudos
-            </Link>
-            <Link href="/books" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
-              Livros
-            </Link>
-            <Link href="/about" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
-              Sobre
-            </Link>
-            <Link href="/contact" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
-              Contacto
-            </Link>
-          </nav>
+        {/* Desktop */}
+        <nav className="hidden md:flex gap-6 text-sm">
+          <Link href="/blog">Blog</Link>
+          <Link href="/studies">Estudos</Link>
+          <Link href="/books">Livros</Link>
+        </nav>
 
-          <div className="xl:hidden">
-            <MobileNav />
-          </div>
+        {/* Mobile */}
+        <div className="md:hidden">
+          <MobileNav />
         </div>
+
       </div>
     </header>
   );
