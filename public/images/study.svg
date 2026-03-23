@@ -1,0 +1,16 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#1A1A1A"/>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <rect x="250" y="180" width="700" height="420" rx="24" fill="#EEE5D4"/>
+  <rect x="320" y="250" width="560" height="18" rx="9" fill="#B89A6A"/>
+  <rect x="320" y="310" width="480" height="14" rx="7" fill="#CBB89A"/>
+  <rect x="320" y="350" width="520" height="14" rx="7" fill="#CBB89A"/>
+  <rect x="320" y="390" width="430" height="14" rx="7" fill="#CBB89A"/>
+  <text x="600" y="660" text-anchor="middle" fill="white" font-size="54" font-family="Arial" font-weight="700">Estudos Bíblicos</text>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1200" y2="800">
+      <stop stop-color="#2B2B2B"/>
+      <stop offset="1" stop-color="#111111"/>
+    </linearGradient>
+  </defs>
+</svg>

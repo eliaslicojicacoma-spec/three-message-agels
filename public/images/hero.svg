@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#111111"/>
+  <rect width="1600" height="900" fill="url(#paint0_radial)"/>
+  <ellipse cx="800" cy="760" rx="420" ry="90" fill="#1B1B1B"/>
+  <path d="M520 690C520 610 570 560 650 550H800V780H620C560 780 520 740 520 690Z" fill="#EEE5D4"/>
+  <path d="M1080 690C1080 610 1030 560 950 550H800V780H980C1040 780 1080 740 1080 690Z" fill="#E3D5BD"/>
+  <path d="M800 550V780" stroke="#B89A6A" stroke-width="6"/>
+  <text x="800" y="210" text-anchor="middle" fill="#D7B67D" font-size="26" font-family="Arial" letter-spacing="8">PORTAL CRISTÃO</text>
+  <text x="800" y="330" text-anchor="middle" fill="white" font-size="86" font-family="Arial" font-weight="700">Three Angels Message</text>
+  <text x="800" y="395" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="28" font-family="Arial">Bíblia, estudos, artigos e missão</text>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 180) rotate(90) scale(500 900)">
+      <stop stop-color="#C9AA72" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#111111" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,9 @@
+<svg width="900" height="1200" viewBox="0 0 900 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1200" fill="#191919"/>
+  <rect x="190" y="170" width="520" height="760" rx="26" fill="#EEE5D4"/>
+  <rect x="230" y="170" width="38" height="760" fill="#B89A6A"/>
+  <rect x="300" y="290" width="300" height="22" rx="11" fill="#B89A6A"/>
+  <rect x="300" y="350" width="250" height="14" rx="7" fill="#CBB89A"/>
+  <rect x="300" y="390" width="270" height="14" rx="7" fill="#CBB89A"/>
+  <text x="450" y="1030" text-anchor="middle" fill="white" font-size="58" font-family="Arial" font-weight="700">Biblioteca</text>
+</svg>
