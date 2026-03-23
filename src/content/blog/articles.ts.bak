@@ -16,7 +16,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Uma reflexão bíblica sobre dor, propósito e esperança.",
     content: "O sofrimento é uma das maiores questões da humanidade. A Bíblia não ignora a dor, mas mostra que Deus permanece presente mesmo em meio às lágrimas, trabalhando com propósito e oferecendo esperança real para além das circunstâncias.",
     category: "Reflexão",
-    cover: blogCovers[0],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -25,7 +25,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Princípios simples para uma oração sincera e eficaz.",
     content: "A oração é mais do que palavras repetidas. É comunhão, dependência e entrega. Jesus ensinou simplicidade, sinceridade e confiança como base de uma vida de oração verdadeira.",
     category: "Devocional",
-    cover: blogCovers[1],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -34,7 +34,7 @@ export const articles: BlogArticle[] = [
     excerpt: "O que a Bíblia diz sobre os últimos dias.",
     content: "A Bíblia apresenta sinais claros sobre o tempo do fim. Mais do que produzir medo, essas profecias foram dadas para despertar vigilância, esperança e preparação espiritual.",
     category: "Profecia",
-    cover: blogCovers[2],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -43,7 +43,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Consolo bíblico para dias de pressão, medo e incerteza.",
     content: "A ansiedade é uma realidade humana, mas a Palavra de Deus aponta para descanso, oração, confiança e dependência do cuidado divino como resposta para o coração aflito.",
     category: "Vida Cristã",
-    cover: blogCovers[3],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -52,7 +52,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Um caminho simples para leitura bíblica pessoal com profundidade.",
     content: "Estudar a Bíblia sozinho exige oração, método, humildade e constância. Com perguntas certas e leitura reverente, qualquer pessoa pode crescer no entendimento das Escrituras.",
     category: "Bíblia",
-    cover: blogCovers[4],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -61,7 +61,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Uma resposta cristã para tempos de dúvida e instabilidade.",
     content: "Mesmo num mundo marcado por crise, a fé continua a oferecer coerência, esperança e direção. A fé bíblica não é fuga da realidade, mas uma forma mais profunda de a enfrentar.",
     category: "Reflexão",
-    cover: blogCovers[5],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -70,7 +70,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Como fortalecer a vida espiritual dentro de casa.",
     content: "O culto familiar ajuda a criar ambiente de oração, leitura bíblica e unidade espiritual no lar. Pequenos momentos diários podem produzir grandes frutos ao longo do tempo.",
     category: "Família",
-    cover: blogCovers[6],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -79,7 +79,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Descanso espiritual para quem já não aguenta mais.",
     content: "Cristo convida os cansados e sobrecarregados a encontrarem descanso nele. Essa promessa continua atual para todos os que carregam peso emocional, espiritual ou mental.",
     category: "Esperança",
-    cover: blogCovers[7],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -88,7 +88,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Por que obedecer a Deus continua a ser essencial.",
     content: "A obediência bíblica não é legalismo, mas resposta de amor à graça recebida. Ela protege, orienta e molda uma vida alinhada com o caráter de Deus.",
     category: "Doutrina",
-    cover: blogCovers[8],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
   {
@@ -97,7 +97,7 @@ export const articles: BlogArticle[] = [
     excerpt: "Esperança para quem caiu, se afastou ou quer voltar.",
     content: "A Bíblia mostra que recomeços são possíveis. Em Cristo há perdão, restauração e uma nova oportunidade para andar de novo com propósito e esperança.",
     category: "Graça",
-    cover: blogCovers[9],
+    cover: blogCovers[Math.floor(Math.random() * blogCovers.length)],
     date: "2026-03-21",
   },
 ];
