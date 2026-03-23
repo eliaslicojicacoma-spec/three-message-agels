@@ -8,17 +8,17 @@ export default function Header() {
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="min-w-0">
           <div className="flex flex-col">
-            <span className="text-[1.9rem] font-semibold leading-none tracking-[-0.05em] text-[#151515] md:text-[2.1rem]">
+            <span className="text-[1.45rem] font-semibold leading-none tracking-[-0.05em] text-[#151515] sm:text-[1.8rem]">
               {siteConfig.shortName}
             </span>
-            <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
+            <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#b08d57]">
               {siteConfig.brand.tagline}
             </span>
           </div>
         </Link>
 
         <div className="flex items-center gap-3">
-          <div className="hidden xl:flex items-center gap-8">
+          <nav className="hidden xl:flex items-center gap-8">
             <Link href="/blog" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
               Blog
             </Link>
@@ -34,9 +34,9 @@ export default function Header() {
             <Link href="/contact" className="text-[15px] font-medium text-[#58524a] transition hover:text-[#151515]">
               Contacto
             </Link>
-          </div>
+          </nav>
 
-          <div className="block xl:hidden">
+          <div className="xl:hidden">
             <MobileNav />
           </div>
         </div>

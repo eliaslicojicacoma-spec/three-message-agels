@@ -9,7 +9,6 @@ const items = [
   { label: "Blog", href: "/blog" },
   { label: "Estudos", href: "/studies" },
   { label: "Livros", href: "/books" },
-  { label: "Versículo", href: "/verse-of-day" },
   { label: "Sobre", href: "/about" },
   { label: "Contacto", href: "/contact" },
 ];
@@ -31,7 +30,7 @@ export default function MobileNav() {
         type="button"
         aria-label="Abrir menu"
         onClick={() => setOpen(true)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[#151515] shadow-sm transition hover:bg-white"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/85 text-[#151515] shadow-sm transition hover:bg-white"
       >
         <span className="flex flex-col gap-1.5">
           <span className="block h-0.5 w-5 rounded-full bg-[#151515]" />
@@ -46,10 +45,10 @@ export default function MobileNav() {
             type="button"
             aria-label="Fechar menu"
             onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-black/35 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/45 backdrop-blur-sm"
           />
 
-          <aside className="absolute right-0 top-0 h-full w-[86%] max-w-sm bg-[#f7f3ec] shadow-2xl">
+          <aside className="absolute right-0 top-0 h-full w-[86%] max-w-sm border-l border-black/5 bg-[#f7f3ec] shadow-2xl">
             <div className="flex items-center justify-between border-b border-black/5 px-5 py-5">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
@@ -86,7 +85,7 @@ export default function MobileNav() {
                       className={`flex items-center justify-between rounded-2xl px-4 py-4 text-sm font-medium transition ${
                         active
                           ? "bg-[#151515] text-white"
-                          : "bg-white text-[#151515] border border-black/5"
+                          : "border border-black/5 bg-white text-[#151515]"
                       }`}
                     >
                       <span>{item.label}</span>
