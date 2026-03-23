@@ -7,9 +7,9 @@ export default function BooksPage() {
   const rest = books.filter((book) => !book.featured);
 
   return (
-    <main className="bg-[#f6f1e8]">
-      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
+    <main className="bg-[var(--tam-bg)] text-[var(--tam-text)]">
+      <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="max-w-3xl rounded-[2rem] border border-black/5 bg-white/70 p-8 shadow-[0_14px_40px_rgba(17,17,17,0.05)] backdrop-blur-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
             Biblioteca
           </p>
@@ -28,13 +28,19 @@ export default function BooksPage() {
           {featured.map((book, index) => (
             <article
               key={book.slug}
-              className="overflow-hidden rounded-[1.8rem] bg-[#191919] text-white shadow-[0_10px_30px_rgba(17,17,17,0.08)]"
+              className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#191919] text-white shadow-[0_18px_50px_rgba(17,17,17,0.12)]"
             >
-              <img
-                src={index % 2 === 0 ? "/images/books/cover-1200x1600.jpg" : "/images/books/card-900x1200.jpg"}
-                alt={book.title}
-                className="h-[280px] w-full object-cover"
-              />
+              <div className="image-zoom">
+                <img
+                  src={
+                    index % 2 === 0
+                      ? "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop"
+                      : "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop"
+                  }
+                  alt={book.title}
+                  className="h-[300px] w-full object-cover"
+                />
+              </div>
 
               <div className="p-6">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d7b67d]">
@@ -57,9 +63,9 @@ export default function BooksPage() {
 
                 <Link
                   href={`/books/${book.slug}`}
-                  className="mt-6 inline-flex text-sm font-semibold text-white"
+                  className="mt-6 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:translate-y-[-2px] hover:opacity-95"
                 >
-                  Ver obra →
+                  Ver obra
                 </Link>
               </div>
             </article>
@@ -72,13 +78,19 @@ export default function BooksPage() {
           {rest.map((book, index) => (
             <article
               key={book.slug}
-              className="overflow-hidden rounded-[1.6rem] border border-black/5 bg-white shadow-[0_8px_24px_rgba(17,17,17,0.04)]"
+              className="overflow-hidden rounded-[1.8rem] border border-black/5 bg-white/78 shadow-[0_14px_40px_rgba(17,17,17,0.06)] backdrop-blur-sm"
             >
-              <img
-                src={index % 2 === 0 ? "/images/books/thumb-600x800.jpg" : "/images/books/card-900x1200.jpg"}
-                alt={book.title}
-                className="h-52 w-full object-cover"
-              />
+              <div className="image-zoom">
+                <img
+                  src={
+                    index % 2 === 0
+                      ? "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=900&auto=format&fit=crop"
+                      : "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=900&auto=format&fit=crop"
+                  }
+                  alt={book.title}
+                  className="h-56 w-full object-cover"
+                />
+              </div>
 
               <div className="p-6">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b08d57]">

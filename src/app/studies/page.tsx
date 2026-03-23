@@ -5,9 +5,9 @@ export default function StudiesPage() {
   const studies = getStudies();
 
   return (
-    <main className="bg-[#f6f1e8]">
-      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
+    <main className="bg-[var(--tam-bg)] text-[var(--tam-text)]">
+      <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="max-w-3xl rounded-[2rem] border border-black/5 bg-white/70 p-8 shadow-[0_14px_40px_rgba(17,17,17,0.05)] backdrop-blur-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
             Estudos Bíblicos
           </p>
@@ -17,13 +17,6 @@ export default function StudiesPage() {
           <p className="mt-5 max-w-2xl text-base leading-8 text-[#6d675f] md:text-lg">
             Estudos preparados para doutrina, profecia, vida cristã e crescimento espiritual.
           </p>
-
-          <div className="mt-6 inline-flex bg-white px-4 py-3 text-sm text-[#6d675f] shadow-sm">
-            Total disponível:
-            <span className="ml-2 font-semibold text-[#151515]">
-              {studies.length} estudos
-            </span>
-          </div>
         </div>
       </section>
 
@@ -32,15 +25,21 @@ export default function StudiesPage() {
           {studies.map((study, index) => (
             <article
               key={study.slug}
-              className="overflow-hidden rounded-[1.6rem] border border-black/5 bg-white shadow-[0_8px_24px_rgba(17,17,17,0.04)]"
+              className="overflow-hidden rounded-[1.8rem] border border-black/5 bg-white/78 shadow-[0_14px_40px_rgba(17,17,17,0.06)] backdrop-blur-sm"
             >
-              <div className="relative">
+              <div className="relative image-zoom">
                 <img
-                  src={index % 3 === 0 ? "/images/blog/featured-1600x900.jpg" : index % 3 === 1 ? "/images/blog/card-1200x800.jpg" : "/images/blog/thumb-800x600.jpg"}
+                  src={
+                    index % 3 === 0
+                      ? "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop"
+                      : index % 3 === 1
+                      ? "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=1200&auto=format&fit=crop"
+                      : "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop"
+                  }
                   alt={study.title}
                   className="h-56 w-full object-cover"
                 />
-                <div className="absolute left-4 top-4 bg-white px-3 py-1 text-xs font-semibold text-[#151515] shadow-sm">
+                <div className="absolute left-4 top-4 rounded-full bg-white/88 px-3 py-1 text-xs font-semibold text-[#151515] shadow-sm backdrop-blur-sm">
                   #{index + 1}
                 </div>
               </div>
