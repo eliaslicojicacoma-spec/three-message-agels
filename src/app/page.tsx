@@ -9,7 +9,7 @@ export default function HomePage() {
           className="relative min-h-[92vh] bg-cover bg-center"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.88) 100%), url('/images/hero.jpg')",
+              "linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.88) 100%), url('/images/hero/hero-desktop-1920x1080.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,170,114,0.18),transparent_45%)]" />
@@ -57,7 +57,7 @@ export default function HomePage() {
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
             <article className="panel-dark image-zoom overflow-hidden p-0 text-white">
               <img
-                src="/images/hero.jpg"
+                src="/images/blog/featured-1600x900.jpg"
                 alt="Estudos bíblicos"
                 className="h-[340px] w-full object-cover"
               />
@@ -84,7 +84,7 @@ export default function HomePage() {
             <div className="grid gap-6">
               <article className="panel-light image-zoom overflow-hidden p-0">
                 <img
-                  src="/images/hero.jpg"
+                  src="/images/blog/article-1-1200x800.jpg"
                   alt="Artigos"
                   className="h-[180px] w-full object-cover"
                 />
@@ -110,7 +110,7 @@ export default function HomePage() {
 
               <article className="panel-light image-zoom overflow-hidden p-0">
                 <img
-                  src="/images/hero.jpg"
+                  src="/images/books/card-900x1200.jpg"
                   alt="Biblioteca"
                   className="h-[180px] w-full object-cover"
                 />
@@ -144,7 +144,7 @@ export default function HomePage() {
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
               <div className="image-zoom overflow-hidden rounded-[1.8rem]">
                 <img
-                  src="/images/hero.jpg"
+                  src="/images/hero/hero-mobile-1080x1350.jpg"
                   alt="Bíblia aberta"
                   className="h-full min-h-[340px] w-full object-cover"
                 />
