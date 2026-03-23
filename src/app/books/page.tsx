@@ -1,61 +1,109 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import { getBooks } from "@/content/books";
-import SectionHeading from "@/components/ui/section-heading";
-
-export const metadata: Metadata = {
-  title: "Livros",
-  description: "Explora leituras cristãs e livros recomendados.",
-};
 
 export default function BooksPage() {
   const books = getBooks();
+  const featured = books.filter((book) => book.featured);
+  const rest = books.filter((book) => !book.featured);
 
   return (
-    <main className="container-premium py-8 md:py-12">
-      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.82),rgba(239,231,218,0.96))] p-6 shadow-[0_20px_60px_rgba(17,17,17,0.06)] md:p-10">
-        <SectionHeading
-          eyebrow="Livros"
-          title="Leituras recomendadas para crescimento espiritual"
-          description="Uma biblioteca em expansão com obras cristãs, reflexões e materiais úteis para estudo e formação."
-        />
+    <main className="bg-[#f6f1e8]">
+      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
+            Biblioteca
+          </p>
+          <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em] text-[#151515] md:text-6xl">
+            Literatura cristã para estudo e formação espiritual
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-[#6d675f] md:text-lg">
+            Um acervo digital em crescimento com obras selecionadas para leitura,
+            reflexão e aprofundamento bíblico.
+          </p>
+        </div>
       </section>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
-        {books.map((book) => (
-          <article key={book.slug} className="card-premium overflow-hidden">
-            <div className="relative h-52 w-full overflow-hidden">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          {featured.map((book, index) => (
+            <article
+              key={book.slug}
+              className="overflow-hidden rounded-[1.8rem] bg-[#191919] text-white shadow-[0_10px_30px_rgba(17,17,17,0.08)]"
+            >
               <img
-                src={book.image}
+                src={index % 2 === 0 ? "/images/books/cover-1200x1600.jpg" : "/images/books/card-900x1200.jpg"}
                 alt={book.title}
-                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                className="h-[280px] w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
-            </div>
 
-            <div className="p-6">
-              <p className="eyebrow-premium">{book.author}</p>
+              <div className="p-6">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d7b67d]">
+                  {book.author}
+                </p>
 
-              <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
-                {book.title}
-              </h2>
+                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">
+                  {book.title}
+                </h2>
 
-              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
-                {book.description}
-              </p>
+                <p className="mt-4 text-sm leading-8 text-white/68">
+                  {book.description}
+                </p>
 
-              <div className="mt-5">
+                <div className="mt-4 flex flex-wrap gap-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/45">
+                  {book.series ? <span>{book.series}</span> : null}
+                  {book.year ? <span>{book.year}</span> : null}
+                  <span>{book.category}</span>
+                </div>
+
                 <Link
                   href={`/books/${book.slug}`}
-                  className="button-premium-light inline-flex"
+                  className="mt-6 inline-flex text-sm font-semibold text-white"
                 >
-                  Ver livro
+                  Ver obra →
                 </Link>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-3">
+          {rest.map((book, index) => (
+            <article
+              key={book.slug}
+              className="overflow-hidden rounded-[1.6rem] border border-black/5 bg-white shadow-[0_8px_24px_rgba(17,17,17,0.04)]"
+            >
+              <img
+                src={index % 2 === 0 ? "/images/books/thumb-600x800.jpg" : "/images/books/card-900x1200.jpg"}
+                alt={book.title}
+                className="h-52 w-full object-cover"
+              />
+
+              <div className="p-6">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b08d57]">
+                  {book.author}
+                </p>
+
+                <h3 className="mt-4 text-2xl font-semibold leading-[1.2] tracking-[-0.03em] text-[#151515]">
+                  {book.title}
+                </h3>
+
+                <p className="mt-4 text-sm leading-8 text-[#6d675f]">
+                  {book.description}
+                </p>
+
+                <Link
+                  href={`/books/${book.slug}`}
+                  className="mt-5 inline-flex text-sm font-semibold text-[#151515]"
+                >
+                  Ver obra →
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

@@ -1,68 +1,74 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import { getStudies } from "@/content/studies";
-import SectionHeading from "@/components/ui/section-heading";
-
-export const metadata: Metadata = {
-  title: "Estudos Bíblicos",
-  description: "Explora estudos bíblicos organizados por temas.",
-};
 
 export default function StudiesPage() {
   const studies = getStudies();
 
   return (
-    <main className="container-premium py-8 md:py-12">
-      <section className="overflow-hidden rounded-[2rem] border border-[var(--tam-line)] bg-[linear-gradient(135deg,rgba(255,255,255,0.82),rgba(239,231,218,0.96))] p-6 shadow-[0_20px_60px_rgba(17,17,17,0.06)] md:p-10">
-        <SectionHeading
-          eyebrow="Estudos"
-          title="Conteúdos organizados para aprofundar a fé"
-          description="Estudos bíblicos pensados para doutrina, profecia, crescimento espiritual e missão."
-        />
+    <main className="bg-[#f6f1e8]">
+      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
+            Estudos Bíblicos
+          </p>
+          <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em] text-[#151515] md:text-6xl">
+            Conteúdo organizado para fortalecer a fé
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-[#6d675f] md:text-lg">
+            Estudos preparados para doutrina, profecia, vida cristã e crescimento espiritual.
+          </p>
 
-        <div className="mt-6 inline-flex rounded-2xl border bg-white/70 px-4 py-3 text-sm text-[var(--tam-muted)]">
-          Total disponível: <span className="ml-2 font-semibold text-[var(--tam-ink)]">{studies.length} estudos</span>
+          <div className="mt-6 inline-flex bg-white px-4 py-3 text-sm text-[#6d675f] shadow-sm">
+            Total disponível:
+            <span className="ml-2 font-semibold text-[#151515]">
+              {studies.length} estudos
+            </span>
+          </div>
         </div>
       </section>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
-        {studies.map((study, index) => (
-          <article key={study.slug} className="card-premium overflow-hidden">
-            <div className="relative h-52 w-full overflow-hidden">
-              <img
-                src={study.image}
-                alt={study.title}
-                className="h-full w-full object-cover transition duration-500 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
-              <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[var(--tam-ink)] shadow-sm">
-                #{index + 1}
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          {studies.map((study, index) => (
+            <article
+              key={study.slug}
+              className="overflow-hidden rounded-[1.6rem] border border-black/5 bg-white shadow-[0_8px_24px_rgba(17,17,17,0.04)]"
+            >
+              <div className="relative">
+                <img
+                  src={index % 3 === 0 ? "/images/blog/featured-1600x900.jpg" : index % 3 === 1 ? "/images/blog/card-1200x800.jpg" : "/images/blog/thumb-800x600.jpg"}
+                  alt={study.title}
+                  className="h-56 w-full object-cover"
+                />
+                <div className="absolute left-4 top-4 bg-white px-3 py-1 text-xs font-semibold text-[#151515] shadow-sm">
+                  #{index + 1}
+                </div>
               </div>
-            </div>
 
-            <div className="p-6">
-              <p className="eyebrow-premium">{study.category}</p>
+              <div className="p-6">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#b08d57]">
+                  {study.category}
+                </p>
 
-              <h2 className="mt-4 text-xl font-semibold text-[var(--tam-ink)]">
-                {study.title}
-              </h2>
+                <h2 className="mt-4 text-2xl font-semibold leading-[1.2] tracking-[-0.03em] text-[#151515]">
+                  {study.title}
+                </h2>
 
-              <p className="mt-3 text-sm leading-7 text-[var(--tam-muted)]">
-                {study.description}
-              </p>
+                <p className="mt-4 text-sm leading-8 text-[#6d675f]">
+                  {study.description}
+                </p>
 
-              <div className="mt-5">
                 <Link
                   href={`/studies/${study.slug}`}
-                  className="button-premium-light inline-flex"
+                  className="mt-5 inline-flex text-sm font-semibold text-[#151515]"
                 >
-                  Ler estudo
+                  Ler estudo →
                 </Link>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
