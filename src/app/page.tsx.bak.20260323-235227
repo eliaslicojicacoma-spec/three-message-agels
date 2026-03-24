@@ -1,0 +1,221 @@
+import Link from "next/link";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import AppImage from "@/components/ui/AppImage";
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="rounded-2xl border border-black/5 bg-white/70 p-5 backdrop-blur">
+      <div className="text-2xl font-semibold tracking-tight text-[#151515]">{value}</div>
+      <div className="mt-1 text-sm text-[#6d675f]">{label}</div>
+    </div>
+  );
+}
+
+function FeatureCard({
+  title,
+  text,
+  href,
+  cta,
+  image,
+}: {
+  title: string;
+  text: string;
+  href: string;
+  cta: string;
+  image: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group overflow-hidden rounded-[28px] border border-black/5 bg-white/80 shadow-[0_18px_40px_rgba(17,17,17,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(17,17,17,0.10)]"
+    >
+      <AppImage
+        src={image}
+        alt={title}
+        width={1200}
+        height={800}
+        className="h-[220px] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+      />
+
+      <div className="p-6">
+        <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#b08d57]">
+          Explorar
+        </div>
+        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#151515]">{title}</h3>
+        <p className="mt-4 text-[15px] leading-8 text-[#6d675f]">{text}</p>
+        <div className="mt-6 inline-flex items-center text-sm font-medium text-[#151515] transition group-hover:text-[#9f7438]">
+          {cta}
+          <span className="ml-2 transition group-hover:translate-x-1">→</span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-[#f6f1e8] text-[#151515]">
+      <Header />
+
+      <main>
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(184,138,74,0.18),transparent_30%),linear-gradient(to_bottom,#f8f3eb_0%,#f4efe6_100%)]" />
+
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+            <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+              <div>
+                <div className="mb-5 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
+                  Portal cristão
+                </div>
+
+                <h1 className="max-w-4xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-[#151515] md:text-7xl lg:text-8xl">
+                  As Três Mensagens
+                  <br />
+                  Angélicas
+                </h1>
+
+                <p className="mt-6 max-w-2xl text-base leading-8 text-[#6d675f] md:text-lg">
+                  Um espaço digital para estudo bíblico, leitura cristã, reflexão
+                  espiritual e fortalecimento da fé com clareza, beleza e direção.
+                </p>
+
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                  <Link
+                    href="/studies"
+                    className="inline-flex min-h-[54px] items-center justify-center rounded-full bg-[#b88a4a] px-7 text-base font-semibold text-[#111111] transition hover:bg-[#9f7438]"
+                  >
+                    Estudos Bíblicos
+                  </Link>
+
+                  <Link
+                    href="/blog"
+                    className="inline-flex min-h-[54px] items-center justify-center rounded-full border border-black/10 bg-white/70 px-7 text-base font-semibold text-[#151515] transition hover:border-[#b88a4a]/50 hover:bg-white"
+                  >
+                    Explorar Artigos
+                  </Link>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-[34px] border border-black/5 bg-white/70 p-3 shadow-[0_24px_60px_rgba(17,17,17,0.08)] backdrop-blur">
+                <AppImage
+                  src="/images/hero/hero-desktop-1920x1080.jpg"
+                  alt="Hero principal"
+                  width={1920}
+                  height={1080}
+                  priority
+                  className="h-[420px] w-full rounded-[28px] object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <Stat value="Estudo" label="Conteúdo pensado para clareza bíblica" />
+              <Stat value="Leitura" label="Biblioteca e artigos com foco cristão" />
+              <Stat value="Missão" label="Uma base para crescer e compartilhar" />
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
+          <div className="mb-10">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
+              Estrutura principal
+            </div>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#151515] md:text-6xl">
+              Uma home mais limpa,
+              <br />
+              mais forte e mais séria
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-[#6d675f]">
+              Primeiro acertamos a base visual. Depois refinamos blog, estudos e biblioteca
+              com a mesma linguagem.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <FeatureCard
+              href="/blog"
+              title="Blog"
+              text="Reflexões, análises e textos públicos com direção visual mais clara."
+              cta="Abrir blog"
+              image="/images/blog/cover-1.jpg"
+            />
+            <FeatureCard
+              href="/studies"
+              title="Estudos Bíblicos"
+              text="Conteúdo organizado para aprofundar doutrina, profecia e crescimento espiritual."
+              cta="Ver estudos"
+              image="/images/blog/cover-2.jpg"
+            />
+            <FeatureCard
+              href="/books"
+              title="Biblioteca"
+              text="Livros cristãos organizados para leitura e consulta com presença visual melhor."
+              cta="Entrar na biblioteca"
+              image="/images/books/caminho-a-cristo.jpg"
+            />
+          </div>
+        </section>
+
+        <section className="border-y border-black/5 bg-white/60">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[0.95fr_1.05fr] md:py-20 lg:px-8">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#b08d57]">
+                Direção
+              </div>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-[#151515] md:text-5xl">
+                Menos improviso.
+                <br />
+                Mais sistema.
+              </h2>
+            </div>
+
+            <div className="space-y-5 text-[15px] leading-8 text-[#6d675f]">
+              <p>
+                Esta nova base não tenta fazer tudo ao mesmo tempo. O objetivo é
+                construir uma presença digital clara, consistente e visualmente madura.
+              </p>
+              <p>
+                Depois desta home, o próximo passo natural é elevar o blog, os
+                estudos e a biblioteca com a mesma linguagem visual.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
+          <div className="rounded-[34px] bg-[#111111] px-6 py-12 text-center text-white shadow-[0_24px_60px_rgba(17,17,17,0.12)] md:px-10">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#d7b67d]">
+              Próximo passo
+            </div>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] md:text-6xl">
+              Continuar a jornada
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/72">
+              Abre a biblioteca, entra nos estudos ou começa pelos artigos.
+              A base agora é simples: conteúdo, direção e presença.
+            </p>
+
+            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+              <Link
+                href="/books"
+                className="inline-flex min-h-[54px] items-center justify-center rounded-full bg-[#b88a4a] px-7 text-base font-semibold text-[#111111] transition hover:bg-[#9f7438]"
+              >
+                Abrir livros
+              </Link>
+              <Link
+                href="/studies"
+                className="inline-flex min-h-[54px] items-center justify-center rounded-full border border-white/12 bg-white/5 px-7 text-base font-semibold text-white transition hover:bg-white hover:text-[#111111]"
+              >
+                Entrar nos estudos
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

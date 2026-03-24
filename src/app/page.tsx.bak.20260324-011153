@@ -2,12 +2,28 @@ import Link from "next/link";
 import { getArticles } from "@/content/blog/articles";
 import { getBooks } from "@/content/books";
 
+function CustomStyles() {
+  return (
+    <style jsx global>{`
+      .text-stroke-gold {
+        -webkit-text-stroke: 1px #b8a07a;
+        color: transparent;
+      }
+      .bg-noise {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      }
+    `}</style>
+  );
+}
+
 export default function HomePage() {
   const articles = getArticles().slice(0, 3);
   const books = getBooks().slice(0, 3);
 
   return (
     <main className="page-shell overflow-x-hidden">
+      <CustomStyles />
+
       {/* HERO */}
       <section className="relative flex min-h-[95vh] items-center justify-center overflow-hidden bg-[#111111]">
         <div
@@ -63,7 +79,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* DAILY VERSE */}
+      {/* DAILY VERSE STYLE BLOCK */}
       <section className="relative w-full overflow-hidden py-24 md:py-32">
         <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
@@ -126,7 +142,7 @@ export default function HomePage() {
 
       {/* MISSION */}
       <section className="relative w-full overflow-hidden bg-[#111111] py-32 text-white">
-        <div className="absolute inset-0 opacity-20 [background-image:url('data:image/svg+xml,%3Csvg_viewBox=%270_0_200_200%27_xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter_id=%27noiseFilter%27%3E%3CfeTurbulence_type=%27fractalNoise%27_baseFrequency=%270.65%27_numOctaves=%273%27_stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect_width=%27100%25%27_height=%27100%25%27_filter=%27url(%23noiseFilter)%27_opacity=%270.05%27/%3E%3C/svg%3E')]" />
+        <div className="pointer-events-none absolute inset-0 bg-noise opacity-20" />
 
         <div className="section-wrap">
           <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
@@ -135,15 +151,12 @@ export default function HomePage() {
                 <h2 className="mb-8 text-5xl leading-none md:text-7xl">
                   Atalaia da
                   <br />
-                  <span className="text-transparent [WebkitTextStroke:1px_#b8a07a]">
-                    Verdade
-                  </span>
+                  <span className="text-stroke-gold">Verdade</span>
                 </h2>
 
                 <p className="mb-12 max-w-xl text-xl leading-relaxed text-gray-400">
-                  Localizado no coração da Huíla, em Angola, este portal nasce como
-                  uma resposta ao chamado bíblico de ser uma voz de advertência,
-                  esperança e preparação nestes tempos solenes.
+                  Um portal nascido para responder ao chamado bíblico de ser uma
+                  voz de advertência, esperança e preparação nestes tempos solenes.
                 </p>
 
                 <div className="space-y-8">
@@ -154,7 +167,7 @@ export default function HomePage() {
                     <div>
                       <h3 className="mb-2 text-2xl text-white">Fundamento Sólido</h3>
                       <p className="leading-relaxed text-gray-500">
-                        Mensagem fundamentada exclusivamente na Palavra de Deus.
+                        Mensagem fundamentada na Palavra de Deus e orientada para estudo sério.
                       </p>
                     </div>
                   </div>
