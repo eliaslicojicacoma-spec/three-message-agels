@@ -1,61 +1,99 @@
-import { notFound } from "next/navigation";
+import { books } from "@/content/books/books";
 import Link from "next/link";
-import { getBook, getBooks } from "@/content/books";
+import { notFound } from "next/navigation";
 
-type Props = {
-  params: Promise<{ slug: string }>;
+type PageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
 };
 
 export async function generateStaticParams() {
-  return getBooks().map((b) => ({ slug: b.slug }));
+  return books.map((book) => ({
+    slug: book.slug,
+  }));
 }
 
-export default async function BookPage({ params }: Props) {
+export default async function BookDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const book = getBook(slug);
-  if (!book) return notFound();
+
+  const book = books.find((item) => item.slug === slug);
+
+  if (!book) {
+    notFound();
+  }
 
   return (
-    <main className="bg-[var(--tam-bg)] text-[var(--tam-text)]">
-      <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-[360px_1fr]">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#333333]">
+      <section className="section-wrap py-16 md:py-24">
+        <div className="mb-8">
+          <Link
+            href="/books"
+            className="text-sm text-[var(--gold)] hover:opacity-80"
+          >
+            ← Voltar para Biblioteca
+          </Link>
+        </div>
 
-          {/* capa */}
-          <div>
+        <div className="grid gap-12 lg:grid-cols-[420px_minmax(0,1fr)] lg:items-start">
+          <div className="premium-card overflow-hidden">
             <img
               src={book.cover}
               alt={book.title}
-              className="w-full rounded-[1.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+              className="w-full object-cover"
             />
           </div>
 
-          {/* info */}
           <div>
-            <h1 className="text-4xl font-semibold">{book.title}</h1>
-            <p className="mt-2 text-[#6d675f]">{book.author}</p>
+            <span className="eyebrow">{book.category}</span>
 
-            <p className="mt-6 text-lg leading-8 text-[#5f584f]">
+            <h1 className="title-display mt-4 text-4xl md:text-6xl">
+              {book.title}
+            </h1>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <span className="rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#333333]">
+                {book.author}
+              </span>
+              <span className="rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#333333]">
+                {book.year}
+              </span>
+              <span className="rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-[#333333]">
+                {book.series}
+              </span>
+            </div>
+
+            <p className="copy-muted mt-8 max-w-3xl text-base md:text-lg">
               {book.description}
             </p>
 
-            <div className="mt-8 flex gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href={book.downloadUrl}
                 target="_blank"
-                className="rounded-full bg-black px-6 py-3 text-white"
+                rel="noopener noreferrer"
+                className="btn-brand"
               >
-                Ler livro
+                Baixar PDF
               </a>
 
-              <Link
-                href="/books"
-                className="rounded-full border px-6 py-3"
-              >
-                Voltar
+              <Link href="/books" className="btn-soft">
+                Ver outros livros
               </Link>
             </div>
-          </div>
 
+            <div className="soft-card mt-12 p-6 md:p-8">
+              <h2 className="text-2xl md:text-3xl" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
+                Sobre esta obra
+              </h2>
+
+              <p className="copy-muted mt-4">
+                Este título faz parte da biblioteca digital do projeto Três Mensagens Angélicas,
+                reunindo materiais relevantes para estudo bíblico, crescimento espiritual e
+                aprofundamento na verdade profética.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
