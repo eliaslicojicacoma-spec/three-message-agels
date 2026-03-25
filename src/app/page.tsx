@@ -1,54 +1,212 @@
 import Link from "next/link";
 import { getArticles } from "@/content/blog/articles";
-import { getBooks } from "@/content/books";
+import { books } from "@/content/books/books";
+
+const featuredArticles = getArticles().slice(0, 3);
+const featuredBooks = books.slice(0, 3);
+
+const dailyVerse = {
+  verseText:
+    "E este evangelho do reino será pregado em todo o mundo, em testemunho a todas as nações, e então virá o fim.",
+  bibleReference: "Mateus 24:14",
+  reflectionText:
+    "A missão ainda está viva. Cada artigo, estudo e livro partilhado pode ser um instrumento para preparar pessoas para o breve retorno de Cristo.",
+  backgroundImage:
+    "https://static.wixstatic.com/media/c87fc3_130eda5c5cd548658cd2d39d442af9d7~mv2.png?originWidth=768&originHeight=960",
+};
+
+const navLinks = [
+  { href: "/", label: "Início" },
+  { href: "/blog", label: "Artigos" },
+  { href: "/books", label: "Livros" },
+  { href: "/studies", label: "Estudos Bíblicos" },
+  { href: "/verse-of-day", label: "Versículo do Dia" },
+  { href: "/about", label: "Sobre" },
+  { href: "/contact", label: "Contato" },
+];
+
+const socialLinks = [
+  { href: "https://www.facebook.com/share/18GkkkzSwm/", label: "Facebook", short: "f" },
+  { href: "https://www.instagram.com/eliascacoma", label: "Instagram", short: "i" },
+  { href: "https://youtube.com/@eliaslicojicacoma", label: "YouTube", short: "y" },
+];
+
+function formatDate(date?: string) {
+  if (!date) return "Recente";
+  try {
+    return new Date(date).toLocaleDateString("pt-BR");
+  } catch {
+    return "Recente";
+  }
+}
 
 export default function HomePage() {
-  const articles = getArticles().slice(0, 3);
-  const books = getBooks().slice(0, 3);
+  const currentYear = new Date().getFullYear();
 
   return (
-    <main className="page-shell overflow-x-hidden">
-      {/* HERO */}
-      <section className="relative flex min-h-[95vh] items-center justify-center overflow-hidden bg-[#111111]">
-        <div
-          className="absolute inset-0 z-0 opacity-40"
-          style={{
-            backgroundImage:
-              "url(https://static.wixstatic.com/media/c87fc3_3af72e5dad0f4c7593cb5d7a39acdd83~mv2.png?originWidth=1920&originHeight=1024)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/80 via-black/40 to-black" />
+    <main className="min-h-screen overflow-x-hidden bg-[#F8F8F8] text-[#333333]">
+      <style>{`
+        .text-stroke-gold {
+          -webkit-text-stroke: 1px #B8A07A;
+          color: transparent;
+        }
+
+        .bg-noise {
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .premium-link {
+          position: relative;
+        }
+
+        .premium-link::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -4px;
+          width: 100%;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(0.4);
+          transform-origin: left;
+          opacity: 0;
+          transition: transform 220ms ease, opacity 220ms ease;
+        }
+
+        .premium-link:hover::after {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+
+        .glass-nav {
+          background: rgba(255,255,255,0.88);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-fade {
+          background:
+            radial-gradient(circle at 50% 20%, rgba(184,160,122,0.22), transparent 26%),
+            linear-gradient(to bottom, rgba(34,34,34,0.15), rgba(34,34,34,0.7));
+        }
+
+        .gold-ring {
+          box-shadow: 0 0 0 1px rgba(184,160,122,0.28);
+        }
+
+        .card-lift {
+          transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+        }
+
+        .card-lift:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 24px 60px rgba(17,17,17,0.14);
+          border-color: rgba(184,160,122,0.28);
+        }
+
+        .image-zoom img {
+          transition: transform 700ms ease;
+        }
+
+        .image-zoom:hover img {
+          transform: scale(1.05);
+        }
+      `}</style>
+
+      <header className="glass-nav sticky top-0 z-50 w-full border-b border-black/5">
+        <div className="mx-auto flex max-w-[120rem] items-center justify-between px-6 py-5 md:px-10 xl:px-12">
+          <Link
+            href="/"
+            className="tracking-tight text-[#222222]"
+            style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: "clamp(1.9rem, 2.7vw, 2.8rem)" }}
+          >
+            Três Mensagens Angélicas
+          </Link>
+
+          <nav className="hidden items-center gap-8 xl:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="premium-link text-[15px] text-[#333333] transition-colors hover:text-[#B8A07A]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Link
+            href="/support"
+            className="hidden min-h-[48px] items-center justify-center rounded-full bg-[#B8A07A] px-6 text-sm font-medium text-[#222222] transition hover:bg-[#a78962] xl:inline-flex"
+            style={{ fontFamily: '"Sora", sans-serif' }}
+          >
+            Apoiar a Missão
+          </Link>
+        </div>
+      </header>
+
+      <section className="relative flex min-h-[96vh] items-center justify-center overflow-hidden bg-[#222222]">
+        <div className="absolute inset-0 z-0 opacity-40">
+          <img
+            src="https://static.wixstatic.com/media/c87fc3_3af72e5dad0f4c7593cb5d7a39acdd83~mv2.png?originWidth=1920&originHeight=1024"
+            alt="Atmosfera"
+            className="h-full w-full object-cover"
+          />
+          <div className="hero-fade absolute inset-0" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#222222]/75 via-[#222222]/35 to-[#222222]" />
+        </div>
+
         <div className="absolute inset-0 z-10 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-        <div className="relative z-20 mx-auto flex w-full max-w-[120rem] flex-col items-center px-6 text-center md:px-12">
+        <div className="relative z-20 mx-auto flex w-full max-w-[120rem] flex-col items-center px-6 text-center md:px-10 xl:px-12">
           <div className="mb-6 flex items-center gap-4">
-            <div className="h-[1px] w-12 bg-[#b88a4a]/50" />
-            <span className="text-sm uppercase tracking-[0.2em] text-[#b88a4a]">
-              Voz Global da Fé
+            <div className="h-px w-12 bg-[#B8A07A]/50" />
+            <span
+              className="text-sm uppercase tracking-[0.24em] text-[#B8A07A]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
+            >
+              Voz Profética Global
             </span>
-            <div className="h-[1px] w-12 bg-[#b88a4a]/50" />
+            <div className="h-px w-12 bg-[#B8A07A]/50" />
           </div>
 
-          <h1 className="text-6xl leading-[0.9] tracking-tight text-white md:text-8xl lg:text-9xl">
-            As Três Mensagens
-            <br />
-            <span className="italic text-[#b88a4a]">Angélicas</span>
+          <h1
+            className="mb-8 max-w-6xl text-6xl leading-[0.88] text-[#F8F8F8] md:text-8xl xl:text-9xl"
+            style={{ fontFamily: '"Cormorant Garamond", serif' }}
+          >
+            Três Mensagens <br />
+            <span className="italic text-[#B8A07A]">Angélicas</span>
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-gray-300 md:text-xl">
-            Um portal dedicado à proclamação do Evangelho Eterno e à preparação
-            de um povo para o breve retorno de nosso Senhor Jesus Cristo.
+          <p
+            className="mb-12 max-w-3xl text-lg leading-relaxed text-gray-300 md:text-xl"
+            style={{ fontFamily: '"Sora", sans-serif' }}
+          >
+            Um portal dedicado à proclamação do evangelho eterno, à restauração da verdade bíblica
+            e à preparação de um povo para o breve retorno de nosso Senhor Jesus Cristo.
           </p>
 
-          <div className="mt-12 flex w-full flex-col justify-center gap-6 sm:flex-row">
-            <Link href="/studies" className="btn-brand min-w-[220px]">
+          <div className="flex w-full flex-col justify-center gap-5 sm:flex-row">
+            <Link
+              href="/studies"
+              className="inline-flex min-w-[220px] items-center justify-center rounded-full bg-[#B8A07A] px-10 py-5 text-lg text-[#222222] transition hover:bg-[#a78962]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
+            >
               Estudos Bíblicos
             </Link>
+
             <Link
               href="/blog"
-              className="inline-flex min-w-[220px] items-center justify-center rounded-none border border-white/20 px-10 py-7 text-lg text-white transition hover:bg-white hover:text-black"
+              className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-white/20 px-10 py-5 text-lg text-white transition hover:bg-white hover:text-[#222222]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
             >
               Explorar Artigos
             </Link>
@@ -56,54 +214,75 @@ export default function HomePage() {
         </div>
 
         <div className="absolute bottom-12 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2">
-          <span className="text-xs uppercase tracking-widest text-white/40">
+          <span
+            className="text-xs uppercase tracking-[0.28em] text-white/40"
+            style={{ fontFamily: '"Sora", sans-serif' }}
+          >
             Role para descobrir
           </span>
-          <div className="h-16 w-[1px] bg-gradient-to-b from-[#b88a4a] to-transparent" />
+          <div className="h-16 w-px bg-gradient-to-b from-[#B8A07A] to-transparent" />
         </div>
       </section>
 
-      {/* DAILY VERSE */}
-      <section className="relative w-full overflow-hidden py-24 md:py-32">
+      <section className="relative w-full overflow-hidden bg-[#F8F8F8] py-24 md:py-32">
         <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
-        <div className="section-wrap">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+        <div className="mx-auto max-w-[120rem] px-6 md:px-10 xl:px-12">
+          <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-12">
             <div className="relative lg:col-span-5">
               <div className="relative z-10">
-                <div className="aspect-[4/5] w-full overflow-hidden rounded-sm">
-                  <div className="absolute inset-0 z-10 bg-[#b88a4a]/10 mix-blend-multiply" />
+                <div className="gold-ring relative aspect-[4/5] w-full overflow-hidden rounded-sm">
+                  <div className="absolute inset-0 z-10 bg-[#B8A07A]/10 mix-blend-multiply" />
                   <img
-                    src="https://static.wixstatic.com/media/c87fc3_130eda5c5cd548658cd2d39d442af9d7~mv2.png?originWidth=768&originHeight=960"
-                    alt="Verse background"
+                    src={dailyVerse.backgroundImage}
+                    alt="Versículo do dia"
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="absolute -left-6 -top-6 -z-10 h-full w-full border border-[#b88a4a]/30" />
+                <div className="absolute -left-6 -top-6 -z-10 h-full w-full border border-[#B8A07A]/30" />
               </div>
             </div>
 
             <div className="lg:col-span-7 lg:pl-16">
               <div className="mb-8 flex items-center gap-4">
-                <span className="text-lg text-[#b88a4a]">♥</span>
-                <span className="text-sm uppercase tracking-widest text-[#6d675f]">
+                <span className="text-[#B8A07A]">♥</span>
+                <span
+                  className="text-sm uppercase tracking-[0.24em] text-[#4A4A4A]"
+                  style={{ fontFamily: '"Sora", sans-serif' }}
+                >
                   Versículo do Dia
                 </span>
               </div>
 
-              <h2 className="text-4xl leading-tight text-[#171411] md:text-5xl lg:text-6xl">
-                “Porque Deus amou o mundo de tal maneira que deu o Seu Filho unigênito.”
+              <h2
+                className="mb-8 text-4xl leading-tight text-[#222222] md:text-5xl xl:text-6xl"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
+                "{dailyVerse.verseText}"
               </h2>
 
-              <div className="mt-8 flex flex-col gap-6 border-t border-gray-200 pt-8 md:flex-row md:items-center md:gap-12">
+              <div className="flex flex-col gap-6 border-t border-gray-200 pt-8 md:flex-row md:items-center md:gap-12">
                 <div>
-                  <span className="mb-1 block text-2xl text-[#b88a4a]">João 3:16</span>
-                  <span className="text-sm text-gray-500">Referência Bíblica</span>
+                  <span
+                    className="mb-1 block text-2xl text-[#B8A07A]"
+                    style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                  >
+                    {dailyVerse.bibleReference}
+                  </span>
+                  <span
+                    className="text-sm text-gray-500"
+                    style={{ fontFamily: '"Sora", sans-serif' }}
+                  >
+                    Referência Bíblica
+                  </span>
                 </div>
 
                 <div className="max-w-md md:border-l md:border-gray-200 md:pl-12">
-                  <p className="italic leading-relaxed text-[#6d675f]">
-                    A base da esperança cristã está no amor de Deus revelado em Cristo.
+                  <p
+                    className="leading-relaxed text-[#4A4A4A] italic"
+                    style={{ fontFamily: '"Sora", sans-serif' }}
+                  >
+                    {dailyVerse.reflectionText}
                   </p>
                 </div>
               </div>
@@ -111,12 +290,10 @@ export default function HomePage() {
               <div className="mt-12">
                 <Link
                   href="/verse-of-day"
-                  className="group inline-flex items-center text-lg text-[#171411] transition hover:text-[#b88a4a]"
+                  className="premium-link inline-flex items-center text-lg text-[#222222] transition-colors hover:text-[#B8A07A]"
+                  style={{ fontFamily: '"Sora", sans-serif' }}
                 >
-                  <span className="border-b border-black pb-1 group-hover:border-[#b88a4a]">
-                    Ler reflexão completa
-                  </span>
-                  <span className="ml-3 transition group-hover:translate-x-1">→</span>
+                  Ler reflexão completa <span className="ml-3">→</span>
                 </Link>
               </div>
             </div>
@@ -124,82 +301,111 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MISSION */}
-      <section className="relative w-full overflow-hidden bg-[#111111] py-32 text-white">
-        <div className="absolute inset-0 opacity-20 [background-image:url('data:image/svg+xml,%3Csvg_viewBox=%270_0_200_200%27_xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter_id=%27noiseFilter%27%3E%3CfeTurbulence_type=%27fractalNoise%27_baseFrequency=%270.65%27_numOctaves=%273%27_stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect_width=%27100%25%27_height=%27100%25%27_filter=%27url(%23noiseFilter)%27_opacity=%270.05%27/%3E%3C/svg%3E')]" />
+      <section className="relative w-full overflow-hidden bg-[#222222] py-32 text-[#F8F8F8]">
+        <div className="bg-noise absolute inset-0 opacity-20" />
 
-        <div className="section-wrap">
+        <div className="relative mx-auto max-w-[120rem] px-6 md:px-10 xl:px-12">
           <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
-            <div className="relative">
-              <div className="sticky top-32">
-                <h2 className="mb-8 text-5xl leading-none md:text-7xl">
-                  Atalaia da
-                  <br />
-                  <span className="text-transparent [WebkitTextStroke:1px_#b8a07a]">
-                    Verdade
-                  </span>
-                </h2>
+            <div>
+              <h2
+                className="mb-8 text-5xl leading-none md:text-7xl"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
+                Atalaia da <br />
+                <span className="text-stroke-gold">Verdade</span>
+              </h2>
 
-                <p className="mb-12 max-w-xl text-xl leading-relaxed text-gray-400">
-                  Localizado no coração da Huíla, em Angola, este portal nasce como
-                  uma resposta ao chamado bíblico de ser uma voz de advertência,
-                  esperança e preparação nestes tempos solenes.
-                </p>
+              <p
+                className="mb-12 max-w-xl text-xl leading-relaxed text-gray-400"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                No coração de Angola, Três Mensagens Angélicas nasce como uma resposta ao chamado
+                bíblico para levantar a verdade, fortalecer a fé e anunciar o tempo solene em que vivemos.
+              </p>
 
-                <div className="space-y-8">
-                  <div className="flex items-start gap-6">
-                    <div className="rounded-full border border-white/10 p-4">
-                      <span className="text-[#b88a4a]">⚓</span>
-                    </div>
-                    <div>
-                      <h3 className="mb-2 text-2xl text-white">Fundamento Sólido</h3>
-                      <p className="leading-relaxed text-gray-500">
-                        Mensagem fundamentada exclusivamente na Palavra de Deus.
-                      </p>
-                    </div>
+              <div className="space-y-8">
+                <div className="flex items-start gap-6">
+                  <div className="rounded-full border border-white/10 p-4">
+                    <span className="text-[#B8A07A]">⚓</span>
                   </div>
-
-                  <div className="flex items-start gap-6">
-                    <div className="rounded-full border border-white/10 p-4">
-                      <span className="text-[#b88a4a]">🛡️</span>
-                    </div>
-                    <div>
-                      <h3 className="mb-2 text-2xl text-white">Resistência Espiritual</h3>
-                      <p className="leading-relaxed text-gray-500">
-                        Uma plataforma de educação e esperança com alcance digital.
-                      </p>
-                    </div>
+                  <div>
+                    <h3
+                      className="mb-2 text-2xl text-white"
+                      style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                    >
+                      Fundamento Sólido
+                    </h3>
+                    <p
+                      className="leading-relaxed text-gray-500"
+                      style={{ fontFamily: '"Sora", sans-serif' }}
+                    >
+                      Conteúdo fundamentado na Palavra de Deus, com reverência, clareza doutrinária e compromisso com a verdade bíblica.
+                    </p>
                   </div>
                 </div>
 
-                <div className="mt-16">
-                  <Link href="/about" className="inline-flex rounded-none bg-white px-8 py-6 text-black transition hover:bg-[#b88a4a] hover:text-white">
-                    Conheça Nossa História
-                  </Link>
+                <div className="flex items-start gap-6">
+                  <div className="rounded-full border border-white/10 p-4">
+                    <span className="text-[#B8A07A]">🛡</span>
+                  </div>
+                  <div>
+                    <h3
+                      className="mb-2 text-2xl text-white"
+                      style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                    >
+                      Missão Digital
+                    </h3>
+                    <p
+                      className="leading-relaxed text-gray-500"
+                      style={{ fontFamily: '"Sora", sans-serif' }}
+                    >
+                      Uma plataforma criada para alcançar pessoas com estudos, artigos, livros e recursos espirituais em ambiente moderno e acessível.
+                    </p>
+                  </div>
                 </div>
+              </div>
+
+              <div className="mt-16">
+                <Link
+                  href="/three-angels-message"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-[#222222] transition hover:bg-[#B8A07A] hover:text-white"
+                  style={{ fontFamily: '"Sora", sans-serif' }}
+                >
+                  Entender a Mensagem
+                </Link>
               </div>
             </div>
 
             <div className="flex flex-col gap-8 pt-12 lg:pt-0">
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <div className="image-zoom card-lift relative aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-white/10">
                 <img
                   src="https://static.wixstatic.com/media/c87fc3_8852073a61fb474daffbeb20512cd02a~mv2.png?originWidth=1152&originHeight=896"
-                  alt="Mission Context 1"
-                  className="h-full w-full object-cover opacity-80 transition-opacity duration-700 hover:opacity-100"
+                  alt="Estudos Proféticos"
+                  className="h-full w-full object-cover opacity-80 hover:opacity-100"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
-                  <span className="text-2xl text-white">Estudos Proféticos</span>
+                  <span
+                    className="text-2xl text-white"
+                    style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                  >
+                    Estudos Proféticos
+                  </span>
                 </div>
               </div>
 
-              <div className="relative ml-0 aspect-[4/3] w-full overflow-hidden lg:ml-12">
+              <div className="image-zoom card-lift relative ml-0 aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-white/10 lg:ml-12">
                 <img
                   src="https://static.wixstatic.com/media/c87fc3_fa69aebd39ac4c32b3f1c20d27887dda~mv2.png?originWidth=1152&originHeight=896"
-                  alt="Mission Context 2"
-                  className="h-full w-full object-cover opacity-80 transition-opacity duration-700 hover:opacity-100"
+                  alt="Fé e Sociedade"
+                  className="h-full w-full object-cover opacity-80 hover:opacity-100"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
-                  <span className="text-2xl text-white">Fé e Sociedade</span>
+                  <span
+                    className="text-2xl text-white"
+                    style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                  >
+                    Fé e Sociedade
+                  </span>
                 </div>
               </div>
             </div>
@@ -207,81 +413,123 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ARTICLES */}
-      <section className="w-full py-32">
-        <div className="section-wrap">
-          <div className="mb-20 flex flex-col items-end justify-between gap-8 border-b border-gray-200 pb-8 md:flex-row">
+      <section className="w-full bg-[#F8F8F8] py-32">
+        <div className="mx-auto max-w-[120rem] px-6 md:px-10 xl:px-12">
+          <div className="mb-20 flex flex-col items-end justify-between border-b border-gray-200 pb-8 md:flex-row">
             <div>
-              <span className="mb-4 block text-sm uppercase tracking-widest text-[#b88a4a]">
+              <span
+                className="mb-4 block text-sm uppercase tracking-[0.24em] text-[#B8A07A]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
                 Atualizações Recentes
               </span>
-              <h2 className="text-5xl text-[#171411] md:text-6xl">Fé e Sociedade</h2>
+              <h2
+                className="text-5xl text-[#222222] md:text-6xl"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
+                Fé e Sociedade
+              </h2>
             </div>
 
             <Link
               href="/blog"
-              className="hidden rounded-none border border-[#171411] px-8 py-4 text-[#171411] transition hover:bg-[#171411] hover:text-white md:block"
+              className="hidden rounded-full border border-[#222222] px-8 py-4 text-[#222222] transition hover:bg-[#222222] hover:text-white md:inline-flex"
+              style={{ fontFamily: '"Sora", sans-serif' }}
             >
               Ver Todos os Artigos
             </Link>
           </div>
 
           <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-3">
-            {articles.map((article) => (
+            {featuredArticles.map((article) => (
               <article key={article.slug} className="group flex h-full flex-col">
-                <Link href={`/blog/${article.slug}`} className="mb-6 block overflow-hidden">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
-                    <div className="absolute inset-0 z-10 transition-colors duration-500 group-hover:bg-black/10" />
+                <Link href={`/blog/${article.slug}`} className="image-zoom mb-6 block overflow-hidden rounded-[24px]">
+                  <div className="card-lift relative aspect-[16/10] overflow-hidden border border-black/5 bg-gray-100">
+                    <div className="absolute inset-0 z-10 bg-[#222222]/0 transition-colors duration-500 group-hover:bg-[#222222]/10" />
                     <img
-                      src={article.cover}
+                      src={article.cover || "/images/blog/cover-1.jpg"}
                       alt={article.title}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="h-full w-full object-cover"
                     />
                   </div>
                 </Link>
 
                 <div className="flex flex-grow flex-col">
                   <div className="mb-4 flex items-center justify-between border-b border-gray-100 pb-4">
-                    <span className="text-xs uppercase tracking-wider text-[#b88a4a]">
-                      {article.category}
+                    <span
+                      className="text-xs uppercase tracking-wider text-[#B8A07A]"
+                      style={{ fontFamily: '"Sora", sans-serif' }}
+                    >
+                      {article.category || "Geral"}
+                    </span>
+                    <span
+                      className="text-xs text-gray-400"
+                      style={{ fontFamily: '"Sora", sans-serif' }}
+                    >
+                      {formatDate(article.date)}
                     </span>
                   </div>
 
-                  <h3 className="mb-4 text-3xl leading-tight text-[#171411] transition-colors group-hover:text-[#b88a4a]">
+                  <h3
+                    className="mb-4 text-3xl leading-tight text-[#222222] transition-colors group-hover:text-[#B8A07A]"
+                    style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                  >
                     <Link href={`/blog/${article.slug}`}>{article.title}</Link>
                   </h3>
 
-                  <p className="mb-6 line-3 leading-relaxed text-[#6d675f]">
+                  <p
+                    className="line-clamp-3 mb-6 flex-grow leading-relaxed text-[#4A4A4A]"
+                    style={{ fontFamily: '"Sora", sans-serif' }}
+                  >
                     {article.excerpt}
                   </p>
 
                   <Link
                     href={`/blog/${article.slug}`}
-                    className="mt-auto inline-flex items-center text-sm font-medium text-[#171411] transition-colors group-hover:text-[#b88a4a]"
+                    className="premium-link mt-auto inline-flex items-center text-sm text-[#222222] transition-colors group-hover:text-[#B8A07A]"
+                    style={{ fontFamily: '"Sora", sans-serif' }}
                   >
-                    Ler Artigo <span className="ml-1">→</span>
+                    Ler Artigo <span className="ml-1">›</span>
                   </Link>
                 </div>
               </article>
             ))}
           </div>
+
+          <div className="mt-12 md:hidden">
+            <Link
+              href="/blog"
+              className="inline-flex w-full items-center justify-center rounded-full border border-[#222222] py-5 text-[#222222] transition hover:bg-[#222222] hover:text-white"
+              style={{ fontFamily: '"Sora", sans-serif' }}
+            >
+              Ver Todos os Artigos
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* BOOKS */}
-      <section className="w-full overflow-hidden bg-[#111111] py-32 text-white">
-        <div className="section-wrap">
+      <section className="w-full overflow-hidden bg-[#222222] py-32 text-[#F8F8F8]">
+        <div className="mx-auto max-w-[120rem] px-6 md:px-10 xl:px-12">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <div className="sticky top-32">
-                <div className="mb-8 text-5xl text-[#b88a4a]">📚</div>
-                <h2 className="mb-6 text-5xl md:text-6xl">Biblioteca Digital</h2>
-                <p className="mb-10 text-lg leading-relaxed text-gray-400">
-                  Acesse gratuitamente obras fundamentais para o crescimento espiritual.
+              <div>
+                <div className="mb-8 text-5xl text-[#B8A07A]">📚</div>
+                <h2
+                  className="mb-6 text-5xl md:text-6xl"
+                  style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                >
+                  Biblioteca Digital
+                </h2>
+                <p
+                  className="mb-10 text-lg leading-relaxed text-gray-400"
+                  style={{ fontFamily: '"Sora", sans-serif' }}
+                >
+                  Acesse gratuitamente obras fundamentais para o crescimento espiritual, profecia, vida cristã e formação doutrinária.
                 </p>
                 <Link
                   href="/books"
-                  className="inline-flex rounded-none bg-[#b88a4a] px-8 py-6 text-black transition hover:bg-white"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#B8A07A] px-8 py-4 text-[#222222] transition hover:bg-white hover:text-[#222222] md:w-auto"
+                  style={{ fontFamily: '"Sora", sans-serif' }}
                 >
                   Acessar Acervo Completo
                 </Link>
@@ -290,37 +538,52 @@ export default function HomePage() {
 
             <div className="lg:col-span-8">
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                {books.map((book, index) => (
+                {featuredBooks.map((book, index) => (
                   <div
-                    key={book.slug}
-                    className={`group relative border border-white/10 bg-white/5 p-8 transition-colors hover:border-[#b88a4a]/30 ${
-                      index === 2 ? "md:col-span-2 md:flex md:items-center md:gap-8" : ""
-                    }`}
+                    key={book.id}
+                    className={`${index === 2 ? "md:col-span-2 md:flex md:items-center md:gap-8" : ""} card-lift group relative rounded-[24px] border border-white/10 bg-white/5 p-8`}
                   >
                     <div className={`relative mb-6 shadow-2xl ${index === 2 ? "md:mb-0 md:w-1/3" : ""}`}>
-                      <div className="aspect-[2/3] w-full overflow-hidden bg-gray-800">
-                        <img
-                          src={book.cover}
-                          alt={book.title}
-                          className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
-                        />
+                      <div className="overflow-hidden rounded-[18px] bg-gray-800">
+                        <div className="aspect-[2/3] w-full">
+                          <img
+                            src={book.cover || "/images/books/caminho-a-cristo.jpg"}
+                            alt={book.title}
+                            className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                          />
+                        </div>
                       </div>
                     </div>
 
                     <div className={index === 2 ? "md:w-2/3" : ""}>
-                      <span className="mb-2 block text-xs uppercase tracking-wider text-[#b88a4a]">
+                      <span
+                        className="mb-2 block text-xs uppercase tracking-wider text-[#B8A07A]"
+                        style={{ fontFamily: '"Sora", sans-serif' }}
+                      >
                         {book.category || "Literatura Cristã"}
                       </span>
-                      <h3 className="mb-2 text-2xl text-white transition-colors group-hover:text-[#b88a4a]">
+                      <h3
+                        className="mb-2 text-2xl text-white transition-colors group-hover:text-[#B8A07A]"
+                        style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                      >
                         {book.title}
                       </h3>
-                      <p className="mb-4 text-sm text-gray-400">{book.author}</p>
-                      <p className="mb-6 line-3 text-sm leading-relaxed text-gray-500">
+                      <p
+                        className="mb-4 text-sm text-gray-400"
+                        style={{ fontFamily: '"Sora", sans-serif' }}
+                      >
+                        {book.author}
+                      </p>
+                      <p
+                        className="line-clamp-3 mb-6 text-sm leading-relaxed text-gray-500"
+                        style={{ fontFamily: '"Sora", sans-serif' }}
+                      >
                         {book.description}
                       </p>
                       <Link
                         href={`/books/${book.slug}`}
-                        className="inline-flex items-center border-b border-white/30 pb-1 text-sm text-white transition-colors group-hover:border-[#b88a4a]"
+                        className="premium-link inline-flex items-center border-b border-white/30 pb-1 text-sm text-white transition-colors hover:border-[#B8A07A] hover:text-[#B8A07A]"
+                        style={{ fontFamily: '"Sora", sans-serif' }}
                       >
                         Detalhes da Obra
                       </Link>
@@ -333,38 +596,291 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative w-full overflow-hidden bg-[#b88a4a] py-32">
+      <section className="relative w-full overflow-hidden bg-[#B8A07A] py-32">
         <div className="absolute inset-0 opacity-10 mix-blend-multiply [background-image:url('https://www.transparenttextures.com/patterns/cubes.png')]" />
 
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-          <div className="mx-auto mb-8 text-6xl text-[#111111]/80">✝</div>
+          <div className="mb-8 text-6xl text-[#222222]">✝</div>
 
-          <h2 className="mb-8 text-5xl leading-tight text-[#111111] md:text-7xl">
-            Prepare-se para o
-            <br /> breve retorno.
+          <h2
+            className="mb-8 text-5xl leading-tight text-[#222222] md:text-7xl"
+            style={{ fontFamily: '"Cormorant Garamond", serif' }}
+          >
+            Prepare-se para o retorno de Cristo
           </h2>
 
-          <p className="mb-12 text-xl leading-relaxed text-[#111111]/80">
-            Junte-se a nós nesta jornada de fé, estudo e esperança.
+          <p
+            className="mb-12 text-xl leading-relaxed text-[#222222]/80"
+            style={{ fontFamily: '"Sora", sans-serif' }}
+          >
+            Junte-se a nós nesta jornada de fé, estudo, oração e missão.
           </p>
 
-          <div className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row sm:justify-center">
+          <div className="mx-auto flex max-w-md flex-col justify-center gap-4 sm:flex-row">
             <Link
-              href="/newsletter"
-              className="w-full rounded-none bg-[#111111] px-8 py-7 text-lg text-white transition hover:bg-black/80"
+              href="/contact"
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#222222] py-5 text-lg text-white transition hover:bg-[#111111]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
             >
-              Inscrever-se na Newsletter
+              Entrar em Contato
             </Link>
           </div>
 
-          <div className="mt-12 flex justify-center gap-8 text-[#111111]/60">
-            <span className="text-sm uppercase tracking-widest">Estudo</span>
-            <span className="text-sm uppercase tracking-widest">Oração</span>
-            <span className="text-sm uppercase tracking-widest">Missão</span>
+          <div
+            className="mt-12 flex justify-center gap-8 text-sm uppercase tracking-[0.24em] text-[#222222]/60"
+            style={{ fontFamily: '"Sora", sans-serif' }}
+          >
+            <span>Estudo</span>
+            <span>Oração</span>
+            <span>Missão</span>
           </div>
         </div>
       </section>
+
+      <section className="relative w-full overflow-hidden border-t border-gray-200 bg-[#F8F8F8] py-32">
+        <div className="mx-auto max-w-[120rem] px-6 md:px-10 xl:px-12">
+          <div className="mb-20 text-center">
+            <span
+              className="mb-4 block text-sm uppercase tracking-[0.24em] text-[#B8A07A]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
+            >
+              Apoie Nossa Missão
+            </span>
+            <h2
+              className="mb-6 text-5xl text-[#222222] md:text-6xl"
+              style={{ fontFamily: '"Cormorant Garamond", serif' }}
+            >
+              Apoio
+            </h2>
+            <p
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-[#4A4A4A]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
+            >
+              Sua contribuição nos ajuda a continuar proclamando o evangelho eterno e alcançando mais pessoas com a mensagem de esperança.
+            </p>
+          </div>
+
+          <div className="mx-auto grid max-w-3xl grid-cols-1 gap-12 md:grid-cols-2">
+            <div className="card-lift rounded-[24px] border border-gray-200 bg-white p-8">
+              <div className="mb-6 flex items-center gap-4">
+                <div className="rounded-full bg-[#B8A07A]/10 p-3">
+                  <span className="text-[#B8A07A]">♥</span>
+                </div>
+                <h3
+                  className="text-2xl text-[#222222]"
+                  style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                >
+                  PayPal
+                </h3>
+              </div>
+
+              <p
+                className="mb-6 leading-relaxed text-[#4A4A4A]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                Faça sua doação via PayPal de forma segura e rápida.
+              </p>
+
+              <div className="mb-6 rounded border border-gray-100 bg-gray-50 p-4">
+                <p
+                  className="break-all text-sm text-gray-600"
+                  style={{ fontFamily: '"Sora", sans-serif' }}
+                >
+                  eliaslicojicacoma@gmail.com
+                </p>
+              </div>
+
+              <a
+                href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#B8A07A] py-4 text-[#222222] transition hover:bg-[#a78962]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                Doar via PayPal
+              </a>
+            </div>
+
+            <div className="card-lift rounded-[24px] border border-gray-200 bg-white p-8">
+              <div className="mb-6 flex items-center gap-4">
+                <div className="rounded-full bg-[#B8A07A]/10 p-3">
+                  <span className="text-[#B8A07A]">♥</span>
+                </div>
+                <h3
+                  className="text-2xl text-[#222222]"
+                  style={{ fontFamily: '"Cormorant Garamond", serif' }}
+                >
+                  Pix
+                </h3>
+              </div>
+
+              <p
+                className="mb-6 leading-relaxed text-[#4A4A4A]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                Transfira sua doação instantaneamente via Pix.
+              </p>
+
+              <div className="mb-6 rounded border border-gray-100 bg-gray-50 p-4">
+                <p
+                  className="break-all text-sm text-gray-600"
+                  style={{ fontFamily: '"Sora", sans-serif' }}
+                >
+                  elias-licoji-cacoma-273@jim.com
+                </p>
+              </div>
+
+              <button
+                type="button"
+                className="inline-flex w-full items-center justify-center rounded-full border border-[#B8A07A] py-4 text-[#B8A07A] transition hover:bg-[#B8A07A] hover:text-[#222222]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                Copiar Chave Pix
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-20 text-center">
+            <p
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-[#4A4A4A]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
+            >
+              Toda contribuição, por menor que seja, faz diferença na expansão de nossa missão. Agradecemos sinceramente seu apoio e suas orações.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer className="w-full bg-[#222222] text-[#F8F8F8]">
+        <div className="mx-auto max-w-[100rem] px-6 py-16 md:px-10 md:py-24 xl:px-12">
+          <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <h3
+                className="mb-6 text-2xl text-[#B8A07A]"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
+                Três Mensagens Angélicas
+              </h3>
+              <p
+                className="mb-6 text-base leading-relaxed text-[#F8F8F8]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                Um portal dedicado à proclamação do evangelho eterno e à preparação de um povo para o breve retorno de Cristo.
+              </p>
+              <p
+                className="text-sm text-[#F8F8F8]"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                Huíla – Angola
+              </p>
+            </div>
+
+            <div>
+              <h4
+                className="mb-6 text-xl text-[#B8A07A]"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
+                Links Rápidos
+              </h4>
+              <ul className="space-y-3">
+                <li><Link href="/blog" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>Artigos de Fé</Link></li>
+                <li><Link href="/books" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>Biblioteca Digital</Link></li>
+                <li><Link href="/studies" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>Estudos Bíblicos</Link></li>
+                <li><Link href="/verse-of-day" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>Versículo do Dia</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4
+                className="mb-6 text-xl text-[#B8A07A]"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
+                Recursos
+              </h4>
+              <ul className="space-y-3">
+                <li><a href="https://egwwritings.org" target="_blank" rel="noopener noreferrer" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>EGW Writings</a></li>
+                <li><a href="https://biblia.com.br" target="_blank" rel="noopener noreferrer" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>Estudos Bíblicos</a></li>
+                <li><a href="https://hinarioadventista.com.br" target="_blank" rel="noopener noreferrer" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>Hinário Adventista</a></li>
+                <li><Link href="/about" className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>Sobre a Missão</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4
+                className="mb-6 text-xl text-[#B8A07A]"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
+                Contato
+              </h4>
+              <ul className="space-y-4">
+                <li>
+                  <a
+                    href="https://wa.me/244933522616"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#F8F8F8] transition-colors hover:text-[#B8A07A]"
+                    style={{ fontFamily: '"Sora", sans-serif' }}
+                  >
+                    +244 933 522 616
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:eliaslicojicacoma@gmail.com"
+                    className="break-all text-[#F8F8F8] transition-colors hover:text-[#B8A07A]"
+                    style={{ fontFamily: '"Sora", sans-serif' }}
+                  >
+                    eliaslicojicacoma@gmail.com
+                  </a>
+                </li>
+              </ul>
+
+              <div className="mt-6 flex gap-4">
+                {socialLinks.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-[#4A4A4A] text-[#F8F8F8] transition-colors hover:bg-[#B8A07A]"
+                    style={{ fontFamily: '"Sora", sans-serif' }}
+                  >
+                    {item.short}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-[#4A4A4A] pt-8">
+            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+              <p
+                className="text-center text-sm text-[#F8F8F8] md:text-left"
+                style={{ fontFamily: '"Sora", sans-serif' }}
+              >
+                © {currentYear} Três Mensagens Angélicas. Todos os direitos reservados.
+              </p>
+
+              <div className="flex gap-6">
+                <Link href="/privacy" className="text-sm text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>
+                  Privacidade
+                </Link>
+                <Link href="/terms" className="text-sm text-[#F8F8F8] transition-colors hover:text-[#B8A07A]" style={{ fontFamily: '"Sora", sans-serif' }}>
+                  Termos de Uso
+                </Link>
+              </div>
+            </div>
+
+            <p
+              className="mt-6 text-center text-sm italic text-[#F8F8F8]"
+              style={{ fontFamily: '"Sora", sans-serif' }}
+            >
+              "E este evangelho do reino será pregado em todo o mundo, em testemunho a todas as nações, e então virá o fim." - Mateus 24:14
+            </p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

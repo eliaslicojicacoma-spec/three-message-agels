@@ -1,0 +1,33 @@
+/* WIX ORIGINAL - PATH CORRIGIDO PARA NEXT.JS */
+
+/* heading - cormorantgaramond */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(/fonts/cormorantgaramond/v21/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtFmSqn7B6DxjY.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(/fonts/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2) format('woff2');
+}
+
+/* paragraph - sora */
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url(/fonts/sora/v17/xMQbuFFYT72XzQUpDqW1KX4.woff2) format('woff2');
+}
+
+/* FONT VARIABLES */
+:root {
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-paragraph: 'Sora', sans-serif;
+}

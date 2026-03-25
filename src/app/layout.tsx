@@ -1,4 +1,5 @@
 import "./globals.css";
+import "../styles/fonts.css";
 import CookieBanner from "@/components/layout/cookie-banner";
 import Link from "next/link";
 
