@@ -1,0 +1,36 @@
+
+==== POSSIVEIS LIXOS ====
+./src/content/blog/articles.ts.bak
+
+==== DIRETORIOS VAZIOS ====
+./public/icons
+./public/images/shared
+./src/features/studies/services
+./src/features/studies/types
+
+==== POSSIVEIS DUPLICADOS DE PAGINAS/ROTAS ====
+src/app/[locale]/studies/page.tsx
+src/app/about/page.tsx
+src/app/bible/[book]/[chapter]/page.tsx
+src/app/bible/[book]/page.tsx
+src/app/bible/books/page.tsx
+src/app/bible/library/page.tsx
+src/app/bible/page.tsx
+src/app/bible/search/page.tsx
+src/app/bible/verse-favorites/page.tsx
+src/app/blog/[slug]/page.tsx
+src/app/blog/page.tsx
+src/app/books/[slug]/page.tsx
+src/app/books/page.tsx
+src/app/contact/page.tsx
+src/app/downloads/[category]/page.tsx
+src/app/downloads/page.tsx
+src/app/layout.tsx
+src/app/page.tsx
+src/app/privacy/page.tsx
+src/app/studies/[slug]/page.tsx
+src/app/studies/page.tsx
+src/app/support/page.tsx
+src/app/terms/page.tsx
+src/app/three-angels-message/page.tsx
+src/app/verse-of-day/page.tsx
