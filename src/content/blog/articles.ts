@@ -10,7 +10,7 @@ export interface Article {
 
 // 🔥 lista de covers disponíveis
 const covers = Array.from({ length: 20 }, (_, i) => 
-  `/images/blog/cover-${i + 1}.jpg`
+  `/images/blog/cover-${i + 1}.webp`
 );
 
 // 🔥 função automática

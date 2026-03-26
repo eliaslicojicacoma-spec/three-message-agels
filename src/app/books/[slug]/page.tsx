@@ -30,7 +30,7 @@ export async function generateMetadata({
 
   const title = book.title;
   const description = book.description;
-  const image = book.cover || "/preview.jpg";
+  const image = book.cover || "/preview.webp";
   const url = `/books/${book.slug}`;
 
   return {

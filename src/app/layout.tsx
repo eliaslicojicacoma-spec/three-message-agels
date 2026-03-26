@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/preview.jpg",
+        url: "/preview.webp",
         width: 1200,
         height: 630,
         alt: "Três Mensagens Angélicas",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteName,
     description: siteDescription,
-    images: ["/preview.jpg"],
+    images: ["/preview.webp"],
   },
   robots: {
     index: true,

@@ -403,7 +403,7 @@ export default function HomePage() {
                   <div className="card-lift relative aspect-[16/10] overflow-hidden border border-black/5 bg-gray-100">
                     <div className="absolute inset-0 z-10 bg-[#222222]/0 transition-colors duration-500 group-hover:bg-[#222222]/10" />
                     <PerformanceImage
-                      src={article.cover || "/images/blog/cover-1.jpg"}
+                      src={article.cover || "/images/blog/cover-1.webp"}
                       alt={article.title}
                       className="h-full w-full object-cover"
                       loading="lazy"
@@ -506,7 +506,7 @@ export default function HomePage() {
                       <div className="overflow-hidden rounded-[18px] bg-gray-800">
                         <div className="aspect-[2/3] w-full">
                           <PerformanceImage
-                            src={book.cover || "/images/books/caminho-a-cristo.jpg"}
+                            src={book.cover || "/images/books/caminho-a-cristo.webp"}
                             alt={book.title}
                             className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
                             loading="lazy"

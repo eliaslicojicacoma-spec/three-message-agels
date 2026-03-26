@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   const title = article.title;
   const description = article.excerpt;
-  const image = article.cover || "/preview.jpg";
+  const image = article.cover || "/preview.webp";
   const url = `/blog/${article.slug}`;
 
   return {
