@@ -8,7 +8,7 @@ export const books = [
     category: "Vida Cristã",
     year: "1892",
     series: "Espiritual",
-    cover: "/images/books/caminho-a-cristo.jpg",
+    cover: "/images/books/caminho-a-cristo.webp",
     downloadUrl: "/books/caminho-a-cristo.pdf",
     featured: true,
   },
@@ -21,7 +21,7 @@ export const books = [
     category: "História Bíblica",
     year: "1890",
     series: "Conflito dos Séculos",
-    cover: "/images/books/patriarcas-e-profetas.jpg",
+    cover: "/images/books/patriarcas-e-profetas.webp",
     downloadUrl: "/books/patriarcas-e-profetas.pdf",
   },
   {
@@ -33,7 +33,7 @@ export const books = [
     category: "História Bíblica",
     year: "1917",
     series: "Conflito dos Séculos",
-    cover: "/images/books/profetas-e-reis.jpg",
+    cover: "/images/books/profetas-e-reis.webp",
     downloadUrl: "/books/profetas-e-reis.pdf",
   },
   {
@@ -45,7 +45,7 @@ export const books = [
     category: "Profecia",
     year: "1911",
     series: "Conflito dos Séculos",
-    cover: "/images/books/o-grande-conflito.jpg",
+    cover: "/images/books/o-grande-conflito.webp",
     downloadUrl: "/books/o-grande-conflito.pdf",
   },
   {
@@ -57,7 +57,7 @@ export const books = [
     category: "Vida de Cristo",
     year: "1898",
     series: "Conflito dos Séculos",
-    cover: "/images/books/o-desejado-de-todas-as-nacoes.jpg",
+    cover: "/images/books/o-desejado-de-todas-as-nacoes.webp",
     downloadUrl: "/books/o-desejado-de-todas-as-nacoes.pdf",
   },
   {
@@ -69,7 +69,7 @@ export const books = [
     category: "Igreja",
     year: "1911",
     series: "Conflito dos Séculos",
-    cover: "/images/books/atos-dos-apostolos.jpg",
+    cover: "/images/books/atos-dos-apostolos.webp",
     downloadUrl: "/books/atos-dos-apostolos.pdf",
   },
 ];
