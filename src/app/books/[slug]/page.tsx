@@ -1,6 +1,7 @@
-import { books } from "@/content/books/books";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { books } from "@/content/books/books";
 
 type PageProps = {
   params: Promise<{
@@ -14,9 +15,53 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const book = books.find((item) => item.slug === slug);
+
+  if (!book) {
+    return {
+      title: "Livro não encontrado",
+      description: "O livro solicitado não foi encontrado.",
+    };
+  }
+
+  const title = book.title;
+  const description = book.description;
+  const image = book.cover || "/preview.jpg";
+  const url = `/books/${book.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      images: [
+        {
+          url: image,
+          alt: book.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
+
 export default async function BookDetailPage({ params }: PageProps) {
   const { slug } = await params;
-
   const book = books.find((item) => item.slug === slug);
 
   if (!book) {
@@ -83,7 +128,10 @@ export default async function BookDetailPage({ params }: PageProps) {
             </div>
 
             <div className="soft-card mt-12 p-6 md:p-8">
-              <h2 className="text-2xl md:text-3xl" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
+              <h2
+                className="text-2xl md:text-3xl"
+                style={{ fontFamily: '"Cormorant Garamond", serif' }}
+              >
                 Sobre esta obra
               </h2>
 

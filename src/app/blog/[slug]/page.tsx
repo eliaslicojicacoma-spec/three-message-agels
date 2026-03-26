@@ -1,27 +1,68 @@
-import { notFound } from 'next/navigation'
-import { getArticle } from '@/content/blog/articles'
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getArticle } from "@/content/blog/articles";
 
-export default async function BlogPostPage({
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticle(slug);
 
-  const article = getArticle(slug)
+  if (!article) {
+    return {
+      title: "Artigo não encontrado",
+      description: "O artigo solicitado não foi encontrado.",
+    };
+  }
 
-  if (!article) return notFound()
+  const title = article.title;
+  const description = article.excerpt;
+  const image = article.cover || "/preview.jpg";
+  const url = `/blog/${article.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      images: [
+        {
+          url: image,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const article = getArticle(slug);
+
+  if (!article) return notFound();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
-      <h1 className="text-4xl font-heading mb-4">
-        {article.title}
-      </h1>
+    <div className="mx-auto max-w-3xl px-6 py-16">
+      <h1 className="mb-4 text-4xl font-heading">{article.title}</h1>
 
-      {(article as any).publishDate && (
-        <p className="text-sm text-gray-500 mb-6">
-          {(article as any).publishDate}
-        </p>
+      {article.date && (
+        <p className="mb-6 text-sm text-gray-500">{article.date}</p>
       )}
 
       <div
@@ -29,5 +70,5 @@ export default async function BlogPostPage({
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
     </div>
-  )
+  );
 }

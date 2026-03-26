@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getArticles } from "@/content/blog/articles";
 import { books } from "@/content/books/books";
+import PerformanceImage from "@/components/ui/performance-image";
 
 const featuredArticles = getArticles().slice(0, 3);
 const featuredBooks = books.slice(0, 3);
@@ -98,10 +99,13 @@ export default function HomePage() {
 
       <section className="relative flex min-h-[96vh] items-center justify-center overflow-hidden bg-[#222222]">
         <div className="absolute inset-0 z-0 opacity-40">
-          <img
+          <PerformanceImage
             src="https://static.wixstatic.com/media/c87fc3_3af72e5dad0f4c7593cb5d7a39acdd83~mv2.png?originWidth=1920&originHeight=1024"
             alt="Atmosfera"
             className="h-full w-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            sizes="100vw"
           />
           <div className="hero-fade absolute inset-0" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#222222]/75 via-[#222222]/35 to-[#222222]" />
@@ -176,10 +180,13 @@ export default function HomePage() {
               <div className="relative z-10">
                 <div className="gold-ring relative aspect-[4/5] w-full overflow-hidden rounded-sm">
                   <div className="absolute inset-0 z-10 bg-[#B8A07A]/10 mix-blend-multiply" />
-                  <img
+                  <PerformanceImage
                     src={dailyVerse.backgroundImage}
                     alt="Versículo do dia"
                     className="h-full w-full object-cover"
+                    loading="lazy"
+                    fetchPriority="auto"
+                    sizes="(max-width: 1024px) 100vw, 42vw"
                   />
                 </div>
                 <div className="absolute -left-6 -top-6 -z-10 h-full w-full border border-[#B8A07A]/30" />
@@ -321,10 +328,13 @@ export default function HomePage() {
 
             <div className="flex flex-col gap-8 pt-12 lg:pt-0">
               <div className="image-zoom card-lift relative aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-white/10">
-                <img
+                <PerformanceImage
                   src="https://static.wixstatic.com/media/c87fc3_8852073a61fb474daffbeb20512cd02a~mv2.png?originWidth=1152&originHeight=896"
                   alt="Estudos Proféticos"
                   className="h-full w-full object-cover opacity-80 hover:opacity-100"
+                  loading="lazy"
+                  fetchPriority="auto"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
                   <span
@@ -337,10 +347,13 @@ export default function HomePage() {
               </div>
 
               <div className="image-zoom card-lift relative ml-0 aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-white/10 lg:ml-12">
-                <img
+                <PerformanceImage
                   src="https://static.wixstatic.com/media/c87fc3_fa69aebd39ac4c32b3f1c20d27887dda~mv2.png?originWidth=1152&originHeight=896"
                   alt="Fé e Sociedade"
                   className="h-full w-full object-cover opacity-80 hover:opacity-100"
+                  loading="lazy"
+                  fetchPriority="auto"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
                   <span
@@ -389,10 +402,13 @@ export default function HomePage() {
                 <Link href={`/blog/${article.slug}`} className="image-zoom mb-6 block overflow-hidden rounded-[24px]">
                   <div className="card-lift relative aspect-[16/10] overflow-hidden border border-black/5 bg-gray-100">
                     <div className="absolute inset-0 z-10 bg-[#222222]/0 transition-colors duration-500 group-hover:bg-[#222222]/10" />
-                    <img
+                    <PerformanceImage
                       src={article.cover || "/images/blog/cover-1.jpg"}
                       alt={article.title}
                       className="h-full w-full object-cover"
+                      loading="lazy"
+                      fetchPriority="auto"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                 </Link>
@@ -489,10 +505,13 @@ export default function HomePage() {
                     <div className={`relative mb-6 shadow-2xl ${index === 2 ? "md:mb-0 md:w-1/3" : ""}`}>
                       <div className="overflow-hidden rounded-[18px] bg-gray-800">
                         <div className="aspect-[2/3] w-full">
-                          <img
+                          <PerformanceImage
                             src={book.cover || "/images/books/caminho-a-cristo.jpg"}
                             alt={book.title}
                             className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                            loading="lazy"
+                            fetchPriority="auto"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         </div>
                       </div>

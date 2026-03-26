@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getArticles } from "@/content/blog/articles";
+import OptimizedImage from "@/components/ui/optimized-image";
 
 const articles = getArticles();
+
+export const metadata: Metadata = {
+  title: "Artigos",
+  description:
+    "Reflexões, estudos e análises bíblicas para fortalecer a fé, compreender os tempos e viver com esperança.",
+};
 
 function formatDate(date?: string) {
   if (!date) return "Recente";
@@ -37,11 +45,12 @@ export default function BlogPage() {
                 className="mb-6 block overflow-hidden rounded-[24px]"
               >
                 <div className="premium-card border border-black/5 bg-white">
-                  <img
-                    src={article.cover}
-                    alt={article.title}
-                    className="premium-cover"
-                  />
+                  <div className="premium-cover">
+                    <OptimizedImage
+                      src={article.cover}
+                      alt={article.title}
+                    />
+                  </div>
                 </div>
               </Link>
 
@@ -56,10 +65,7 @@ export default function BlogPage() {
                   </span>
                 </div>
 
-                <h2
-                  className="mt-1 text-3xl leading-tight text-[#222222] transition-colors group-hover:text-[var(--gold)]"
-                  style={{ fontFamily: '"Cormorant Garamond", serif' }}
-                >
+                <h2 className="mt-1 text-3xl leading-tight text-[#222222]">
                   <Link href={`/blog/${article.slug}`}>
                     {article.title}
                   </Link>
@@ -71,7 +77,7 @@ export default function BlogPage() {
 
                 <Link
                   href={`/blog/${article.slug}`}
-                  className="mt-6 inline-flex items-center text-sm text-[var(--gold)] hover:opacity-80"
+                  className="mt-6 text-sm text-[var(--gold)]"
                 >
                   Ler artigo →
                 </Link>
