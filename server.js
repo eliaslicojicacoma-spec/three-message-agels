@@ -32,7 +32,7 @@ const upload = multer({ storage });
 
 // Teste da API
 app.get("/", (req, res) => {
-  res.send("API do Evangelho Eterno está rodando 🚀");
+  res.send("API do three angels message está rodando 🚀");
 });
 
 // Teste das variáveis de ambiente
