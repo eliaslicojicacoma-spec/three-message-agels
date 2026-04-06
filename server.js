@@ -32,16 +32,16 @@ const upload = multer({ storage });
 
 // Teste da API
 app.get("/", (req, res) => {
-  res.send("API do three angels message está rodando 🚀");
+  res.send("API do Evangelho Eterno está rodando 🚀");
 });
 
 // Teste das variáveis de ambiente
 app.get("/env-check", (req, res) => {
   res.json({
-    AWS_ACCESS_KEY: AKIAWSMCZII3KEIC7X22
-    AWS_SECRET_KEY: bb2cb342-4784-4cef-8a41-c00fd11024d6
-    AWS_REGION: Europe (Stockholm) eu-north-1
-    AWS_BUCKET_NAME:three-angels-message-storage
+    AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY ? "OK" : "MISSING",
+    AWS_SECRET_KEY: process.env.AWS_SECRET_KEY ? "OK" : "MISSING",
+    AWS_REGION: process.env.AWS_REGION,
+    AWS_BUCKET_NAME: process.env.AWS_BUCKET_NAME,
   });
 });
 
